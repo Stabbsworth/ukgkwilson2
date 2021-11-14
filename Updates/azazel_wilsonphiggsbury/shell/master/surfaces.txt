@@ -1,0 +1,244 @@
+//IMPORTANT NOTE ABOUT SERIKO! You CANNOT have mid-line comments! SERIKO errors don't prevent you from loading your ghost, but it will still give annoying errors and cause unexpected behaviors! Put ALL COMMENTS ON THEIR OWN LINES. This will save you a lot of headache, trust me!
+
+version,1
+//This is using the new seriko definition. If you want to use the old one, change the version to 0
+
+//Sakura surfaces
+
+surface0
+{
+	element0,overlay,surface0.png,0,0
+	//As a note, you can put your images in subfolders! I'd be careful doing it, but it could be very helpful! It would look something like this
+	//element0,overlay,yourfolder/surface0.png,0,0
+	//Any images in subfolders HAVE to be defined in a surface before you can use them in animations, though.
+	
+	//Collisions
+	collision0,50,8,95,27,Head
+	collision1,47,4,102,60,Face
+	
+	//Blink
+	animation20.interval,random,4
+	animation20.pattern0,overlay,-1,100,0,0
+	animation20.pattern1,overlay,100,50,0,0
+	animation20.pattern2,overlay,101,100,0,0
+	animation20.pattern3,overlay,-1,30,0,0
+	
+	//Talk
+	//animation1.interval,talk,4
+	//animation1.pattern0,alternativestart,(2,3,4)
+	
+	//animation2.interval,never
+	//animation2.pattern0,overlay,150,20,0,0
+	//animation2.pattern1,overlay,-1,100,0,0
+
+	//animation3.interval,never
+	//animation3.pattern0,overlay,151,20,0,0
+	//animation3.pattern1,overlay,-1,100,0,0
+
+	//animation4.interval,never
+	//animation4.pattern0,overlay,152,20,0,0
+	//animation4.pattern1,overlay,153,100,0,0
+	//animation4.pattern2,overlay,151,80,0,0
+	//animation4.pattern3,overlay,-1,100,0,0
+	
+	//alt. eye pose 1
+	animation1.interval,never
+	animation1.pattern0,overlay,1000,0,0
+	
+	//eye half closed
+	animation2.interval,never
+	animation2.pattern0,overlay,100,0,0
+	
+	//eyes closed
+	animation21.interval,never
+	animation21.pattern0,overlay,101,0,0
+	
+	//alarmed eyes
+	animation3.interval,never
+	animation3.pattern0,overlay,1004,0,0
+	
+	//alarmed eyes alt. pose
+	animation4.interval,never
+	animation4.pattern0,overlay,1005,0,0
+	
+	//smiling
+	animation5.interval,never
+	animation5.pattern0,overlay,1001,0,0
+	
+	//alt. idle mouth
+	animation6.interval,never
+	animation6.pattern0,overlay,1002,0,0
+	
+	//curious mouth
+	animation7.interval,never
+	animation7.pattern0,overlay,1003,0,0
+	
+	//sweating
+	animation8.interval,never
+	animation8.pattern0,overlay,1006,0,0
+	
+	//blush
+	animation9.interval,never
+	animation9.pattern0,overlay,1007,0,0
+	
+}
+
+//arms crossed, maybe annoyed?
+//intervals 1-9, 100 used up, use 30-39 atm
+surface1
+{
+	element0,overlay,surface1.png,0,0
+	
+	//blinking
+	animation45.interval,random,4
+	animation45.pattern0,overlay,-1,100,0,0
+	animation45.pattern1,overlay,1110,50,0,0
+	animation45.pattern2,overlay,1111,100,0,0
+	animation45.pattern3,overlay,-1,30,0,0
+	
+	//pout
+	animation30.interval,never
+	animation30.pattern0,overlay,1101,0,0
+	
+	//alt. mouth
+	animation31.interval,never
+	animation31.pattern0,overlay,1102,0,0
+	
+	//alt. eye pose 1
+	animation32.interval,never
+	animation32.pattern0,overlay,1103,0,0
+	
+	//alt. eye pose 2
+	animation33.interval,never
+	animation33.pattern0,overlay,1104,0,0
+	
+	//sweating
+	animation34.interval,never
+	animation34.pattern0,overlay,1105,0,0
+	
+	//blush
+	animation35.interval,never
+	animation35.pattern0,overlay,1106,0,0
+	
+	//eyes half-closed
+	animation36.interval,never
+	animation36.pattern0,overlay,1110,0,0
+}
+
+//arms crossed, looking to side
+//intervals 1-20 used, intervals 30-45 used, use animations 50-75
+surface2
+{
+	element0,overlay,surface2.png,0,0
+	
+	//blinking
+	animation60.interval,random,4
+	animation60.pattern0,overlay,-1,100,0,0
+	animation60.pattern1,overlay,2201,50,0,0
+	animation60.pattern2,overlay,2202,100,0,0
+	animation60.pattern3,overlay,-1,30,0,0
+	
+	//alt. eye position 1
+	animation50.interval,never
+	animation50.pattern0,overlay,2203,0,0
+	
+	//fearful eyes, alt pose
+	animation51.interval,never
+	animation51.pattern0,overlay,2204,0,0
+	
+	//fearful eyes
+	animation52.interval,never
+	animation52.pattern0,overlay,2205,0,0
+	
+	//eyes half closed
+	animation53.interval,never
+	animation53.pattern0,overlay,2201,0,0
+	
+	//eyes closed
+	animation59.interval,never
+	animation59.pattern0,overlay,2202,0,0
+	
+	//eyebrow furrowed
+	animation61.interval,never
+	animation61.pattern0,overlay,2206,0,0
+	
+	//eyebrow neutral / curious / raised
+	animation62.interval,never
+	animation62.pattern0,overlay,2207,0,0
+	
+	//eyebrow angry
+	animation63.interval,never
+	animation63.pattern0,overlay,2208,0,0
+	
+	//mouth neutral
+	animation70.interval,never
+	animation70.pattern0,overlay,2209,0,0
+	
+	//mouth frown
+	animation71.interval,never
+	animation71.pattern0,overlay,2210,0,0
+	
+	//mouth smile
+	animation72.interval,never
+	animation72.pattern0,overlay,2211,0,0
+	
+	//blush
+	animation74.interval,never
+	animation74.pattern0,overlay,2212,0,0
+	
+	//sweating
+	animation75.interval,never
+	animation75.pattern0,overlay,2213,0,0
+}
+
+//thinking 1
+surface3
+{
+	element0,overlay,surface3.png,0,0
+	
+	//blinking
+	animation80.interval,random,4
+	animation80.pattern0,overlay,-1,100,0,0
+	animation80.pattern1,overlay,3011,50,0,0
+	animation80.pattern2,overlay,3012,100,0,0
+	animation80.pattern3,overlay,-1,30,0,0
+	
+	//eye pos 1
+	animation81.interval,never
+	animation81.pattern0,overlay,3001,0,0
+	
+	//eye pos 2
+	animation82.interval,never
+	animation82.pattern0,overlay,3002,0,0
+	
+	//fearful eyes
+	animation83.interval,never
+	animation83.pattern0,overlay,3003,0,0
+	
+	//eyes half lidded
+	animation84.interval,never
+	animation84.pattern0,overlay,3011,0,0
+	
+	//eyes closed
+	animation90.interval,never
+	animation90.pattern0,overlay,3012,0,0
+}
+
+//surface.append0-99
+//{
+	//Anything you want to be applied to multiple surfaces (like collisions, blink frames, etc) goes in a range like this. You can exclude a surface from the range by adding something like ,!95 to the end, which would exclude surface95. You can include multiple ranges by separating them with commas.
+	//This is just here for my own reference, I always forget the syntax for append
+//}
+
+//Also here for reference. If you want your blink/talk frames in subfolders, you must define them first. This is where you can put the subfolder. You should be able to hide them from surface test again by putting that option into your surfacetable.
+//surface100
+//{
+	//element0,overlay,ExampleFolder/surface100.png,0,0
+//}
+
+//Kero surfaces - If you want a kero, uncomment the line below and create an image for surface10
+
+surface10
+{
+	//element0,overlay,surface10.png,0,0
+}

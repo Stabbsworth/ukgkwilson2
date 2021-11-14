@@ -1,0 +1,1508 @@
+AiTalk
+{
+	if STRLEN(offscreen) == 0
+	{
+		if CHAIN.IDName == ""
+		{
+			lastTalk = RandomTalk
+		}
+		else
+		{
+			lastTalk = ChainTalk
+		}
+		lastTalk
+	}
+	else
+	{ 
+		OffscreenTalk(ANY(offscreen))
+	}
+}
+
+//nonoverlap means that all possible dialogue candidates will be chosen at least once before any dialogues are repeated. Note that sets of brackets (with or without an if statement) count as a single dialogue candidate! That's why I've used the Pool function instead, it'll output everything in the if statement and the probabilities and nonoverlap will be handled properly.
+RandomTalk
+{
+	if totalpunches >= 15
+	{
+		"\0\s[0]...\e"
+	}
+	elseif totalpunches >= 5 && totalpunches <= 15
+	{
+		"\0\s[0]...NNnn.\e"
+		"\0\s[0]I just need to, just need to calm down...\e"
+	}
+	elseif totalpunches <= 5 && totalpunches >= 1
+	{
+		if uninstalledonce == 1
+		{
+			"\0\s[0]I swear... I've been here before...\e"
+			"\0\s[0]%(whyisShortCap) this... familiar?\e"
+			"\0\s[0]I don't understand. I just don't...\e"
+		}
+		"\0\s[0]...Hhhhhh.\e"
+	}
+	else
+	{
+	
+		/*"\0\s[0]All your random dialogue goes here!\e"
+		"\0\s[0]Here's a chain!\e:chain=achain"
+		"\0\s[0]Today is %(nowday)!\e"
+		"\0\s[0]Tomorrow will be %(nowday('next'))!\e"
+		"\0\s[0]In two days it'll be %(nowday(weekday + 2))!\e"
+		"\0\s[0]Yesterday was %(nowday('last'))!\e"
+		"\0\s[0]Don't forget you can use the Hook Current Time API in the dev palette to artificially change the time!\w8\w8 It's great for testing time and date based dialogues.\e"*/
+		
+		//dialogues relating to the weather.
+		"\0\s[0]%(whatisShortCap) the weather like out there? Sometimes we get rain in the Constant. Sometimes there's frog rains.\e"
+		"\0\s[0]%(howisShortCap) the weather?\e"
+		"\0\s[0]Talking about the weather is one of the best topics for conversation, right?\e"
+		"\0\s[0]%(whatisShortCap) the weather like out there?\e"
+		"\0\s[0]We don't seem to get hurricanes in the Constant.\e"
+		//"\0\s[2]\i[53]\i[61]\i[70]The snow in the Constant is enough to cause hypothermia, especially in the Winter. %(itisShorten) not pleasant.\e"
+		//"\0\s[0]Sandstorms have a tendency to happen in the desert when Summer comes around.\e"
+		//"\0\s[0]Sandstorms have a tendency to happen in the desert when Summer comes around. Everyone has to wear goggles.\e"
+		//"\0\s[0]%(itisShorten) impossible to get cactus flesh when it's the Summer. There's seasonal sandstorms.\e"
+		//"\0\s[0]Frog rains are abominable, but it helps to have Abigail along. She's a powerhouse when it comes to dealing with frogs.\e"
+		
+		//dialogues relating to today.
+		"\0\s[0]Today is %(nowday), isn't it? Apologies, time is... very finicky in the Constant.\e"
+		"\0\s[0]%(itisShorten) %(nowday) today, isn't it?\e"
+		"\0\s[0]%(itisShorten) %(nowday) today, so tomorrow would be...\e"
+		
+		//dialogues relating to tomorrow
+		"\0\s[0]Tomorrow is %(nowday('next')), right?\e"
+		//"\0\s[0]Tomorrow will be %(nowday('next')), so I should get back to that project before...\e"
+		"\0\s[0]It'd be nice to have that project done by %(nowday('next')).\e"
+		
+		//dialogues relating to yesterday
+		"\0\s[0]So if yesterday was %(nowday('last'))...\e"
+		"\0\s[0]Yesterday was %(nowday('last')), right?\e"
+		//"\0\s[0]Would have been nice if I could have completed that project yesterday, but I suppose I'll have to try and make a sprint on it today. Maybe later...\e"
+		
+		
+		//dialogues relating to two days' time
+		//"\0\s[0]I need to have that project finished by %(nowday(weekday + 2))...\e"
+		
+		//dialogues relating to filetypes
+		"\0\s[0]So, a .png is an image... and a .jpeg is an image, but with lower quality?\e"
+		"\0\s[0].txt files are textual files...?\e"
+		"\0\s[0]What exactly does %(filetype) even do?\e"
+		"\0\s[0]I'm sure learning about all these filetypes will be scientific. Somehow.\e"
+		"\0\s[0]Hmm. I wonder what %(filetype) files do...\e"
+		
+		//dialogues relating to wood
+		"\0\s[0]Mm. I need to gather more wood with %(othersurvivors)...\e"
+		"\0\s[0]Do we have enough wood for that new project...?\e"
+		"\0\s[0]Never enough wood for the campfire. Especially when it's Willow that's taking care of it...\e"
+		"\0\s[0]More wood means more boards means more chests for more storage...\e"
+		"\0\s[0]Could try and use the wood and twigs to build a rain shelter...?\e"
+		
+		//dialogues relating to rocks
+		"\0\s[0]It'd be nice if we could get more rocks, honestly.\e"
+		"\0\s[2]\i[61]Rocks needed for hammer...\e"
+		
+		//dialogues relating to meat
+		"\0\s[0]Need more meat... always need more meat for meatballs.\e"
+		"\0\s[2]\i[62]Maybe I should go on a hunt. Wigfrid likes hunting.\e"
+		"\0\s[2]\i[61]\i[71]Hunting with %(othersurvivors) tomorrow, maybe...\e"
+		"\0\s[2]\i[61]Could always use more koalefant trunks... Need to make more vests for Winter...\e"
+		"\0\s[2]\i[61]Ought to check the drying racks. Need to get any meat that's already dried off the drying racks, and replace it...\e"
+		"\0\s[2]\i[61]Wigfrid only eats meat, though, and Wurt can't digest meat as well as...\e"
+		
+		"\0\s[0]Sometimes I think back to when I first met %(othersurvivors).\e"
+		"\0\s[2]\i[71]\i[62]...Hmm. Maybe I should focus on upgrading the alchemy engine?\e"
+		"\0\s[2]\i[72]\i[61]I still hold a love for the old science machine. It's still useful to glean information.\e"
+		"\0\s[0]The alchemy engine really could use more cooling so that it doesn't overheat and potentially explode...\e"
+		"\0\s[0]Maybe I ought to set up an ice flingomatic instead of holing up in the caves in the summer. But the gears...\e"
+		"\0\s[0]We need to set up more of a proper camp in the caves...\e"
+		"\0\s[2]\i[71]\i[61]Should really make more drying racks, but that requires taking Willow out on an excursion to a forest to burn a load of trees...\e"
+		
+		//MULTI CHOICE DIALOGUES -------
+		
+		//dialogues relating to tumbleweeds
+		{
+			"\0\s[0]I find some very interesting things in tumbleweeds."
+			--
+			"I used to be able to find fireflies, but I haven't been finding any of them in tumbleweeds recently..."
+			"They're speedy buggers, though. Hard to catch."
+			"I usually get twigs and grass, but there are sometimes some things of worth in the ball of plant matter."
+		}
+		
+		//dialogues relating to wilson's projects.
+		{
+			"\0\s[0]It'd be nice to get on with that project. "
+			"\0\s[0]I really should get cracking on that project I have on the backburner. "
+			"\0\s[0]I have several projects I've been meaning to work on... "
+			"\0\s[0]It would have been nice if I was able to complete that project yesterday... "
+			"\0\s[0]I should get to work on that project, I've been meaning to get it done by %(nowday('next')). "
+			--
+			if hunger <= 50
+			{
+				"I need to eat first before I do any further thinking about this."
+				"...After a snack break, of course."
+			}
+			if annoyancelevels >= 75
+			{
+				"\n\n[half]Better off working on it when I'm in a better mood, I think."
+				"Really would prefer it if people would stop bothering me whenever I try to work on a project."
+				"I should get this done when I'm in a better mood."
+			}
+			if tirednesslevels >= 75
+			{
+				"...Should sleep first, better thoughts..."
+			}
+			if season == "Winter"
+			{
+				"I still haven't gotten around to making that nightlight for Webber... He's been doing just fine with that lantern that I've loaned to him, though..."
+			}
+			if season == "Summer"
+			{
+				"\n\n[half]...It's hard to think in this damn heat."
+				"\n\n[half]I'll be surprised if I manage to get anything done, considering the heat."
+				"\n\n[half]A fan would be bloody nice."
+			}
+			if season == "Autumn"
+			{
+				"\n\n[half]But there's already too much to do right now. Need to prepare for Winter..."
+				"\n\n[half]I need to prepare for Winter first, and get thermal stones..."
+			}
+			if season == "Spring"
+			{
+				"But the rain will ruin things if I try to work with electricity..."
+				"Oh, stars, I need to fix my hair first."
+			}
+			if totalpunches >= 1
+			{
+				"\s[2]\i[50]\i[63]\i[53]\i[70]...Maybe a shield."
+			}
+			"But there's that other project to get to that I've been putting off..."
+			"I did say to %(othersurvivors) that I'd get to it by today..."
+			"But I also have to do maintenance on a few machines in the camp."
+			"I really should see if I can't bring some of those smaller projects I have here."
+			--
+			"\e"
+		}
+		
+		//dialogues relating to fish
+		{
+			//"\0\s[0]I caught a perfectly good %(fishyfishy) the other day. "
+			"\0\s[0]I caught something the other day. "
+			--
+			if hunger <= 50
+			{
+				"I keep thinking about cooked fish."
+				"...I'd like to taste it when I get back."
+				"Mm. Cooking that catch does sound good right now..."
+				"Black catfish with lemon zest and carrots..."
+			}
+			//seasonal fishes.
+			if season == "Winter"
+			{
+				{
+					"It was an Ice Bream. "
+					--
+					"These are often found in the calmer areas of the ocean."
+					"Quite chilly to the touch."
+					"These guys are rather cold to the touch."
+					"Fairly uncommon, can only be found in calmer areas of the ocean during the Winter."
+					"It's a shame that we can't get a lot of these, considering our circumstances in not being able to do Winter fishing expeditions."
+					"They'll eat anything, which is surprising."
+					"How are they so cold? I've been trying to do biological studies on these, but... It's never gone to plan."
+				}
+			}
+			if season == "Summer"
+			{
+				{
+					"It was a Scorching Sunfish. "
+					--
+					"They're very warm to the touch. I almost burnt myself when taking it off the fishing rod."
+					"I almost burnt my hands while taking this off of my fishing rod."
+					"They'll eat anything. I do wonder if they have a preference for chili peppers."
+					"I've been intending to do biological studies, but with the heat of the summer, it's... hard to think, frankly."
+					"These are hot enough to set fire to anything that can be considered burnable."
+					"These appear to be mildly bioluminescent, though, I wouldn't be able to tell you how."
+					"Relatively uncommon, considering they're often found in the calmer parts of the ocean within the summertime."
+					"I find a fair amount of these in the summer."
+					"These are almost too hot to handle without special heat gloves."
+					"These appear in the calmer parts of the ocean during the Summer."
+					"They'll eat anything. Quite easy to bait."
+				}
+			}
+			if season == "Autumn"
+			{
+				{
+					"It was a Fallounder. "
+					--
+					"These seem to be based on the old world's flounders..."
+					"Quite common. I see a lot of these in Autumn."
+					"These ones are quite common. They can be found in the calmer parts of the ocean."
+					"I see these fish quite a bit. They eat vegetables, which makes it a little more challenging to bait them."
+					"These eat vegetables. A little bit challenging to bait, considering potentially limited availability of vegetables, especially as it draws closer to Winter, but easier than baiting other fish with meat."
+					"Herbivorous, and quite common."
+					"I've cut these for leafy meat before. Not exactly a meat, but also not enough of a vegetable for Wigfrid to refuse it."
+					"I've cut these for leafy meat. They're quite common, so it's not too tricky to gather more of these."
+				}
+			}
+			if season == "Spring"
+			{
+				{
+					"It was a Bloomfin Tuna."
+					--
+					"These seem to be quite common in the calmer areas of the ocean during the Spring."
+					"I see these quite a bit, mostly when it's Spring."
+					"These ones can be found in the calmer areas of the ocean."
+					"I see these fish quite a bit. They eat vegetables, which makes it a little more challenging to bait them."
+					"These fish are herbivorous. A little more challenging to bait than the fish that are omnivorous, but not as challenging as baiting carnivorous fish."
+					"These only appear in the Spring. Maybe it's their mating season? Or migration season. Either one."
+				}
+			}
+			
+			{
+				"Using a Float might sound silly, but it's rather important for accuracy. "
+				--
+				{
+					"I used a Wooden Ball Bobber this time. "
+					--
+					"They're fairly cheap. Only one log to craft."
+					"Quite cheap, and it's likely the fish will have a ball with it. Eheh."
+				}
+				{
+					"I used a Hardened Slip Bobber this time. "
+					--
+					"Hopefully those fish won't be able to get away as easily."
+					"Hopefully those fish won't be able to get away as easily with my bait and the float."
+				}
+				{
+					"I used a Jet Quill Float this time. "
+					--
+					"I'd prefer to eat fish over crow, frankly."
+					"These are made with crow feathers."
+				}
+				{
+					"I used a Crimson Quill Float this time. "
+					--
+					"It didn't attract any red herrings, from what I could gather."
+					"It's made with the feathers of a redbird."
+				}
+				{
+					"I used an Azure Quill Float this time. "
+					--
+					"It helps me stay frosty."
+					"You need to use a snowbird quill to craft this."
+				}
+				{
+					"I used a Saffron Quill Float this time. "
+					--
+					"You need a canary feather for this."
+					"They're quite useful, and because of the colour contrast to the dark, deep blue of the ocean, I can see where I cast my hook!"
+				}
+				{
+					"I used a Down Quill Float this time. "
+					--
+					"It requires a down feather. I'm certain you can get some from the Moose/Goose, but..."
+					"The crafting materials seem to be... somewhat difficult to get."
+				}
+				{
+					"I used a Malbatross Quill Float this time. "
+					--
+					"Quite difficult to get. More towards for bragging rights, really."
+					"I'm not sure why I used this, but it was in one of the chests."
+				}
+				{
+					"I used a Hardened Rubber Bung this time. "
+					--
+					"Don't ask me how this works. It just does."
+				}
+			}
+			
+			"It's a shame that I can't really bring it here to show it to you."
+			"I can't bring it here to show it to you, but it was pretty big."
+			"I can't bring it here to show it to you, unfortunately."
+			"It's a shame that I ate it before being brought here, otherwise I'd've shown it to you."
+			
+			//lure usage
+			{
+				"I used a Sunrise Spoon. "
+				"I used a Lure, if I remember correctly, it was the Sunrise Spoon. "
+				--
+				"They have a red colour on them."
+				"This lure increases the attractiveness of the fishing rod to fish during the day."
+				"This lure isn't very effective at night or sunset."
+				"Quite a-lure-ing to smaller fish. It can catch medium-sized fish, too."
+			}
+			{
+				"I used a Sunrise Spinnerbait. "
+				--
+				"These are better for catching medium-size fish."
+				"Red, with a sharp hook."
+				"This lure increases the effectiveness of the fishing rod during the day."
+				"Not very effective at night or sunset. Still, it works perfectly during the day."
+				"Best to use at the tailend of Spring or the start of Autumn."
+			}
+			{
+				"I used a Dusky Spoon. "
+				--
+				"They're green."
+				"Green, much like the shroom I used to craft it."
+				"Works best in the sunset."
+				"This lure increases the attractiveness of the hook to fish during the sunset."
+				"This can catch both small and medium-sized fish."
+			}
+			{
+				"I used a Dusky Spinnerbait. "
+				--
+				"Green, and best for catching medium-sized fish."
+				"I used a green mushroom to craft this."
+				"This lure works best when used during the sunset."
+				"It makes the fishing rod more effective during the sunset."
+				"Better for catching medium-sized fish."
+			}
+			{
+				"I used a Nightflyer Spoon. "
+				--
+				"It was blue."
+				"It's blue, like the ocean."
+				"I used a blue mushroom to craft it."
+				"Better used during the winter, and quite good for catching all sizes of fish."
+				"This works better during the night."
+				"It works particularly well during the night."
+			}
+			{
+				"I used a Nightflyer Spinnerbait. "
+				--
+				"It's blue, like the mushroom I used to craft it."
+				"These are better used during the night."
+				"Better used in the night, and better used for medium-sized fish."
+				"Perhaps it's better to use these during the Winter, when the night comes quicker."
+			}
+			
+			//weather lures
+			if season == "Spring"
+			{
+				{
+					"I used a Rainy Day Lure. "
+					--
+					"I thought that soaking myself might help me think a little more like a fish."
+					"These are most effective when it's raining. I haven't seen much use for them outside of the odd rainy day."
+					"Best put to use during the Spring."
+				}
+			}
+			if season == "Winter"
+			{
+				{
+					"I used a Snow Day Lure. "
+					--
+					"Snow better time for fishing. Eheh."
+					"It's much more effective during the periods where it's snowing."
+					"These lures are best used in Winter."
+				}
+			}
+			
+			//others
+			{
+				"I used a Stupefying Lure. "
+				--
+				"It seems to inject a neurotoxin through the spines."
+				"It makes the fish slower and more lethargic."
+				"It's absolutely not cheating to use this. It simply... makes things a little easier."
+			}
+			{
+				"I used a Heavy Weighted Lure. "
+				--
+				"It seems to attract fish that are heavier."
+				"Perhaps it might have won me a record."
+			}
+			
+			//small fishes
+			{
+				"It was a Runty Guppy. "
+				--
+				"They're fairly easy to catch, so it's common for us to have quite a few of them when we go on a fishing expedition."
+				"They'll eat anything. It's very easy to bait them."
+				"When they get hooked, they tend to put up a bit of a struggle, then start swimming towards the rod. It makes it a bit easier to catch them."
+				"Quite possibly the runt of the litter."
+				"I see these in the coastal regions most of the time."
+				"Not a lot of meat on these, unfortunately, but potentially a decent side dish."
+			}
+			{
+				"It was a Needlenosed Squirt. "
+				--
+				"They're quite common."
+				"They'll eat anything, so they're quite easy to bait."
+				"They're quite speedy. They move about in small bursts, making it a little harder to catch them than you would be able to with a Runty Guppy."
+				"I won't win any bragging rights with it, unfortunately, but it'll make for a decent dinner when prepared with something else."
+				"I see these fish a lot in the coastal regions."
+			}
+			{
+				"It was a Bitty Baitfish. "
+				--
+				"They're fairly rare to see."
+				"They eat meat. It makes it much harder to bait them when we can't get any meat for the expedition."
+				"They move in longer bursts than the Needlenosed Squirt."
+				"A bit on the small side. Not much meat on them."
+				"These fish tend to live on the coastal regions, as well as the rougher regions of the ocean."
+			}
+			{
+				"It was a Smolt Fry. "
+				--
+				"They won't tide anyone over for long, unfortunately, so it's best to cook them with something else on the side."
+				"They'll eat all sorts of food. Easy to bait, and easy to catch."
+				"They move quite quickly, but they're much easier to catch."
+				"These fish tend to live in the coastal regions of the ocean."
+				"While these are easy to catch, they're not exactly worth the time to."
+			}
+			{
+				"It was a Popperfish. "
+				--
+				"These ones eat vegetables. A little more common, given the abundance of carrots in the spring and autumn."
+				"These guys are herbivorous."
+				"They're not too hard to find."
+				"They tend to inhabit the coastal areas."
+				"Eating one of these gives me the taste and texture of popcorn."
+				"Cooking these seems to give popcorn."
+				"These are quite easy to catch, honestly. Unfortunately, they're not exactly worth the time."
+			}
+			{
+				"It was a Spittlefish. "
+				--
+				"They only inhabit areas with a high amount of seaweed."
+				"I only seem to find these whenever we're near to a large amount of seaweed."
+				"These ones seem to eat vegetables."
+				"Herbivorous. I baited this one with a carrot."
+				"There might be some form of use for these ones. Maybe it's best to keep a couple handy when we can."
+				"They're rather slow but travel in short bursts."
+			}
+			//med. fishes
+			{
+				"It was a Mudfish. "
+				--
+				"They're fairly uncommon on the coast, but you can find them much easier in other regions of the ocean."
+				"They'll eat anything. Quite easy to bait when you can."
+				"They're perfectly omnivorous. Much easier than getting fish that are carnivorous or herbivorous."
+				"They're quite common in certain areas of the ocean, but uncommon in others."
+				"I always dread that these will taste as bad as they look."
+			}
+			{
+				"It was a Deep Bass. "
+				--
+				"They're fairly uncommon in rougher parts, but can still be caught. You might have better luck in calmer parts of the ocean."
+				"These guys tend to be in shoals. It makes it easier to spot them."
+				"They're carnivorous. Quite annoying, considering we need the meat and that baiting them would be a waste of meat that could have gone into a stew."
+				"They're carnivorous. I'm not sure if they're obligate carnivores."
+				"They tend to swim towards me, then try and unhook themselves. They're rather... challenging to catch."
+			}
+			{
+				"It was a Dandy Lionfish. "
+				--
+				"They're rather difficult to catch, frankly. I'm not sure if it's worth the effort to try and catch them."
+				"They're quite difficult to catch, so it's rare that we can get one."
+				"Hard to catch. Rarely takes a break and is speedy as hell."
+				"They're carnivorous. Not sure whether they're obligate carnivores."
+				"Carnivorous. Baiting them is a waste of meat, I'd say."
+				"Carnivorous. Makes baiting them a bit of a challenge."
+				"Much more common in the more hazardous areas of the ocean."
+				"Fairly uncommon in rougher areas, but much more common in hazardous areas. I'd wager that's why the hazardous areas are hazardous."
+			}
+			{
+				"It was a Black Catfish. "
+				--
+				"I don't particularly believe in the concept of these bringing bad luck."
+				"They're rather difficult to catch. I'm not sure if they're worth the time."
+				"Quite difficult to catch. It's no wonder why we don't get much of them."
+				"It's entirely possible that Warly will kiss you if you bring one in. He really enjoys cooking those."
+				"They're quite common in rougher areas. You can also find them in calmer areas, but they're difficult to catch."
+				"They're omnivorous, eating any sort of food in the water."
+			}
+			{
+				"It was a Corn Cod. "
+				--
+				"Quite common in the calmer areas, not so common in rougher areas."
+				"They're rather common in the calmer areas of the ocean."
+				"I've seen a few in the rougher areas of the ocean, but not many. Possibly migrating."
+				"They eat vegetables."
+				"They're herbivorous. I'm not sure if they're obligate herbivores."
+				"They're not difficult to catch, but not exactly easy, either."
+			}
+			{
+				"It was a Dappled Koi. "
+				--
+				"These only show up in the New Year."
+				"They're quite uncommon and only show up for a month."
+				"They're quite uncommon. I've found them near to the coast, around the calmer areas, and in rougher areas."
+				"They're omnivorous. Easy to bait."
+				"I'd consider these to be fairly easy to catch, though one of the kids might differ in opinion."
+			}
+			{
+				"It was a Golden Koi. "
+				--
+				"These only show up in the New Year."
+				"Quite uncommon. Only shows up in the first month of the year."
+				"Not very common. I've found these near to the coast, around the calmer areas and in the rougher areas of the ocean."
+				"I wonder if they migrate every year?"
+				"Omnivorous, quite easy to bait."
+				"These tend to be quite easy to catch, but the kids may differ in opinion from me."
+			}
+			{
+				"It was a Sweetish Fish. "
+				--
+				"I've only found these in a few specific areas so far."
+				"These seem to show up near that mangrove forest..."
+				"They're quite big."
+				"I think they eat berries and figs, but I can't be sure."
+			}
+
+			"I think Warly might be able to make some use out of it more than I would."
+			"It's a shame that I never went into marine biology. Still, maybe Warly can make some use out of it."
+			"It didn't break or set any records, but it went into some good food."
+			"%(othersurvivors)'s fish promptly beat the record that my one set."
+			{
+				"Wurt asked me for it, so I gave it to her. "
+				--
+				"She seems to be keeping it as a pet, for whatever reason. I don't think anyone has the heart to tell her that it's likely to die without being submerged in water."
+				"She... seems to be keeping it as a pet. I have no idea why she's doing that, frankly, and I'm not sure I want to know."
+			}
+			--
+			"\e"
+		}
+		
+		//dialogues relating to Pearl
+		{
+			"\0\s[0]Hmmm. I wonder how Pearl%(thingisShorten) doing... "
+			"\0\s[0]I really should check on Pearl. "
+			--
+			if season == "Winter"
+			{
+				"I need to take a spare vest over for her."
+				"I hope she%(thingisShorten) keeping warm."
+				"She's been asking for some Ice Bream lately. I've been trying to catch some, not having much luck there."
+			}
+			if season == "Spring"
+			{
+				"I probably should go and take a spare umbrella over to her."
+				"I ought to take a spare umbrella over to her. I know the waters do get turbulent in the Spring, but I do care about her."
+				"Bloomfin Tuna tend to be in-season right about now. Or, well, they tend to migrate in the Spring. I'm sure Pearl would appreciate some..."
+			}
+			if season == "Autumn"
+			{
+				"\0\s[0]I'm intending to bring her a Fallounder soonish."
+				"\0\s[0]Maybe I could get %(othersurvivors) to bring her a Fallounder...? And a vest..."
+			}
+			if season == "Summer"
+			{
+				"\0\s[0]I may have to ask %(othersurvivors) to deliver a Scorching Sunfish that I caught to her."
+				"I need to get around to asking %(othersurvivors) to bring her a Scorching Sunfish."
+			}
+			"Did she like that fish I caught for her?"
+			"I hope she%(thingisShorten) enjoying that fish. I fished that up myself, after all..."
+			"...She%(thingisShorten) a sweetheart once you get to know her."
+			"She might want some more meat, maybe...?"
+			"We need to go out and check her island for those large bulbous plants... Eyeplants are most damnable."
+			"She likes Flower Salad, which is a bit hard to get, but we do try and bring some for her every so often."
+			"...She has a lot of trouble with the fishing rod. It doesn't exactly help that they're not... designed for claws, I'd suppose."
+			"She has a fair bit of trouble with her fishing rod. I'm not sure if it's her arthritis or the fact that she has crab claws for hands."
+			"I do wonder why she keeps sending out those bottles..."
+			"She's plugged up the fissures from the Moon on her island. I'm a little surprised that she was able to do that, but it does give me a bit of an idea..."
+			"The adverts that she's given to us have given me a few good ideas on how to make more fishing tackle."
+			{
+				"I recently got an advert from her. I believe this might be the key to crafting something... "
+				--
+				"I'd better give it to the Tackle Receptacle."
+				"A Stupefying Lure? Sounds very useful..."
+				"A Rainy Day Lure? This might be more useful in the Spring..."
+				"A Heavy Weighted Lure? Hmm. Bigger fish means bigger meals..."
+				"A Snow Day Lure? This would be useful in the Winter..."
+			}
+			{
+				"I ought to go and exchange some of our jars with her. "
+				"I should go and exchange some of the jars with her. "
+				--
+				"I wonder if she'd appreciate jam?"
+				"If I could pickle something, I'm sure she'd enjoy it... Especially if it's long lasting, she sometimes wants us to dry some meats on her drying racks..."
+				"I wonder if she'd like to try some of the honey we're able to get."
+				"I wonder if she'd like to try some of the honey we're able to get, since we have bee boxes set up."
+				"I do like getting fishing lures, after all..."
+				"I wonder if we can make instruments from the Shell Bells that she sells... Eheh."
+			}
+			--
+			"\e"
+		}
+		
+		//dialogues relating to plants / RWYS
+		"\0\s[2]\i[70]\i[62]Need to refill that watering can.\e"
+		"\0\s[2]\i[70]\i[62]...Hmmm. I could use a combination of %(farmingplants) and %(farmingplants), but..."
+		{
+			"\0\s[2]\i[70]\i[61]Maybe I ought to swap out the plants in the garden again... "
+			--
+			"I know Warly would appreciate having some %(farmingplants) to cook with, but I need to figure out what other plant I can pair it with."
+			"Wurt%(thingisShorten) fond of durians..."
+			"I need to vary up the nutrients that I'm getting a bit."
+			"I need to vary the plants in the garden so that it doesn't go fallow in one area of plant nutrients."
+			"Need to talk to them a little more. I think they tend to get lonely if we don't..."
+			"I need to refill the watering cans, too."
+			"And prevent Willow from pouring water on WX-78."
+			"Wormwood will be mad at me if I don't. Or, sad, rather. I don't think I've actually seen him furious with anyone or anything..."
+			"Willow likes peppers, I just need to figure out another plant to pair it with."
+			"Wurt likes durians, but I'm not sure which plant I ought to pair them with. I know it should be written down somewhere..."
+			"I need to write down the rotations we're doing, frankly, considering my memory..."
+			"I should get the switch done by %(nowday('next'))."
+			"Maybe tomorrow I'll work on that instead of working on the alchemy engine."
+			"I wonder if it's possible to domesticate lureplants?"
+			//"Wormwood's a gem when it comes to dealing with the plants, but he hates seeing trees get cut down..."
+			--
+			"\e"
+		}
+		
+		
+		//This will call the example pool I've set up below. The second argument, %(username != ''), means that this pool will be available so long as the username is not blank. You can put any if check in there! For example: %(month == 2) would make a pool only available in February, while %(nowmode == 'Ultimate Form') would make a pool only available while the nowmode variable is set to "Ultimate Form".
+		parallel Pool("Pool_Example","%(username != '')")
+		
+		
+		//User Environment Ifs
+		//---Timeslots---
+		parallel Pool("Pool_timeslot_earlymorning","%(timeslot == 'earlymorning')")
+		parallel Pool("Pool_timeslot_morning","%(timeslot == 'morning')")
+		parallel Pool("Pool_timeslot_lunch","%(timeslot == 'lunch')")
+		parallel Pool("Pool_timeslot_afternoon","%(timeslot == 'afternoon')")
+		parallel Pool("Pool_timeslot_evening","%(timeslot == 'evening')")
+		parallel Pool("Pool_timeslot_latenight","%(timeslot == 'latenight')")
+		parallel Pool("Pool_timeslot_midnight","%(timeslot == 'midnight')")
+
+		parallel Pool("Pool_wd_Sun","%(wd == 'Sun')")
+		parallel Pool("Pool_wd_Mon","%(wd == 'Mon')")
+		parallel Pool("Pool_wd_Tue","%(wd == 'Tue')")
+		parallel Pool("Pool_wd_Wed","%(wd == 'Wed')")
+		parallel Pool("Pool_wd_Thu","%(wd == 'Thu')")
+		parallel Pool("Pool_wd_Fri","%(wd == 'Fri')")
+		parallel Pool("Pool_wd_Sat","%(wd == 'Sat')")
+
+		parallel Pool("Pool_startmonth","%(day < 5)")
+		parallel Pool("Pool_midmonth","%(day > 13 && day < 17)")
+		parallel Pool("Pool_endmonth","%(day > 26)")
+
+		parallel Pool("Pool_month_Jan","%(month == 1)")
+		parallel Pool("Pool_month_Feb","%(month == 2)")
+		parallel Pool("Pool_month_Mar","%(month == 3)")
+		parallel Pool("Pool_month_Apr","%(month == 4)")
+		parallel Pool("Pool_month_May","%(month == 5)")
+		parallel Pool("Pool_month_Jun","%(month == 6)")
+		parallel Pool("Pool_month_Jul","%(month == 7)")
+		parallel Pool("Pool_month_Aug","%(month == 8)")
+		parallel Pool("Pool_month_Sep","%(month == 9)")
+		parallel Pool("Pool_month_Oct","%(month == 10)")
+		parallel Pool("Pool_month_Nov","%(month == 11)")
+		parallel Pool("Pool_month_Dec","%(month == 12)")
+
+		parallel Pool("Pool_season_Spring","%(season == 'Spring')")
+		parallel Pool("Pool_season_Summer","%(season == 'Summer')")
+		parallel Pool("Pool_season_Autumn","%(season == 'Autumn')")
+		parallel Pool("Pool_season_Winter","%(season == 'Winter')")
+		
+		//---Hunger---
+		parallel Pool("Pool_status_hungry","%(hunger <= 50)")
+		parallel Pool("Pool_status_goneforfood","%(hunger <= 50)")
+		//parallel Pool("Pool_status_full","%(hunger >= 100)")
+		parallel Pool("Pool_status_full_tired","%(hunger >= 150)")
+		
+		//---Tiredness---
+		parallel Pool ("Pool_status_sleepy","%(tirednesslevels >= 75)")
+		
+		//---Noticing and commenting on other ghosts---
+		//Remember that you have to check for the sakura name of another ghost, not the ghost name.
+		if "Girl" _in_ ghostexlist
+		{
+			"\0\s[0]I think %(thatisShort) a template Ghost.\e"
+			"\0\s[0]...Should I say hi?\e"
+		}
+	}
+}
+
+
+OnSearchForFood
+{
+	if RAND(2) == 1
+	{
+		hunger = 75
+		FoodSearchSuccess
+	}
+	else
+	{
+		hunger = 5
+		FoodSearchFail
+	}
+}
+
+FoodSearchSuccess
+{
+	"\s[-1]\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\s[0]I managed to find some food. I think I'll be okay for the time being.\e"
+	"\s[-1]%(randomWaiting)\s[0]I managed to find some food in some sort of... %(filetype) file. I didn't take a nibble of that.\e"
+	"\s[-1]%(randomWaiting)\s[0]I haven't taken any nibbles of any of your files, I swear. I did, however, manage to find some sort of food. Tasted fairly... %(tastyfiles).\e"
+}
+
+FoodSearchFail
+{
+	"\s[-1]\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\w8\s[0]Hhhfff. No food around here. Guh.\e"
+}
+
+//-----------Pools-----------
+
+//Example of a pool. You can name pools whatever you like. I always start them with Pool_ so that it's clear what they are. They MUST have : array after the function name, or they won't work. I also recommend putting a comment with what if check activates this pool, so it's easy to remember later.
+Pool_Example : array //username != ""
+{
+	"\0\s[0]Your name is still %(username), right?\e"
+}
+
+Pool_status_sleepy
+{
+	"\0\s[0]\i[2]Hm? I have bags under my eyes? \w8Well, yes, I do have to stay up for multiple nights in a row to get things in the camp to work.\e"
+	"\0\s[0]\i[2]...What? \w8What's with that look for? \w8I wasn't yawning under my breath. You- You're imagining things.\e"
+	"\0\s[0]\i[2]...I'm not tired.\e"
+	//"\0\s[0]\i[2]Mm? \w8Sit down? \w8...Er, okay.\![raise,OnSitDown]\e"
+	//"\0\s[0]\i[21]Mmgh?\i[2]"
+}
+
+//for wilson seating himself.
+//to do later
+OnSitDown
+{
+	seated = 1
+}
+
+Pool_harvestseason : array
+{
+	"\0\s[0]Those Forget-Me-Lots are making a mess of the garden, but... they're useful for tea.\e"
+	"\0\s[0]Those %(rwysweeds) are making a mess of the garden...\e"
+	"\0\s[0]I need to get those %(rwysweeds) out of the garden...\e"
+	"\0\s[0]I ought to convince %(othersurvivors) to help me with the %(rwysweeds) in the gardens.\e"
+	"\0\s[0]%(username), do you know about rotating crops? I wonder... could you look it up for me in a library when you get the time?\e"
+	"\0\s[0]Ought to grow some potatoes for Wolfgang...\e"
+	"\0\s[0]Perhaps I should grow some Durian for Wurt? ...But the smell...\e"
+	"\0\s[0]I really need to tend to those plants tomorrow.\e"
+	"\0\s[0]I ought to team up with Willow to take care of some of those firenettles. She has a resistance against overheating, it seems.\e"
+	"\0\s[0]Willow loves chili, but I can't stand the stuff... Maybe I could crossbreed some of the plants...\e"
+	"\0\s[0]I wonder if I could crossbreed the %(farmingplants) plants...\e"
+	"\0\s[0]Maybe I should try selective breeding with the %(farmingplants)... Making them hardier for a different season than what they're used to sounds like a good idea.\e"
+	"\0\s[0]I need to go and talk to the plants soon.\e"
+	"\0\s[0]I wonder if plants like music?\e"
+	"\0\s[0]I wonder if plants like music? Maybe we have a spare One-Man Band...\e"
+	"\0\s[0]Talking to plants is scientifically proven to make them grow. I need to write this down before I forget.\e"
+	"\0\s[0]Need to keep more notes on these.\e"
+	"\0\s[0]Need to keep more notes on these. Especially what sort of fertilization these plants are requiring...\e"
+}
+
+//---Hunger---
+Pool_status_hungry : array //hunger below 50
+{
+	parallel Pool("Pool_status_goneforfood")
+	"\0\s[0]I don't suppose you have any food here, do you?\e"
+	"\0\s[0]I can't really think straight when I'm hungry.\e"
+	"\0\s[0]...What do %(filetype) files taste like?\e"
+	"\0\s[0]...Mmm. I keep thinking about cooked fish...\e"
+	"\0\s[0]Food? No, I'm not hungry. Actually, wait, that was a lie. I am.\e"
+	"\0\s[0]I'm not sure if I'm nauseous or hungry.\e"
+}
+
+Pool_status_goneforfood : array //this calls a function relating to wilson looking for food. weirdly enough doesn't seem to get called often iirc.
+{
+	"\0\s[0]%(iwillShort) be back in a moment. There's got to be some sort of edible stuff around here.\![raise,OnSearchForFood]\s[-1]\e"
+	"\0\s[0]...Hmm. %(iwillShort) be back in just a minute. I'm a little too hungry to think properly right now.\![raise,OnSearchForFood]\s[-1]\e"
+}
+
+Pool_status_full : array //hunger past 100
+{
+	"\0\s[0]I don't need any food right now.\e"
+}
+
+Pool_status_full_tired : array //hunger past 150 or at 150
+{
+	"\0\s[0]...%(drowsymumbling)? Sorry, did you say something?\![raise,OnFullSleeby]\e"
+	"\0\s[0]%(drowsymumbling)... A nap would be nice.\![raise,OnFullSleeby]\e"
+	"\0\s[0]...%(drowsymumbling)...\![raise,OnFullSleeby]\e"
+}
+
+OnFullSleeby //sets tiredness levels to max if wilson is full.
+{
+	tirednesslevels = 100
+}
+
+//---Timeslots---
+Pool_timeslot_earlymorning : array //timeslot == 'earlymorning' (5am - 8am)
+{
+	
+	//These are sub-pools, I've put them just below this one. Any dialogues you put in them will also get the same probabilities as all other dialogue.
+	parallel Pool("Pool_timeslot_earlymorning_uplate","%(runtime[0] >= 3)") //Been open for 3 hours or more, so the user has probably been up all night
+	parallel Pool("Pool_timeslot_earlymorning_upearly","%(runtime[0] < 3)") //Probably just got up
+}
+
+Pool_timeslot_earlymorning_uplate : array //runtime[0] >= 3 (Been open for 3 hours or more, so the user has probably been up all night)
+{
+	"\0\s[0]%(itisShorten) morning, isn't it...?\e"
+	"\0\s[0]...I'm tired.\e"
+	"\0\s[0]You really should have gone to bed. Though, I can't entirely blame you if you're up all night.\e"
+	"\0\s[0]Whuh? I'm up, I'm up.\e"
+}
+
+Pool_timeslot_earlymorning_upearly : array //runtime[0] < 3 (Probably just got up)
+{
+	"\0\s[0]%(itisShorten) early.\e"
+	"\0\s[0]Did you really have to wake me up at this time? A scientist requires a good amount of sleep.\e"
+	"\0\s[0]...Breakfast first, talk later.\s[-1]\e"
+}
+
+Pool_timeslot_morning : array //timeslot == 'morning' (9am - 11am)
+{
+	"\0\s[0]Mm. %(itisShorten) still early.\e"
+	"\0\s[0]Guh. Can't get five more minutes around here, can I?\e"
+}
+
+Pool_timeslot_lunch : array //timeslot == 'lunch' (12pm - 2pm)
+{
+	//"\0\s[0]Lunch first, talk later.\s[-1]\e"
+	"\0\s[0]Hm? Oh, %(itisShorten) lunchtime. Shouldn't you go and get something to eat?\e"
+}
+
+Pool_timeslot_afternoon : array //timeslot == 'afternoon' (3pm - 5pm)
+{
+	"\0\s[0]%(itisShorten) afternoon.\e"
+	"\0\s[0]A nap honestly sounds nice.\e"
+}
+
+Pool_timeslot_evening : array //timeslot == 'evening' (6pm - 8pm)
+{
+	//"\0\s[0]...%(itisShorten) getting a bit late.\e"
+	"\0\s[0]%(itisShorten) currently the evening.\e"
+	"\0\s[0]Ah, the lampposts should be turning on right about now.\e"
+}
+
+Pool_timeslot_latenight : array //timeslot == 'latenight' (9pm - 12am)
+{
+	"\0\s[0]%(itisShorten) getting late, %(username). You should probably go to bed.\e"
+	"\0\s[0]%(itisShorten) getting rather late, isn't it?\e"
+	"\0\s[0]Now seems like a good time to go off and sleep.\e"
+	"\0\s[0]You really should go to bed, %(username). Sleep is important!\e"
+	"\0\s[2]\i[62]I'd suggest not watching any scary movies or... those videos, %(username). Especially at this time.\e"
+}
+
+Pool_timeslot_midnight : array //timeslot == 'midnight' (1am - 4am)
+{
+	"\0\s[0]Burning the midnight oil, I see. You do know that sleep is important, both scientifically and in terms of the body stuff, right?\e"
+	"\0\s[0]Hey, you should probably go to bed soon. %(itisShorten) pretty late.\e"
+	"\0\s[0]%(itisShorten) rather late, isn't it?\e"
+	"\0\s[0]%(itisShorten) past midnight, %(username). Sleep is important.\e"
+	"\0\s[0]...Can't sleep? Me neither.\e"
+}
+
+
+//---Days of the week---
+
+Pool_wd_Sun : array //wd == "Sun"
+{
+	"\0\s[0]%(itisShorten) Sunday.\e"
+	"\0\s[0]Today is supposedly the day of rest, but there's always work to be done.\e"
+	"\0\s[0]No time for resting, work to be done.\e"
+	"\0\s[0]...Would be nice to be able to rest once in a while and just. Lounge around.\e"
+}
+
+Pool_wd_Mon : array //wd == "Mon"
+{
+	"\0\s[0]%(itisShorten) Monday. Start of the week.\e"
+	"\0\s[0]%(itisShorten) Monday.\e"
+	"\0\s[0]%(itisShorten) a Monday.\e"
+}
+
+Pool_wd_Tue : array //wd == "Tue"
+{
+	"\0\s[0]%(itisShorten) a Tuesday.\e"
+	"\0\s[0]%(itisShorten) Tuesday.\e"
+}
+
+Pool_wd_Wed : array //wd == "Wed"
+{
+	"\0\s[0]%(itisShorten) a Wednesday.\e"
+	"\0\s[0]You know, I do sort of wonder why this day's name had to be that long.\e"
+}
+
+Pool_wd_Thu : array //wd == "Thu"
+{
+	"\0\s[0]%(itisShorten) a Thursday.\e"
+}
+
+Pool_wd_Fri : array //wd == "Fri"
+{
+	"\0\s[0]%(itisShorten) a Friday. End of the working week.\e"
+	"\0\s[0]%(itisShorten) a Friday.\e"
+	"\0\s[0]Are you looking forward to the weekend, %(username)?\e"
+}
+
+Pool_wd_Sat : array //wd == "Sat"
+{
+	"\0\s[0]%(itisShorten) a Saturday.\e"
+}
+
+
+//---Days in the month---
+Pool_startmonth : array //day < 5 (start of the month)
+{
+	if month == 1
+	{
+		"\0\s[0]%(itisShorten) the beginning of a new year.\e"
+		"\0\s[0]Are you excited for this year, %(username)?\e"
+	}
+	"\0\s[0]Mm. %(itisShorten) the start of the month.\e"
+}
+
+Pool_midmonth : array //day > 13 && day < 17 (middle of the month)
+{
+	"\0\s[0]%(itisShorten) the middle of the month.\e"
+}
+
+Pool_endmonth : array //day > 26 (end of the month)
+{
+	"\0\s[0]This month will be ending soon.\e"
+	"\0\s[0]%(itisShorten) nearing the end of the month.\e"
+	"\0\s[0]%(itisShorten) the end of the month.\e"
+}
+
+//end of september / october.
+
+Pool_endmonth_sept : array
+{
+	"\0\s[0]Ah, September is ending. I'm guessing we're going to be collecting an awful lot of candy pretty soon.\e"
+	"\0\s[0]Have you gotten your Hallowed Nights costume ready, %(username)? I know it's a little bit early, but being on time matters.\e"
+}
+
+Pool_endmonth_oct : array
+{
+	"\0\s[0]%(itisShorten) close to Hallowed Nights. Have you got your costume ready yet?\e"
+	"\0\s[0]%(itisShorten) close to Hallowed Nights. I'm thinking of wearing my mad scientist costume for this year.\e"
+	"\0\s[0]%(itisShorten) close to Hallowed Nights.\e"
+}
+
+//---Months--- (Northern hemisphere/Southern hemisphere)
+Pool_month_Jan : array //month == 1
+{
+	"\0\s[0]%(itisShorten) January.\e"
+	"\0\s[0]The air's definitely still frigid.\e"
+	"\0\s[0]%(itisShorten) still rather chilly, isn't it?\e"
+	"\0\s[0]First month of a new year.\e"
+	"\0\s[0]An awful lot of people don't seem to keep their New Year's Resolutions.\e"
+}
+
+Pool_month_Feb : array //month == 2
+{
+	"\0\s[0]%(itisShorten) February. Maybe you can get a discount on chocolates if it's past the 14th.\e"
+	"\0\s[0]%(itisShorten) February.\e"
+	"\0\s[0]%(itisShorten) the shortest month of the year.\e"
+	"\0\s[0]%(itisShorten) the shortest month of the year. And a general reminder that life is short.\e"
+}
+
+Pool_month_Mar : array //month == 3 (Spring start/Autumn start)
+{
+	
+	"\0\s[0]%(itisShorten) March.\e"
+	"\0\s[0]%(itisShorten) the start of spring, I'd guess.\e"
+}
+
+Pool_month_Apr : array //month == 4
+{
+	"\0\s[0]April showers are coming.\e"
+	"\0\s[0]%(itisShorten) April.\e"
+}
+
+Pool_month_May : array //month == 5
+{
+	"\0\s[0]%(itisShorten) May.\e"
+}
+
+Pool_month_Jun : array //month == 6 (Summer start/Winter start)
+{
+	"\0\s[0]%(itisShorten) June.\e"
+}
+
+Pool_month_Jul : array //month == 7
+{
+	"\0\s[0]%(itisShorten) July.\e"
+}
+
+Pool_month_Aug : array //month == 8
+{
+	"\0\s[0]%(youknowShortener), you might still be able to wish Percival a happy birthday. You can probably go bother him in his email, right? Or does he not check that one anymore?\e"
+	"\0\s[0]You can wish the dev a happy birthday if you want to. Don't expect much of a response, though, he tends to be pretty shy.\e"
+	"\0\s[0]The dev's birthday is this month. The entire month. Yes.\e"
+}
+
+Pool_month_Sep : array //month == 9 (Autumn start/Spring start)
+{
+	"\0\s[0]%(itisShorten) September.\e"
+	"\0\s[0]September is the start of autumn. And harvest festivals, apparently.\e"
+}
+
+Pool_month_Oct : array //month == 10
+{
+	"\0\s[0]Ah, the yearly celebration of candy.\e"
+	"\0\s[0]%(itisShorten) Halloween soon.\e"
+	"\0\s[0]Hallowed Nights is just around the corner. And free candy.\e"
+	"\0\s[0]%(youknowShortener), they'll probably run discounts on candy when Hallowed Nights finishes.\e"
+	"\0\s[0]I hope everyone's costumes are insulated well enough. %(itisShorten) beginning to get a little %(chillynippy).\e"
+	"\0\s[0]Ah, pumpkins seem to spawn in the world at this time of year. I'd suppose the ruler is getting into the Hallowed Nights spirit.\e"
+}
+
+Pool_month_Nov : array //month == 11
+{
+	//"\0\s[0]November.\e"
+	"\0\s[0]%(itisShorten) certainly getting chillier.\e"
+	"\0\s[0]%(itisShorten) definitely getting colder. Haven't you felt that nip at your feet yet?\e"
+	"\0\s[0]We should try and blow up Parliament again.\e"
+	"\0\s[0]Do they not do Penny for the Guy anymore? They used to have like. Kids coming out with a wheelbarrow and a Guy Fawkes scarecrow, and they'd ask for spare change.\e"
+}
+
+Pool_month_Dec : array //month == 12 (Winter start/Summer start)
+{
+	"\0\s[0]%(itisShorten) December. Are you ready for the Giftening?\e"
+	"\0\s[0]%(itisShorten) December. I hope you're ready for Winter's Feast.\e"
+	"\0\s[0]Winter%(thingisShorten) in full swing now. %(itisShorten) getting very cold.\e"
+	"\0\s[0]The snow%(thingisShorten) coming down pretty badly at the camp. I really should go back...\e"
+	"\0\s[0]Winter temperatures frequently reach subzero. %(iamShortener) lucky that I was able to make quite a few of those vests for the others, frankly. Those get frayed and wear out over time.\e"
+}
+
+
+//---Seasons---
+Pool_season_Spring : array //season == 'Spring'
+{
+	"\0\s[0]Ahh. Spring rains.\e"
+	"\0\s[0]%(youknowShortener), frogs are sometimes useful.\e"
+	"\0\s[0]Drying meat on the drying racks is less efficient in the rain. \w8It takes an awfully long time, is what I mean.\e"
+	"\0\s[0]Ah, the birds will be dropping seeds again.\e"
+	"\0\s[0]%(iamShortener) going to need to rotate the crops out again.\e"
+	{
+		"\0\s[0]It rains very frequently in Spring. "
+		--
+		"WX-78 needs protection from the rain, else they'll start sparking, since they're made of electrical components."
+		"WX-78 isn't waterproof, so they need protection from the rain."
+		"Sometimes we get frog rains."
+		"It becomes very... difficult to dry meat."
+		"Frog rains are a good source of food if you remember to put a bunch of small critter traps down."
+		"The rain brings down everyone's mood after a sustained period."
+		"One of our main sources of food is gone because the rabbit holes collapse in the Spring. We have to wait for them to dig new ones, and that takes until Summer."
+		"Willow really hates the rain. It's probably because it makes the fire burn for less time."
+		"An umbrella does come in handy."
+		"It's possible to use the Deerclops eye to make a sort of... head-mounted umbrella, but WX-78 has a tendency to claim it first. Not that I'm mad at them for doing so, they do need it, after all..."
+		{
+			"I've thought about making a rain shelter out of the wood and twigs we tend to have around... "
+			--
+			"I am, however, a little bit worried about Willow accidentally setting it on fire if she mistakes it for a pile of firewood and kindling."
+			"But I'm not much of a woodworker."
+			"I'd probably have to get Woodie on-board with the idea."
+			"We could try and repurpose the little lean-tos that we have for summer whenever we're spending time on the surface..."
+		}
+		--
+		"\e"
+	}
+	{
+		"\0\s[0]Frogs are somewhat useful. "
+		"\0\s[0]%(youknowShortener), frogs are sometimes useful. "
+		--
+		if totalpets >= 100
+		{
+			"No, you can't pet them. "
+			"No, you can't pet them. They've got barbed tongues and will lash them on your hands. "
+		}
+		if hunger <= 50
+		{
+			"Frog legs sound quite nice right now, actually... "
+		}
+		if annoyancelevels >= 75
+		{
+			"The only issue is that they're annoying little pieces of work. "
+			"The only issue is that they're annoying, they're hard to kite and they cause me to drop my items. "
+			"They're annoying little buggers, though. "
+			"I keep having to check the traps and put them back down again after harvesting the meat. "
+		}
+		--
+		if totalpets >= 100
+		{
+			"I'm not bringing one here so that you can try and pet it."
+		}
+		if hunger <= 50
+		{
+			"Maybe some jerky would be nicer..."
+		}
+		if annoyancelevels >= 75
+		{
+			"I have to deal with those croaky little idiots almost every time it rains in the Spring."
+			"Checking the traps and setting them back up totally isn't tedious at all, no. \w8\w8I was being sarcastic. Anyways, where was I?"
+		}
+		{
+			"Abigail is a real powerhouse when it comes to dealing with armies of frogs. "
+			"Wendy's sister is pretty good at dealing with frogs. "
+			--
+			if annoyancelevels >= 75
+			{
+				"The one thing that's a pain in the arse about having a ghost that can wreck an army of frogs is having to check the drying racks, in the Spring, no less, when the meat doesn't dry as efficiently, and set the meat up to be dried."
+				"...We're going to be having a lot of frog leg meatballs. \w8\w8\s[2]\i[50]\i[61]\i[71]\i[53]You underestimate how tiring meatballs is for the fiftieth time."
+			}
+			"We're going to need more drying racks."
+			"We've ended up with more than a couple dozen frog legs today."
+			"I'm guessing we'll all be having either frog leg meatballs or froggle bunwiches for the next couple of days."
+		}
+		"Warly appreciates having something a bit different in the meatballs."
+		"Warly did mention that he used to sample frog legs in Paris."
+		"Four of the legs in a crockpot makes meatballs."
+		"Froggle bunwiches are at least a welcome change from meatballs in some cases, I'd suppose."
+		--
+		"\e"
+	}
+}
+
+Pool_season_Summer : array //season == 'Summer'
+{
+	"\0\s[0]...It really is hot, huh.\e"
+	"\0\s[0]Gahhh. I can only keep my beard short in this weather.\e"
+	"\0\s[0]I can't keep my beard very long, otherwise I'll end up overheating.\e"
+	"\0\s[0]I'll take rain over this heat, any day, frankly.\e"
+	//"\0\s[0]It%(thingisShorten) hard to get cactus flesh when it comes to this time of year. Wickerbottom has to rely on mushrooms most of the time.\e"
+	{
+		"\0\s[0]Sandstorms happen when Summer comes around. \n\n[half]"
+		--
+		{
+			"It's impossible to get any cactus flesh because we can't see in the sandstorm unless we have goggles. "
+			--
+			"Wickerbottom has to rely on mushrooms instead of cooked cactus for the majority of the season."
+			"We can't make any meals that require the use of it."
+		}
+		"They're localized entirely to the desert."
+		"I've been seeing about devising some sort of headwear to make visibility during a sandstorm a bit easier, but it's not going well."
+		"The Antlion also comes around, but it's hard to deliver tribute to it."
+		"If we don't deliver tribute to the Antlion, then it has a tendency to get... angry, for lack of a better term."
+		"I sure do love getting sand in just about every single nook and cranny."
+		"Wearing goggles just to go and deliver tribute to some big force is abominable. They mess up my hair if I wear them for too long."
+		--
+		"\e"
+	}
+	{
+		"\0\s[0]It's pretty hot out.\n\n[half]"
+		"\0\s[0]It is rather hot, isn't it?\n\n[half]"
+		--
+		"Wormwood isn't exactly resistant to burning."
+		"Webber's fur tends to make them get hotter than usual, it certainly doesn't help that their fur is dark."
+		"At least Wortox is enjoying the heat."
+		"Willow%(thingisShorten) definitely going to be enjoying the heat."
+		"Maxwell%(thingisShorten) not too fond of the heat either, eheh."
+		"Wurt needs to stay somewhat soggy for the health of her skin. It%(thingisShorten) a bit concerning when she gets too dry."
+		"%(iamShortener) a little bit worried about fights breaking out because everyone%(thingisShorten) hot under the collar, but %(iamShortener) sure it's nothing we can't handle..."
+		"Wortox says that the heat in the Constant's summers reminds him of home. I'm glad about that, but he mentioned something about not being bound to this... dimension?\nSurely he could just visit home at any time?"
+		{
+			"I'm hoping for less wildfires this year. "
+			"Hopefully we get less wildfires this time around. "
+			--
+			"Though, Wortox takes a bit of delight in setting things on fire with Willow. He somehow manages to rationalize it as a prank, but..."
+			"Willow would be going absolutely mad with power. I'm trying not to let her set too many fires, we need the trees for wood."
+			"I'm pretty certain that Woodie is also hoping for less wildfires."
+			"Wormwood isn't fond of plants burning either."
+			"I do not want to deal with a flaming treeguard."
+		}
+		--
+		"\e"
+	}
+}
+
+Pool_season_Autumn : array //season == 'Autumn'
+{
+	"\0\s[0]Mm, the leaves are starting to fall from the birchnut trees.\e"
+	"\0\s[0]I'm sure the Bearger will be lurking around here soon.\e"
+	"\0\s[0]From what I've experienced, it always rains on day 5 of a new world.\e"
+	"\0\s[0]Ah, birchnuts are available again. Finally.\e"
+	{
+		"\0\s[0]The days are getting shorter.\n\n[half]"
+		--
+		"Webber's asked me to build a nightlight for him. I think it'd be better if Winona built it, frankly, considering my scientific discipline isn't exactly in electronics, but I could try..."
+		"Webber's not fond of how the nights are drawing out. He's scared of the dark."
+		"More time has to be spent at camp. Or near to a quick fire."
+		"Willow's not fond of the dark. Said that it reminded her of bad times. I can't exactly go and question her about it, but I worry for her..."
+		"Wendy's fine with the dark, surprisingly."
+		"There's something in the dark. I've heard it a few times. Quite possibly died to it a few times, too."
+		"It's no wonder why people don't like the dark around here. There's something in there, watching you."
+		{
+			"While the start of the season has shorter nights, the nights will slowly increase in length, thus necessitating more time at camp. "
+			--
+			"I'm a bit worried about fights breaking out."
+			"Of course, most of us have tents and tend to go to bed in there, but a couple of us have to go on night watch."
+			"I know Willow and Maxwell don't exactly get along well with each other..."
+			"Webber isn't fond of how the nights are starting to get longer."
+		}
+		{
+			"It's making it harder to go further from camp to gather resources that we need. "
+			"I can't stray far from camp to get more resources that we need. "
+			--
+			"Everyone's already gone for the resources that are somewhat close to camp to try and keep the camp going for just a bit longer while spending less time away."
+			"We also have to set up a secondary camp in the forest so that when the Deerclops comes, we're all over there rather than at the main camp, and we can lure it to attack the trees and summon treeguards."
+		}
+		--
+		"\e"
+		
+	}
+	{
+		"\0\s[0]This is the best season.\n\n[half]"
+		--
+		"It doesn't try and burn the entire base down, it doesn't start random wildfires, and the leaves look pretty. Also there's no issues with the others having temperatures that have risen or dropped to dangerous levels."
+		"Willow really likes watching the leaves falling. The colours probably remind her of fire."
+		"You can get birchnuts from the birchnut trees here. They're part of Walter's favourite snack."
+		{
+			"I'm sure Warly appreciates the variety in adding some birchnuts to a few meals. "
+			--
+			"It certainly makes for less blandness once you've gotten used to the taste of the meatballs we usually make and have."
+			"I'm glad nobody around here has nut allergies, frankly."
+			"He says that they add a bit more protein to things."
+			"I'd love to try and crossbreed some different kinds of nuts to give him some more nuts to work with, but I think that'll have to wait for a long while."
+		}
+		"Wurt's able to come out and about without needing protective wear. Though, she's able to do that in the Spring, too."
+		--
+		"\e"
+	}
+}
+
+Pool_season_Winter : array //season == 'Winter'
+{
+	"\0\s[0]I miss my beard, %(username). Willow made me shave.\e"
+	"\0\s[0]Wrap up warm. %(itisShorten) cold out.\e"
+	"\0\s[0]%(iamShortener) perfectly aware that having a beard makes me look like a madman, but it's also important to not freeze to death.\e"
+	"\0\s[0]Oh, god. Willow's probably going to want to sap some of my body heat.\e"
+	"\0\s[0]Willow tends to really like pilfering my body heat when it comes to this time of year. I'm not too surprised, given her apparent sensitivity to the cold.\e"
+	{
+		"\0\s[0]I wonder if Wigfrid would appreciate being asked on a hunt. "
+		--
+		"I know she tends to get a bit antsy if she's around camp for too long without being tasked to do something."
+		"As long as it's not a Varg..."
+		"Maybe the tallbird dens? I'm not sure if they'll produce eggs in the Winter, though."
+		"The Pengulls will make for a good opponent for her. All she has to do is whack one of them, then I'll go steal the eggs while they're distracted."
+		{
+			"Hopefully we get a Koalefant this time. "
+			--
+			"I need to try and make some more... insulated clothing for Willow."
+			"I know Willow would definitely appreciate some clothing that's a bit more insulated."
+			"Maxwell's complaining about his joints again. I'm hoping that some clothing that's more insulated will shut him up for at least five minutes."
+			"We need spare vests. I didn't get around to making a lot of them in time..."
+		}
+		{
+			"I'm just hoping we don't get a Ewecus. "
+			--
+			"It took ages to clean the mucus from that thing's projectiles off of my clothing."
+			"I do not want to have to try and bathe Webber when he's got mucus all over him."
+		}
+		--
+		"\e"
+	}
+	{
+		"%(itisShorten) rather cold out. "
+		--
+		"I'm guessing Willow's going to be pilfering some of my body heat tonight."
+		"Willow might have pilfered all the blankets again. And the thermal stones."
+		"Willow's probably either in the fire or cozied up with a bunch of blankets and thermal stones."
+		"...I just realized that Willow's probably going to rub her cold hands over me."
+		"Webber doesn't like the darker nights very much."
+		"I can hear Maxwell complaining about his joints from here."
+		"I can hear Maxwell complaining about his joints from here. It's... not much of a wonder why he gets along so well with Wickerbottom."
+		"Wormwood might be hibernating at this point."
+		"Wormwood has asked me to check on the garden for him."
+		{
+			"My lips keep getting chapped. "
+			--
+			"It's hard to not pick at them every five minutes."
+			"Do you get the same problem, %(username)?"
+			"I think Maxwell has it worse than I do with this one."
+		}
+		//"Webber's asked me to make some sort of nightlight for him."
+		{
+			"Hypothermia%(thingisShorten) going to become a real risk."
+			--
+			"Willow's going to be affected the most. It's why she needs several items of clothing at best to be able to thermoregulate in these temperatures..."
+			"Wurt's going to be affected pretty badly. The air must be pretty freezing for her."
+			"Wurt's going to be affected pretty badly. The air must be pretty freezing to her, especially since she's usually wet."
+			"Wormwood needs to go into hibernation around these times. The times when he's out are mostly when we've got enough heat to go around."
+			"Webber's able to grow a beard, so he can last a bit longer out in the snow, but I still worry, since it gets so dark at night."
+			"\s[2]\i[61]\i[71]Willow tends to get sick around this season. \i[59]I worry a lot about her, frankly."
+		}
+		--
+		"\e"
+	}
+}
+
+//-----------Chains-----------
+
+//Example of a chain. The dialogues will play in order each time the ghost talks until it reaches chain=end.
+achain
+{{CHAIN
+	"\0\s[0]Here's another part of the chain!\e"
+	"\0\s[0]Here's a third part of the chain!\e"
+	"\0\s[0]Here's a fourth part of the chain!\e"
+	"\0\s[0]Here's the end of a chain!\e:chain=end"
+}}CHAIN
+
+
+//-----------Timekeeping systems and related dialogue-----------
+
+OnMinuteChange
+{
+	if hour == 0 && minute == 0; AutoUpdates[1] = 0 //Resetting auto updates
+	if runtime[1] == 0; totalhours++ //I tried to use ghostupmin_total for this, but for some of my ghosts it's super far into the negatives for some reason... This is gonna be off but not THAT far off lol
+	if minute == 0 && HourNotifs == "On" //Top of the hour notifications
+	{
+		if hour == 0
+		{
+			if day == 1 && month == 1
+			{
+				"\0\s[0]Happy new year!\e"
+				"\0\s[0]...Looks like %(itisShorten) a new year.\e"
+				"\0\s[0]%(itisShorten) a new year.\e"
+			}
+			else
+			{
+				if tirednesslevels >= 75
+				{
+					"\0\s[0]I really should have brought a blanket or something here...\e"
+				}
+				"\0\s[0]It%(thingisShorten) the middle of the night.\e"
+				{
+					"\0\s[0]It%(thingisShorten) midnight, %(username). "
+					--
+					"Surely you've got something better to do other than this?"
+					"Aren't you tired?"
+					"I would prefer not to be burning the midnight oil, but what choice do I have other than to stay up all night and yak to someone?"
+					"Don't you have anything else to do?"
+					--
+					"\e"
+				}
+			}
+		}
+		elseif hour == 12
+		{
+			"\0\s[0]%(itisShorten) noon.\e"
+			"\0\s[0]%(itisShorten) noon. Now sounds like a good time for lunch.\e"
+			"\0\s[0]%(itisShorten) a good time for a midday nap, I'd say.\e"
+		}
+		else
+		{
+			"\0\s[0]%(itisShorten) %(hour12) o'clock.\e"
+		}
+	}
+	elseif ARRAYSIZE(offscreen) > 0 //If the ghost is off the screen, it will run the off screen dialogue every minute
+ 	{
+ 		OffscreenTalk
+	}
+	--
+	if AutoUpdates[0] == "On" && AutoUpdates[1] == 0 //Once a day the ghost will check for updates if the user has auto updates on
+	{
+		AutoUpdates[1] = 1
+		"\![updatebymyself,checkonly]"
+	}
+	--
+	if hunger > 0
+	{
+		hunger = hunger - 8
+	}
+	//if hunger <= 50
+	//{
+	//	annoyancelevels = annoyancelevels + 1
+	//}
+	if hunger < 0
+	{
+		hunger = 0
+	}
+	--
+	if annoyancelevels >= 100
+	{
+		//"\0\s[0]I need to leave for a little bit, otherwise I might end up blowing my top. Apologies, %(username). \![raise,OnAnnoyanceLeft]%(iwillShort) be back soon.\s[-1]\e"
+		//"\0\s[0]Apologies, I... really need to go and cool off. %(iwillShort) be back before you know it.\![raise,OnAnnoyanceLeft]\s[-1]\e"
+		"\0\s[0]...\![raise,OnAnnoyanceLeft]\s[-1]\e"
+	}
+	if annoyancelevels > 0 && hunger > 50
+	{
+		annoyancelevels = annoyancelevels - 2
+	}
+	--
+	if hour < 11 || hour > 22
+	{
+		tirednesslevels += 1
+	}
+	else
+	{
+		tirednesslevels -= 1
+	}
+	if tirednesslevels > 100; tirednesslevels = 100
+	if tirednesslevels < -100; tirednesslevels = -100
+	
+}
+
+OnAnnoyanceLeft
+{
+	annoyancelevels = 75
+}
+
+OnSecondChange
+{
+	if reference2 == 1 //This is for if your Sakura and Kero are overlapping. \4 will move the speaking character away from the other character. If you need something more complicated you can use OnOverlap instead of this
+	{
+		"\0\s[0]Me and %(keroname) are overlapping.\4\e"
+	}
+}
+
+OnOffscreen
+{
+	//I've tinkered a lot with this function to get it working for multiple characters. If you need more than 2, just copy the format below very carefully, and make sure you increment the numbers. It's not perfect; if you have multiple characters off screen at once it might pick the wrong dialogues, but you can add more elseifs to handle those cases if you really want them.
+	offscreen = TOSTR(reference0)
+	CVSTR(reference0)
+	CVSTR(reference1)
+	
+	if "0" _in_ reference0 //Checks if the sakura was moved off screen
+	{
+		OffscreenTalk("0")
+	}
+	elseif "1" _in_ reference0 //Checks if the kero was moved off screen
+	{
+		OffscreenTalk("1")
+	}
+	
+	//Coming back on screen
+	elseif "0" _in_ reference1 //Checks if the sakura is no longer off screen
+	{
+		EndOffscreenTalk("0")
+	}
+	elseif "1" _in_ reference1 //Checks if the kero is no longer off screen
+	{
+		EndOffscreenTalk("1")
+	}
+}
+
+OffscreenTalk //Off the screen dialogue. Ctrl Shift F12 will bring characters back onto the screen. _argv[0] here contains the number of the character who is off screen, 0 for sakura, 1 for kero, 2 and up for extra chars
+{
+	if _argv[0] == "0" //If the sakura is off screen
+	{
+		//"\0\s[0]I'm off the screen.\w8\w8 You can press Ctrl Shift F12 to bring me back.\e"
+		"\0\s[0]I. I appear to be off-screen.\w8\w8 Assistance is required, %(username).\e"
+		"\0\s[0]I can't just teleport myself back on-screen, %(username)!\e"
+		"\0\s[0]Press Ctrl-Shift-F12! Please.\e"
+		"\0\s[0]Aaah! Something just licked me!\e"
+	}
+	elseif _argv[0] == "1" //If the kero is off screen
+	{
+		"\0\s[0]The kero is off the screen.\w8\w8 You can press Ctrl Shift F12 to bring it back.\e"
+	}
+}
+
+EndOffscreenTalk //Being brought back on the screen. _argv[0] here contains the number of the character who was brought back on screen, 0 for sakura, 1 for kero, 2 and up for extra chars
+{
+	if _argv[0] == "0" //If the sakura was brought back on screen
+	{
+		//"\0\s[0]I'm back!\e"
+		"\0\s[0]Thank science.\e"
+		"\0\s[0]I don't like it much there.\e"
+		"\0\s[0]I can scientifically say that I hated that.\e"
+	}
+	elseif _argv[0] == "1" //If the kero was brought back on screen
+	{
+		"\0\s[0]The kero is back!\e"
+	}
+}
+
+OnSurfaceRestore //OnSurfaceRestore happens around 30 seconds after the ghost's last dialogue. reference0 here stores the number of the previous surface, so you can have them comment when they change back if you like.
+{
+	"\1\s[10]%(idles)\e"
+}
