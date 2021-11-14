@@ -1,0 +1,1048 @@
+//----Drag and Drop----
+
+//When you drop a file on the ghost that isn't something it can install
+//reference0 is the file path, which is split up amongst the local variables below
+OnFileDrop2
+{
+	_filepath = SPLITPATH(reference0)
+	_filename = _filepath[2]
+	_fileext = TOLOWER(_filepath[3])
+	case _fileext
+	{
+		when ".jpg", ".jpeg", ".bmp", ".png" //These are pictures that they can set to wallpapers. Png works for me, but if it doesn't work for you let us know please, I'm curious about this.
+		{
+			_file = REPLACE(reference0,"]","\]")
+			
+			"\0\s[0]\b[2]This is %(_filename)%(_fileext).\w8\w8 I can set it as your wallpaper,\w4 how do you want it?\n\n"
+			--
+			--; "\![*]\q[Centered,OnWallpaper,%(_file),center]\n"
+			--; "\![*]\q[Tiled,OnWallpaper,%(_file),tile]\n"
+			--; "\![*]\q[Stretched,OnWallpaper,%(_file),stretch]"
+			--
+			if "Windows 7" || "Windows 10" _in_ NotifyOS //These are the 'fit' and 'fill' options available from win 7 on. NotifyOS is set just below, to check what OS you're on
+			{
+				--; "\n\![*]\q[Fill,OnWallpaper,%(_file),stretch-x]"
+				--; "\n\![*]\q[Fit,OnWallpaper,%(_file),stretch-y]"
+			}
+			--
+			if "Windows 10" _in_ NotifyOS; "\n\![*]\q[Spanned,OnWallpaper,%(_file),span]" //Same as above, but for the span option since that's win10 and above
+			--
+			"\n\n\![*]\q[No thanks,WallpaperCancel]\e"
+		}
+		when ".mid", ".wav", ".mp3", ".wma", ".au", ".ogg", ".flac"
+		{
+			if totalpunches >= 5
+			{
+				"\0\s[0]'s a music file.\e"
+			}
+			else
+			{
+				if annoyancelevels >= 50
+				{
+					"\0\s[0]This is a music file. No, I can't play them, so you can stop asking me about it. I doubt the developer's going to add in that functionality either.\e"
+				}
+				if hunger <= 50
+				{
+					"\0\s[0]I was hoping this would be edible. Either way, this looks like a music file. And I don't think records are edible either.\e"
+				}
+				"\0\s[0]This looks like a music file. Unfortunately, I lack the capability to play it.\e"
+				"\0\s[0]This looks like a music file. I can't play these.\e"
+				"\0\s[0]Ah, the sound of music. I can't play these, but I know that FLELE might be able to. Or that FLUX thing that Zicheq... Zi has been working on.\e"
+			}
+		}
+		others
+		{
+			if _fileext == "" //If it's a folder. Using \_? lets you display the slashes and such in dialogue, but you have to toggle it off after you no longer need it
+			{
+				"\0\s[0]This is \_?%(_filepath[1])\_?!\e"
+			}
+			else //If it's a file
+			{
+				"\0\s[0]This is %(_filename)%(_fileext).\e"
+			}
+		}
+	}		
+}
+
+//You can get other information about the OS here, it's in the other references. Reference0 includes the OS system, version, and display name
+OnNotifyOSInfo
+{
+	NotifyOS = reference0
+}
+
+OnWallpaper
+{
+	"\0\![set,wallpaper,%(REPLACE(reference0,']','\]')),%(reference1)]"
+	--
+	//You can remove this if check if you want a single dialogue for changing the wallpaper
+	if reference1 == "center"; "\s[0]It's centered.\e"
+	elseif reference1 == "tile"; "\0\s[0]It's tiled.\e"
+	elseif reference1 == "stretch"; "\0\s[0]It's stretched.\e"
+	elseif reference1 == "stretch-x"; "\0\s[0]It's filled.\e"
+	elseif reference1 == "stretch-y"; "\0\s[0]It's fitted.\e"
+	elseif reference1 == "span"; "\0\s[0]It's spanned.\e"
+}
+
+Select.WallpaperCancel
+{
+	if annoyancelevels >= 50
+	{
+		if hunger <= 50
+		{
+			"\0\s[0]...I question what your taste is like, but then again, I can probably taste this wallpaper file.\e"
+		}
+		"\0\s[0]Bah. Don't blame me for your poor taste.\e"
+	}
+	"\0\s[0]Are you questioning my skills of wallpapering? I assure you, I can do this perfectly well.\e"
+	"\0\s[0]Well, I suppose there's no accounting for taste.\e"
+	"\0\s[0]It'd be best if you got me to wallpaper this. There's no telling what Maxwell might potentially do if you ever got him to try and wallpaper your desktop.\e"
+	"\0\s[0]Oh, come now. I'm perfectly decent at wallpapering, %(username).\e"
+}
+
+OnInstallBegin
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]...I'll install this.\e"
+	}
+	else
+	{
+		if annoyancelevels >= 50
+		{
+			if hunger <= 50
+			{
+				"\0\s[0]Fine, I'll install it for you. No promises on not taking any nibbles on it, though.\e"
+			}
+			"\0\s[0]Do I seriously have to install this for you? What the hell happened to those installation wizards?\e"
+		}
+		if hunger <= 50
+		{
+			"\0\s[0]...You want me to install this? Well, once you feed me- oh? Oh, alright.\e"
+		}
+		"\0\s[0]An installation?\e"
+		"\0\s[0]You want me to install this? Alright, I'll see what I can do.\e"
+		"\0\s[0]An installation? I'll see what I can do, but I can't promise anything.\e"
+		"\0\s[0]You want me... to install this to your computer? Alright, let's see here...\e"
+	}
+}
+
+//Finished installing something ghost related. You can remove any of the ifs here if you like, and just have it go to the else.
+//reference0 is the type of installed item, reference1 is the name.
+OnInstallComplete
+{
+	if reference0 == "ghost"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]...I hope you treat them better than you've treated me.\n\n[half]"
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]Oh good, some other mug for you to go and bother for several hours. Their name is %(reference1).\n\n[half]"
+			}
+			if hunger <= 50
+			{
+				"\0\s[0]Do you think %(reference1) will bring snacks?\n\n[half]"
+				"\0\s[0]Maybe I should have brought some food for them. Like a little welcoming gift.\n\n[half]"
+			}
+			"\0\s[0]I've installed %(reference1).\w8\w8 Do you want to bring them here?\n\n[half]"
+			"\0\s[0]I've installed %(reference1).\w8\w8 Should I bring them here for you?\n\n[half]"
+			"\0\s[0]%(reference1) is here.\w8\w8 I can bring them here for you if you'd like.\n\n[half]"
+			"\0\s[0]%(reference1) has been installed. Do you want me to bring them here for you?\n\n[half]"
+			"\0\s[0]Ah, a new friend of yours? Their name is %(reference1). I can bring them here if you'd like.\n\n[half]"
+			"\0\s[0]Getting a bit crowded, isn't it? This person's name is %(reference1). I can bring them in if you want me to.\n\n[half]"
+			"\0\s[0]What are you hosting, a party? I'd prefer to have no part in those. This person's name is %(reference1), and I'm able to bring them here if you request for me to do so.\n\n[half]"
+		}
+		--
+		--; "\![*]\q[Call %(reference1),CallGhost]\n"
+		--; "\![*]\q[Change to %(reference1),ChangeToGhost]\n\n"
+		--; "\![*]\q[No thanks,cancelnodialogue]\e"
+	}
+	elseif reference0 == "shell"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]...not sure why clothes would matter to you...\e"
+		}
+		else
+		{
+			"\0\s[0]I've installed the %(reference1) shell.\e"
+			"\0\s[0]I've installed this shell... It should be called %(reference1).\e"
+			"\0\s[0]%(reference1) has been installed successfully. It should... Oh, I just told you the name. Either way, it's a shell.\e"
+			"\0\s[0]%(reference1) has been installed successfully. It should be a shell.\e"
+			"\0\s[0]Ah, a new shell? It's called %(reference1).\e"
+		}
+	}
+	elseif reference0 == "balloon"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]I'm not sure why this would matter, frankly. It's a balloon.\e"
+		}
+		else
+		{
+			"\0\s[0]I've installed the %(reference1) balloon.\e"
+			"\0\s[0]I've installed this balloon... it should be called %(reference1).\e"
+			"\0\s[0]Ah, a new textbox? This one's called %(reference1).\e"
+			"\0\s[0]Hmm. This looks to be a balloon. It's called %(reference1).\e"
+			"\0\s[0]This definitely isn't one of the mime's balloons. It's called %(reference1).\e"
+		}
+	}
+	elseif reference0 == "plugin"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]Do you expect me to tell you any information about this? I don't have any. Don't ask me.\e"
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]If either of us gets this plugin working, it'll be a Winter's Feast miracle.\e"
+			}
+			"\0\s[0]I've installed the %(reference1) plugin.\e"
+			"\0\s[0]Computer-savvy, are we? This appears to be a plugin, and it's called %(reference1). Hopefully it works.\e"
+			"\0\s[0]This looks like a plugin. It's called %(reference1).\e"
+			"\0\s[0]This is a plugin. It's called %(reference1). \w8\w8Do you know how it works?\w8\w8 I'd like to take some notes, if you do get it working.\e"
+		}
+	}
+	elseif reference0 == "calendar skin"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]And just why would the appearance of the calendar matter to you?\e"
+		}
+		else
+		{
+			"\0\s[0]I've installed the %(reference1) calendar.\e"
+			"\0\s[0]This is a calendar skin. It's called %(reference1).\e"
+		}
+	}
+	elseif reference0 == "headline" //The wiki claims this is a possible outcome, but in my testing I've only been able to get it to show 'rss'
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]I've set up that headline for you. I'm not giving you anything more.\e"
+		}
+		"\0\s[0]I've set up the headline for %(reference1).\e"
+		"\0\s[0]I've set this headline up for %(reference1).\e"
+		"\0\s[0]I've set up that headline for %(reference1).\e"
+	}
+	elseif reference0 == "rss"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]I've set up that RSS feed for you. I'm not giving you anything more.\e"
+		}
+		else
+		{
+			"\0\s[0]I've set up the RSS feed for %(reference1).\e"
+			"\0\s[0]That RSS feed for %(reference1) has been set up.\e"
+			"\0\s[0]I've set that RSS feed for %(reference1) up for you. No need to thank me.\e"
+		}
+	}
+	else //Even if you get rid of some of the ifs above, you should keep this else as a catch-all.
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]I've installed that... thing for you. I'm not giving you anything more in regards to information about it.\e"
+		}
+		else
+		{
+			"\0\s[0]I've installed %(reference1).\e"
+			"\0\s[0]I've installed %(reference1) for you. No need to thank me.\e"
+		}
+	}
+}
+
+//Calling the ghost that was just installed. Add dialogues to these if you like.
+Select.CallGhost
+{
+	"\![call,ghost,lastinstalled]\e"
+}
+
+//Opening the ghost that was just installed.
+Select.ChangeToGhost
+{
+	"\![change,ghost,lastinstalled]\e"
+}
+
+//reference0 is the reason the install failed
+OnInstallFailure //If the install fails
+{
+	if reference0 == "artificial" //If the user cancels by double clicking the balloon
+	{
+		"\0\s[0]Oh,\w4 did you change your mind?\e"
+	}
+	else
+	{
+		"\0\s[0]Sorry,\w4 the install failed.\w8\w8\n\n"
+		--
+		if reference0 == "unsupported" //File is not supported
+		{
+			if totalpunches >= 5
+			{
+				"It's- the file. It's not supported.\e"
+				"The- the file isn't supported.\e"
+			}
+			elseif annoyancelevels >= 50
+			{
+				"I can't do anything here, it's not supported!\e"
+			}
+			else
+			{
+				"The file isn't supported.\e"
+				"I can't install an unsupported file.\e"
+				"The file isn't supported. I'm not sure what I'm supposed to do with it.\e"
+			}
+		}
+		elseif reference0 == "extraction" //Couldn't extract
+		{
+			if totalpunches >= 5
+			{
+				"I... I couldn't extract it.\e"
+				"I couldn't extract it. Sorry- I'm sorry!\e"
+			}
+			elseif annoyancelevels >= 50
+			{
+				"I can't install the blasted thing if I can't extract it.\e"
+			}
+			else
+			{
+				"I couldn't extract it properly.\e"
+				"There was an issue with extracting.\e"
+				"I couldn't extract it properly.\e"
+			}
+		}
+		elseif reference0 == "invalid type" //install.txt isn't set up properly
+		{
+			if totalpunches >= 5
+			{
+				"I-I-I... The install.txt isn't set up properly?\e"
+				"That can't be right... The... install.txt is corrupted?\e"
+			}
+			elseif annoyancelevels >= 50
+			{
+				"Gahhh. The install.txt isn't set up properly. I can't install it.\e"
+			}
+			else
+			{
+				"Something is wrong in the install.txt.\e"
+				"The install.txt is corrupted or wrong.\e"
+			}
+		}
+		else
+		{
+			if totalpunches >= 5
+			{
+				"I... I'm getting an error. It's: '%(reference0)'...\e"
+			}
+			elseif annoyancelevels >= 50
+			{
+				"These errors will be the death of me. This one is: '%(reference0)'.\e"
+			}
+			else
+			{
+				"I got this error: '%(reference0)'.\e"
+				"This is the error I'm getting: '%(reference0)'.\e"
+			}
+		}
+	}
+}
+
+//reference0 is the Sakura name of the ghost the item was meant for, reference1 (since SSP 2.4.85) is the type of item you tried to install
+OnInstallRefuse
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]...I can't install this... it appears to be for %(reference0)...\e"
+	}
+	elseif annoyancelevels >= 50
+	{
+		"This is for %(reference0). I'm not interested in looking at their underwear or whatever... this... %(reference1) is.\e"
+	}
+	else
+	{
+		"\0\s[0]I can't install this %(reference1).\w8\w8 Seems like it's meant for %(reference0) instead.\e"
+		"\0\s[0]This %(reference1)? There's a tag here that says it's for %(reference0).\e"
+	}
+}
+
+//Creating an updates2.dau
+OnUpdatedataCreating
+{
+	"\0\s[0]Creating an updates2.dau file...\e"
+}
+
+//Finished creating
+OnUpdatedataCreated
+{
+	"\0\s[0]Finished making the updates2.dau...\e"
+}
+
+//Creating a .nar
+//reference0 is the name of what you're making a nar for, reference2 is what you're making (balloon/ghost/etc)
+OnNarCreating
+{
+	"\0\s[0]Creating a .nar for your %(reference2), '%(reference0)'...\w8\e"
+}
+
+//Finished creating
+//reference0 is the name of what you're making a nar for, reference2 is what you're making (balloon/ghost/etc)
+OnNarCreated
+{
+	"\0\s[0]Finished making a .nar for your %(reference2).\w8 You can see it \_a[OnNarLocation,%(reference1)]here.\_a\e"
+}
+
+//When you click on the anchor in the OnNarCreated dialogue, this function will open the folder you created the .nar in
+OnNarLocation
+{
+	_path = SPLITPATH(reference0)[0] + SPLITPATH(reference0)[1]
+	
+	"\C\![open,file,%(_path)]"
+}
+
+//----Uninstalling----
+
+//Bringing up the uninstall option
+OnVanishSelecting
+{
+	"\0\s[0]?\e"
+}
+
+//Deciding to uninstall
+OnVanishSelected
+{
+	"\0\s[0]...?\w8\w8\e"
+}
+
+//Changing your mind
+OnVanishCancel 
+{
+	"\0\s[0]...\e"
+}
+
+//Canceling uninstallation by double clicking the balloon
+OnVanishButtonHold
+{
+	"\0\s[0]...\e"
+}
+
+//When another ghost has been uninstalled and it switches to this ghost
+//reference0 is the name of the uninstalled ghost
+OnVanished
+{
+	"\0\s[0]Where'd %(reference0) get to?\e"
+	"\0\s[0]Something doesn't feel right.\e"
+	"\0\s[0]Something's missing.\e"
+}
+
+//When you uninstall another ghost while this ghost is open. If you remove this event, it will just use OnVanished instead.
+//reference0 is the name of the uninstalled ghost
+OnOtherGhostVanish
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]...\e"
+	}
+	else
+	{
+		"\0\s[0]Where'd %(reference0) get to? I was about to explain a theory.\e"
+		"\0\s[0]Did %(reference0) leave?\e"
+	}
+}
+
+//----Mail checking----
+
+//reference2 is the email address it's checking? Wiki says mail server.
+OnBIFFBegin
+{
+	if totalpunches >= 50
+	{
+		"\0\s[0]...\e"
+	}
+	else
+	{
+		"\0\s[0]Emails? Alright, fine, I'll check them for you.\e"
+	}
+}
+
+//reference0 is the number of emails found
+OnBIFFComplete
+{
+	if reference0 == 0 //No new emails
+	{
+		"\0\s[0]There's nothing new.\e"
+	}
+	elseif reference0 < 100 //less than 100 new emails
+	{
+		
+		headers = ""
+		if reference7 != "" && reference0 < 100 //AHAHAHA I FINALLY FIGURED OUT HOW TO GET AN ARRAY OF THE HEADERS WITH AUTO TYPE CONVERT ON. They're normally in reference7, but since auto type convert changes the C_BYTE1 characters to commas, any headers with commas screw things up badly. But you can get the nonconverted values! Still need a loop to add menu markers and stuff to the display, but that can happen in the other function...
+		{
+			headers = SPLIT(reference.raw[7],C_BYTE1)
+		}
+		--
+		_s = ""; if reference0 != 1; _s = "s" //Plural check, adds an s if the number of emails is not 1
+		"\0\s[0]You've got %(reference0) new email%(_s)."
+		--
+		if reference7 != "" //Same as above, no need to ask if there are no headers
+		{
+			"\w8\w8 Do you want to see the header%(_s)?"
+			--
+			"\n\n\![*]\q[Yes,OnSeeHeaders,yes]\n\*\![*]\q[No,OnSeeHeaders,no]"
+		}
+	}
+	else //more than 100 new emails
+	{
+		"\0\s[0]You've got %(reference0) new emails."
+	}
+	--
+	"\e"
+}
+
+//Displaying the headers. No need to touch this other than changing the surface, or if you want to make the buttons different or something. Reference0 is the list of headers
+OnSeeHeaders
+{
+	if reference0 == "yes" //It's set up this way so that the headers variable will still be erased if the user says no. If they say no, it'll just erase the headers and say nothing
+	{
+		_display = ""
+		foreach headers; _header
+		{
+			_display += "\![*]"
+			_display += SHIORI3FW.EscapeAllTags(_header)
+			_display += "\n\n"
+		}
+		"\0\s[0]\b2\_q%(_display)\*\n\n\![*]\q[Done,cancelnodialogue]"
+	}
+	--
+	ERASEVAR("headers") //This erases the variable so you're not storing all those headers and bloating your save. Also, privacy reasons.
+}
+
+//Email checking failed
+//reference0 is the error returned
+OnBIFFFailure
+{
+	if reference0 == "timeout" //If the connection times out
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]It timed out... I can't do anything about it, I swear!\e"
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]Blast it! It timed out on me!\e"
+			}
+			"\0\s[0]The connection timed out.\e"
+		}
+	}
+	elseif reference0 == "kick" //if the ghost can't get into the account. Gmail requires an app specific password to get in
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]I... I can't get in.\e"
+			"\0\s[0]I can't... I can't get into your account.\e"
+			"\0\s[0]I can't get into your account. Some-- some email providers, they have these passwords, and they require those passwords to- to get in.\e"
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]Blast it. I can't get into the damned account.\e"
+				"\0\s[0]Blast it! I can't get into the damn thing. It's probably something to do with your email provider requiring a specific password or something.\e"
+			}
+			"\0\s[0]I can't get into the account.\e"
+			"\0\s[0]I can't get into the account. Some email providers may have a specific password to be able to get in.\e"
+		}
+	}
+	elseif reference0 == "defect" //If info in the POP menu is wrong
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]The... the POP settings aren't set up properly. This isn't on me, I swear."
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]Blast it. Your POP settings are buggered."
+				"\0\s[0]Stars and atoms... Can you- Can you go and check your POP settings? They're likely not set up properly."
+			}
+			"\0\s[0]The POP settings are wrong,\w4 please double check them."
+			"\0\s[0]You might want to double check your POP settings. Something's not right."
+		}
+		--
+		"\![open,configurationdialog,biff]\e"
+	}
+	elseif reference0 == "artificial" //As far as I can tell, artificial is if the user double clicks on the balloon to stop it
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]...I guess not.\e"
+			"\0\s[0]...Did you... change your mind?\e"
+		}
+		elseif annoyancelevels >= 50
+		{
+			"\0\s[0]Excuse me, I was trying to get your emails before you distracted me by popping that textbox.\e"
+			"\0\s[0]I can't get your emails if you distract me by popping the textbox, %(username)!\e"
+		}
+		else
+		{
+			"\0\s[0]Oh,\w4 changed your mind?\e"
+			"\0\s[0]For the record, I am perfectly capable of gathering up your emails!\e"
+		}
+	}
+	else //Some other kind of error.
+	{
+		"\0\s[0]I can't get in.\w8\w8 The error is '%(reference0)'.\e"
+	}
+}
+
+//----Network update---
+
+//When the ghost finishes checking for updates
+//reference0 is 'none' if there are no new files, and 'changed' if there are new files. reference1 is a list of the changed files, separated by commas
+OnUpdateCheckComplete 
+{
+	if reference0 == "none" //If there are no new files
+	{
+		AutoUpdates[1] = 1 //Sets it so it won't check again until at least midnight
+	}
+	else
+	{
+		AutoUpdates[1] = 2 //This makes it so the ghost will tell the user there's a new update next time they open their menu
+	}
+}
+
+//Starting to actually update
+OnUpdateBegin
+{
+	"\0\s[0]Ok,\w4 I'll update.\w8\w8\e"
+	"\0\s[0]Let's see here...\w8\w8\e"
+}
+
+//reference0 is the number of new files, starting from 0
+OnUpdateReady
+{
+	reference0++ //Number of files starts from 0, so this displays the correct amount
+	_s = ""; _is = "is"; if reference0 != 1; _s = "s"; _is = "are" //plural checks, adds an s and changes is to are if there's more than 1 file
+	
+	"\0\s[0]There %(_is) %(reference0) new file%(_s)!\w8\w8\e"
+}
+
+//When the update finishes. Don't forget to initialize any new variables you've created, more on that in Bootend.
+//reference0 is 'none' if there were no new files to update with, reference1 is a list of new file names, separated by commas
+OnUpdateComplete
+{
+	UpdateVars
+	AutoUpdates[1] = 0
+	if reference0 == "none"
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]There's... nothing new.\e"
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]Of course the developer hasn't gotten off his lazy arse and updated this stuff yet. Isn't he supposed to be on Zoloft or something?\e"
+			}
+			"\0\s[0]There are no new files.\e"
+			"\0\s[0]No new files right now. You'll have to check back later.\e"
+		}
+	}
+	else
+	{
+		UpdateVars //Sets new variables upon a successful update. See the end of Bootend for an explanation on this.
+		
+		if totalpunches >= 5
+		{
+			"\0\s[0]The update's been... completed."
+		}
+		else
+		{
+			"\0\s[0]Update complete!\w8\w8 Do you want to see the changelog?"
+			"\0\s[0]The update's complete.\w8\w8 Do you want to see the changelog?"
+		}
+		--
+		"\n\n\![*]\q[Yes,OnChangeLog]\n\![*]\q[No,NoChangelog]\e"
+	}
+}
+
+//I've put this here so it's easier to remember to update the version number while you're updating the changelog. This will display on the ghost's menu. I made it an envelope so you can have it be the same across multiple menus for multiple modes, if you want.
+ghostver
+{
+	"1.0.0"
+}
+
+//the autoscroll tag here means the user will see the changelog starting from the top. I recommend putting the new versions on top, and old versions under that.
+OnChangeLog
+{
+	"\![set,autoscroll,disable]\_q\b2\_l[90]-Version 1.0.0-\n\n/
+	-Initial release\n\n\n"
+	--
+	if reference0 == "FromMenu" //Checks to see if the user came here from the functions menu
+	{
+		"\![*]\q[Back to functions,OnFunctionMenu]\n"
+	}
+	--
+	"\![*]\q[Done,cancelnodialogue]\e"
+}
+
+Select.NoChangelog
+{
+	"\0\s[0]Ok,\w4 it'll be around in the functions menu.\e"
+	"\0\s[0]You can see it in the functions menu whenever. It'll be there regardless.\e"
+}
+
+//Revamped this code! It's a lot more concise now
+//reference0 is the name of the file currently being downloaded
+OnUpdate.OnDownloadBegin
+{
+	_progress = TOINT(reference1) + 1
+    _total = TOINT(reference2) + 1
+	
+	"\0\s[0]\b2\_qDownloading %(reference0)...\n\n"
+	--
+    _display = ""
+	_display += "\f[name,courier new]"
+    for _i = 0; _i < _total; _i++
+    {
+		//Loading bar display - customize with text or images or whatever
+        if _i < _progress; _display += "■" //Files that have already been downloaded
+        else; _display += "□" //Files that have not been downloaded yet
+    }
+    --
+    "%(_display)\n\n%(_progress)/%(_total)\e"
+}
+
+//reference0 is the reason the update failed
+OnUpdateFailure //If the update fails
+{
+	if reference0 == "timeout" //If it timed out
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]It timed out. That. That isn't in my control.\e"
+		}
+		else
+		{
+			if annoyancelevels >= 50
+			{
+				"\0\s[0]Blast! The connection is a bugger!\e"
+				"\0\s[0]Bugger me sideways. The connection's decided to time out on me. Finicky son of a...\e"
+			}
+			if tirednesslevels >= 75
+			{
+				"\0\s[0]I swear I wasn't sleeping on the job! It just... timed out.\e"
+				"\0\s[0]...Timed out...\e"
+			}
+			"\0\s[0]Sorry,\w4 the connection timed out.\e"
+			"\0\s[0]Hmm. Your internet connection may be being a bit finicky. Either that, or it's the site...\e"
+			"\0\s[0]Blast it. The connection's timed out on me. Did the site take too long to respond or something?\e"
+		}
+	}
+	elseif reference0 == "md5 miss" //If the update files have not been uploaded correctly and don't match the updates2.dau
+	{
+		_currentfile = SPLITPATH(reference1)[2] + SPLITPATH(reference1)[3] //This gets the name and extension of the offending file
+		"\0\s[0]The MD5 values don't match.\w8\w8 You should contact the ghost author and let them know that '%(_currentfile)' is giving an MD5 error.\e"
+	}
+	elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]...\e"
+		}
+		else
+		{
+			if annoyancelevels >= 75
+			{
+				"\0\s[0]If you'd stop chop%(ingShort) and chang%(ingShort)...\e"
+			}
+			if tirednesslevels >= 75
+			{
+				"\0\s[0]Mrrrghg.\e"
+			}
+			"\0\s[0]Oh,\w4 did you change your mind?\e"
+			"\0\s[0]Changed your mind, then?\e"
+		}
+	}
+	else //Any other errors
+	{
+		"\0\s[0]Sorry,\w4 I got an error:\w4 '%(reference0)'.\e"
+	}
+}
+
+//Similar to above, but for if the ghost was just checking and not actually updating
+//reference0 is the reason the check failed
+OnUpdateCheckFailure
+{
+	if AutoUpdates[1] == 1; "\e" //Stops the dialogue from showing if it's an auto check
+	--
+	if reference0 == "timeout" //If it timed out
+	{
+		"\0\s[0]Sorry,\w4 the connection timed out.\e"
+	}
+	else
+	{
+		"\0\s[0]Sorry,\w4 I got an error:\w4 '%(reference0)'.\e"
+	}
+}
+
+//reference0 is the name of the site, reference1 is the url
+OnHeadlinesenseBegin
+{
+	"\0\s[0]Ok,\w4 I'll open %(reference0)!\e"
+}
+
+//Taken from Zarla's GT template. Slightly modified because the top part was redundant as far as I could tell..?
+//reference0 is the site name, reference1 is the url, reference3 is the headlines
+OnHeadlinesense.OnFind
+{
+	_display = REPLACE(reference3,"\_a[","\![*]\_a[")
+ 	//---- Headlines
+	"\0\b2%(reference0):\n\n%(_display)\n"
+ 	--
+	//---- Pages
+ 	if reference2 == "First" || reference2 == "Next"
+	{
+ 		//---- Bottom buttons
+		"\![*]\q[Next,] - \![*]\q[Stop,Headline_Cancel]\e"
+ 	}
+	else
+ 	{
+		//---- Bottom buttons
+ 		"\![*]\q[Stop,Headline_Cancel]\e"
+ 	}
+}
+
+Select.Headline_Cancel
+{
+	"\0\s[0]Ok,\w4 done with RSS!\e"
+}
+
+//Looks like this happens if you view a headline and nothing has changed. I can only get RSS to work, so... I'll leave it here just in case.
+OnHeadlinesenseComplete 
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]No updates...\e"
+	}
+	else
+	{
+		"\0\s[0]There's no update.\e"
+	}
+}
+
+//reference0 is the reason it failed
+OnHeadlinesenseFailure
+{
+	"\0\s[0]I can't update the feed.\w8\w8 "
+	--
+	if reference0 == "can't download"
+	{
+		"I can't download it.\e"
+	}
+	elseif reference0 == "can't analyze"
+	{
+		"I can't analyze it.\e"
+	}
+	else
+	{
+		"I'm not sure why,\w4 it says '%(reference0)'.\e"
+	}
+}
+
+//----Misc----
+
+//reference0 is the name of the server it's connecting to
+OnSNTPBegin
+{
+	"\0\s[0]Sure,\w4 I'll check your time against %(reference0).\w8\w8\e"
+}
+
+//Grabbed this from the GT template, don't see a reason to redo this
+//**** 미카 (http://homepage2.nifty.com/ko-ki/)의 사전을 참고했습니다．감사＞こ 나무 성
+//Above comment from the person who originally coded these functions
+//reference0 is the name of the server it's connecting to, reference1 is the server's time, reference2 is the computer's time, reference3 is the difference (in seconds)
+OnSNTPCompare
+{
+ 	"Retrieved Time: %reference1[1]/%reference1[2]/%reference1[0] %reference1[3]:%reference1[4]:%reference1[5]\w2\n"
+	--
+	"Your Time: %reference2[1]/%reference2[2]/%reference2[0] %reference2[3]:%reference2[4]:%reference2[5]\w2\n\n"
+	--
+ 	if reference3 == 0 //if your clock is already accurate.
+	{
+		"\s[0]Your clock is accurate.\e"
+	}
+ 	else //if your clock doesn't match
+	{
+		"\0\s[0]Your clock doesn't match.\w8\w8 Should I fix it?"
+		--
+		--; "\n\n"
+		--; "\![*]\q[Fix it,OnSNTPExecute]\n"
+		--; "\![*]\q[Leave it alone,OnSNTPCancel]\e" 
+	}
+}
+
+//The \6 is what actually changes the clock
+OnSNTPExecute
+{
+	"\6"
+	--
+	"\0\s[0]Alright,\w4 should be all good now!\e"
+}
+
+OnSNTPCancel
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]...\e"
+	}
+	else
+	{
+		if annoyancelevels >= 75
+		{
+			"\0\s[0]Not my problem if you're late for stuff. Don't make it my problem.\e"
+		}
+		if tirednesslevels >= 75
+		{
+			"\0\s[0]Oh, good. It's about time to sleep, anyways.\e"
+		}
+		"\0\s[0]My timekeeping abilities should be excellent. They're probably better than yours.\e"
+		"\0\s[0]I didn't turn up late to a camp meeting once!\e"
+		"\0\s[0]Don't blame me if you're late.\e"
+	}
+}
+
+//reference0 is the name of the SNTP server - Note that this may happen before any other STNP dialogue is said! Keep in mind when writing your dialogue that the user will not necessarily have clicked the yes button.
+OnSNTPFailure
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]...Something went wrong...\e"
+	}
+	else
+	{
+		"\0\s[0]Sorry,\w4 something went wrong.\e"
+	}
+}
+
+OnDisplayChange
+{
+	displaybpp = reference0
+ 	displaywidth = reference1
+	displayheight = reference2
+}
+
+//I've never gotten this to work but you can add it if you like
+OnScreenSaverEnd
+{
+	"\0\s[0]The screensaver is gone.\e"
+}
+
+//Usually at 20% battery or less
+//reference0 should be the exact percentage left
+OnBatteryLow
+{
+	if totalpunches >= 5
+	{
+		"\0\s[0]...Battery's low... escape possible...\e"
+	}
+	else
+	{
+		if tirednesslevels >= 75
+		{
+			"\0\s[0]...Battery low...\e"
+		}
+		"\0\s[0]Your battery is getting low.\e"
+		"\0\s[0]Your battery is at %(reference0) percent.\e"
+		"\0\s[0]Your battery is depleting to levels that would generally be considered low, %(username).\e"
+	}
+}
+
+//Usually at 5% battery or less
+//reference0 should be the exact percentage left
+OnBatteryCritical
+{
+	"\0\s[0]Your battery is almost completely depleted...\e"
+}
+
+//reference0 is the new size, reference1 is the previous size. Sadly, you can't check for the Y scale.
+OnShellScaling
+{
+	nowscale[0] = reference0 //X
+	nowscale[1] = reference2 //Y
+	
+	if reference0 == 100
+	{
+		if totalpunches >= 5
+		{
+			"\0\s[0]...\e"
+		}
+		else
+		{
+			if annoyancelevels >= 75
+			{
+				"\0\s[0]Would you stop buggering about with my size? It's disorienting.\e"
+			}
+			"\0\s[0]I appear to be back to normal size.\e"
+			"\0\s[0]I've no idea what was wrong with my previous size, but I suppose you could say that no one size fits all.\e" //lol
+			"\0\s[0]Oh... everything feels normal again.\e"
+			"\0\s[0]Aaaand I'm back to 5'0. Most damnable.\e"
+		}
+	}
+	elseif reference0 < 0 //If it's backwards
+	{
+		"\0\s[0]Backwards..."
+		--
+		if reference2 < 0 //If it's also upside down
+		{
+			" and upside down"
+		}
+		--
+		"...\e"
+	}
+	elseif reference2 < 2 //Upside down but not backwards
+	{
+		"!\e"
+	}
+	elseif reference0 > reference1
+	{
+		"\0\s[0]Getting bigger!\e"
+	}
+	elseif reference0 < reference1
+	{
+		"\0\s[0]Getting smaller!\e"
+	}
+}
+
+//Hotkeys. reference0 is the name of the key as displayed on the keycap. reference4, for SSP only, will have things like ctrl and alt, separated by commas.
+OnKeyPress
+{
+	case reference0
+	{
+		when "t"; OnAiTalk
+		when "r"; OnLastTalk
+		when "y"; "\![raise,OnStartTalking]" //Starts a commu dialogue with a random ghost
+		when "f1"; "\![open,readme]"
+		when "f5"; {if debug; "\![reload,ghost]"}
+		when "f6"; {if debug; "\![reload,shiori]"}
+		when "f7"; {if debug; "\![reload,shell]"}
+		when "f8"; {if debug; "\![reload,balloon]"}
+		when "v"; {if debug; OnTestVar}
+		when "c"; {if debug; OnCommuPingMenu}
+	}
+}
+
+//When the user closes an input box. I've only put this here so that the user can't accidentally close it during the first boot, you don't need to mess with it if you don't want to.
+//reference0 here is the event that the input box was going to lead to, and reference1 is either timeout or close based on if it timed out or was closed by the user
+OnUserInputCancel
+{
+	if reference0 == "OnNameTeach" && "VeryFirstBoot" _in_ SHIORI3FW.LastTalk; "\C\![open,inputbox,%(reference0)]\e VeryFirstBoot"
+}
