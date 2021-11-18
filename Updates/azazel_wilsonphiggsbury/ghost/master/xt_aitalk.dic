@@ -24,6 +24,7 @@ RandomTalk
 	if totalpunches >= 15
 	{
 		"\0\s[0]...\e"
+		
 	}
 	elseif totalpunches >= 5 && totalpunches <= 15
 	{
@@ -42,7 +43,26 @@ RandomTalk
 	}
 	else
 	{
-	
+		
+		if season == "Winter"
+		{
+			//deerclops-related
+			{
+				"\0\s[0]The Deerclops will be skulking about soon... "
+				--
+				"WX-78 needs that eye for an eyebrella, so fighting it is unfortunately a necessity."
+				"Wigfrid enjoys hunting that beast. It's alarming how quickly she makes mincemeat of it."
+				"A strategy that seems to work is planting a large grove of trees near to a firepit. Provided the Deerclops doesn't destroy the firepit, of course."
+				"Willow has tried setting the Deerclops on fire before. It resulted in cooked meat, but no eyeball..."
+				"They're apparently myopic."
+				"Did you know that Deerclops are hostile to members of their own species?"
+				"When Winter's Feast comes around, things get even worse, especially when it comes to dealing with that giant."
+				"I find it pretty easy to gather a lot of wood when the Deerclops is around, given that it tends to smash the trees. The Treeguards aren't happy about that and start attacking the giant, and since they don't eat the meat or the eyeball, unlike spiders and pigs, they're more useful to use against the damn thing."
+				--
+				"\e"
+			}
+		}
+		
 		/*"\0\s[0]All your random dialogue goes here!\e"
 		"\0\s[0]Here's a chain!\e:chain=achain"
 		"\0\s[0]Today is %(nowday)!\e"
@@ -82,13 +102,6 @@ RandomTalk
 		//dialogues relating to two days' time
 		//"\0\s[0]I need to have that project finished by %(nowday(weekday + 2))...\e"
 		
-		//dialogues relating to filetypes
-		"\0\s[0]So, a .png is an image... and a .jpeg is an image, but with lower quality?\e"
-		"\0\s[0].txt files are textual files...?\e"
-		"\0\s[0]What exactly does %(filetype) even do?\e"
-		"\0\s[0]I'm sure learning about all these filetypes will be scientific. Somehow.\e"
-		"\0\s[0]Hmm. I wonder what %(filetype) files do...\e"
-		
 		//dialogues relating to wood
 		"\0\s[0]Mm. I need to gather more wood with %(othersurvivors)...\e"
 		"\0\s[0]Do we have enough wood for that new project...?\e"
@@ -116,15 +129,518 @@ RandomTalk
 		"\0\s[0]We need to set up more of a proper camp in the caves...\e"
 		"\0\s[2]\i[71]\i[61]Should really make more drying racks, but that requires taking Willow out on an excursion to a forest to burn a load of trees...\e"
 		
-		//MULTI CHOICE DIALOGUES -------
+		//berry bushes
+		{
+			if season == "Autumn"
+			{
+				"\0\s[0]We need to get to harvesting the berry bushes before Winter hits... "
+			}
+			"\0\s[0]Harvesting the berry bushes tomorrow, maybe? "
+			--
+			if season != "Winter"
+			{
+				"Wigfrid isn't going to be able to digest any of it, so I can't have her as my partner, and she'll likely be out on a hunt anyways..."
+				"Wurt would be good for this task, but she's not currently in the camp right now. Something about having to take care of the Merm King..."
+				"Maybe I should try and get Wormwood to come with me to do this."
+				"But they need fertilizing afterwards..."
+				"If only I could make a trap for the Gobblers..."
+				"The red berries taste the best, but I wonder if I could crossbreed some different berries..."
+				"They produce berries faster when they're not transplanted."
+			}
+			else
+			{
+				"But they won't regrow until Spring..."
+				"That'll leave us out of a potential food source, though, and the berries won't spoil if they're on the bush and being provided nutrients..."
+				"They won't produce any more berries until Spring, though, and we need to use the ones that we already have."
+				"Need to harvest these at dusk so that the Gobblers don't eat the remaining berries on the bushes..."
+			}
+			--
+			"\e"
+		}
+		
+		//carrots
+		{
+			"\0\s[0]The ground makes plant babies sometimes. They're called carrots. "
+			--
+			"Yes, I did check to make sure they were carrots. They are."
+			"Eating them straight out of the ground isn't exactly hygenic. Unfortunately, due to external... circumstances, I've been reduced to that."
+			"Cooked carrots are... rather mushy."
+			"They're more common in the spring."
+			"I can't believe I can just find these in the ground. It's a bit amusing, considering the world I live in currently is rather hellish."
+			--
+			"\e"
+		}
+		
+		//mushrooms
+		{
+			"\0\s[0]There's about three species of mushrooms in the Constant. "
+			--
+			//generic
+			"I can never remember what they do."
+			"Sometimes I mix these up."
+			"I've died to these mushrooms before. Ugh."
+			"I've seen rings of mushrooms before, and they all seem to be one species when that happens."
+			
+			//red
+			{
+				"There's one that's out during the day. "
+				--
+				"It smells weird."
+				"It's red."
+				"It hurts when you eat it. It's nutritious, yes, but... are the effects on my health really worth it?"
+				"Wormwood can eat these without any issues. Lucky."
+				"I think we call these ones Red Caps."
+			}
+			//green
+			{
+				"There's one that's out during the dusk. "
+				--
+				"It has some very... psychoactive compounds in it, I'd assume."
+				"I always get headaches after eating those."
+				"They're green."
+				"Cooking these makes them a very good form of headache relief."
+				"Green Caps. Predictably, named after their colour."
+			}
+			//blue
+			{
+				"There's one that's out during the night. "
+				--
+				"It's blue."
+				"They're quite good for someone's health. Though, there are some psychoactive compounds in them, but not as much as the green mushroom."
+				"Cooking these makes them into a form of headache relief, but they're not as effective as the green mushrooms when they're cooked."
+			}
+			//lunar
+			{
+				"Though, I've seen another species in the caves, somewhere... I've managed to get a couple once by chopping down mushtrees in that... lunar grotto... "
+				--
+				"They have odd effects, I'd assume. The other species of fungi here do."
+				"These make me very tired."
+				"It doesn't look particularly appetizing."
+				"It didn't look particularly appetizing then, and it still doesn't look particularly appetizing now."
+			}
+			--
+			"\e"
+		}
+		
+		//mushtrees
+		{
+			"There's mushrooms that look like trees in the caves. "
+			--
+			//generic
+			"One of them reminds me of the kind that used to grow in my bathroom back home."
+			"Some of them do smell."
+			"They seem to have some form of bioluminescence."
+			"According to Ms. Wickerbottom, these trees are infected with fungal parasites. Both horrifying and fascinating, I'm sure."
+			
+			//red
+			{
+				"There's one that resembles the red cap mushrooms we get on the surface. "
+				--
+				if season == "Summer"
+				{
+					"Oh, stars, those smelly trees will be producing spores right about now. Ugh. They're offensive to look at."
+				}
+				"These used to grow in my bathroom."
+				"I'm honestly mildly offended by the existence of these trees when they're blooming."
+				"These ones start blooming during the Summer days and producing spores. How offensive."
+				"These ones start blooming during the Summer days and producing spores."
+			}
+			//green
+			{
+				"There's one that resembles the green cap mushrooms we get on the surface. "
+				--
+				if season == "Spring"
+				{
+					"I think these ones will be producing spores right about now, depending on the time of day. Usually at sunset."
+				}
+				"They might be magic...?"
+				"Chopping these down yields about one green mushroom."
+				"These start blooming and producing spores during the dusk when Spring's come."
+				"These ones start blooming during the Spring, when it's dusk. They produce spores."
+			}
+			//blue
+			{
+				"There's one that resembles the blue cap mushrooms we get on the surface. "
+				--
+				if season == "Winter"
+				{
+					"They produce spores in this season."
+				}
+				"They got too big for their own good, I'd reckon."
+				"These will start blooming and producing spores during the Winter nights."
+				"Some of them have some webs on them. I think they spawn spiders that drop from the ceiling, which is both horrifying and mildly fascinating."
+				"According to Ms. Wickerbottom, the ones with webbing on them have formed a symbiotic relationship with the Dangling Depth Dwellers."
+			}
+			//lunar
+			{
+				"There's one that's... very strange. "
+				--
+				"It came about as one of the many aftershocks from a chunk of the moon hitting the Constant."
+				"They drop a moon shroom when chopped down."
+				"They don't seem to have a surface equivalent. It's odd."
+				"There's no record of them on the surface, unlike all the other mushrooms."
+			}
+			--
+			"\e"
+		}
+		
+		//multichoice filetype dialogue
+		{
+			"\0\s[0]Hmm. I'm sure learning about all these filetypes will be scientific in some way... "
+			--
+			if hunger <= 50
+			{
+				"...What do %(filetype) files taste like...?"
+				"%(username), do you know what %(filetype) files taste like? \w8\s[2]\i[50]\i[61]\i[70]No, I'm not planning to try one, but I'm just curious..."
+			}
+			"Speaking of which, %(username), do you know what %(filetype) does?"
+			".txts appear to be textual files..."
+			".jpegs seem to be .pngs, but compressed. Odd, why would they need compression for images?"
+			".pngs are lossless? Interesting, is there data loss in displaying images, and why...?"
+			".psd files are for Photoshop..."
+			".exes are executable files...?"
+			".doc must be some sort of document..."
+			".ttf is for a TrueType font..."
+			"So, a .bmp is for a bitmap-formatted image on Windows..."
+			".gif is for moving images...?"
+			".clip is for Clip Studio Paint... now, what exactly is Clip Studio Paint...?"
+			".ppt files are for PowerPoints... What is a powerpoint?"
+			".bat... batch? Batch files..."
+			".py seems to be for a programming language..."
+			".wav seems like it's an auditory file..."
+			"Maybe I could ask %(username)..."
+			"Maybe I could ask %(username) about what %(filetype) does..."
+			--
+			"\e"
+		}
+		
+		//tallbirds
+		"\0\s[0]I'm surprised that the tallbirds have survived as a species, given that they will kill their young.\e"
+		{
+			"\0\s[0]Tallbirds are bloody terrifying. "
+			--
+			"They'll come after you for quite some time if you manage to steal one of their eggs."
+			"I have seen them lay an egg. I wish I hadn't seen them lay an egg."
+			"They're very territorial. Even towards their young!"
+			"Very tall birds."
+			"Apparently they're a failed experiment, according to Maxwell. Whatever the hell that means, I don't think I want to know."
+			"Apparently they're a failed experiment."
+			"Biologically impossible, and yet..."
+			"Sometimes there's a bunch of tallbird nests clustered around a large amount of rocks. I've named these Tallforts."
+			--
+			"\e"
+		}
+		
+		//smallbirds
+		{
+			"\0\s[0]I've taken care of some Tallbird young once. "
+			--
+			"It was a while ago. It eventually turned on me."
+			"They're quite vocal when they're hungry."
+			"They don't scare other birds, which makes them a pretty good ally to have when it comes to killing Gobblers. Or other birds, I'd suppose."
+			"They're only able to digest seeds when they're young."
+			"A rather small bird."
+			--
+			"\e"
+		}
+		//teenbirds
+		{
+			"\0\s[0]Teenage tallbirds are almost like regular teenagers. "
+			--
+			"Very vocal when they're hungry."
+			"I've been pecked by the buggers before because apparently I wasn't feeding them enough."
+			"They're able to digest more than what they could as a fledgeling."
+			"Not a very tall bird. Eheh."
+			--
+			"\e"
+		}
+		
+		//tallbird eggs
+		"\0\s[0]Tallbirds lay large blue eggs with white speckles. I've found a few uses for them so far.\e"
+		if season == "Winter"
+		{
+			"\0\s[0]Pengulls are fully capable of stealing a tallbird egg. Guess how I found that out.\e"
+			"\0\s[0]Pengulls are fully capable of stealing a tallbird egg. I learned that the hard way.\e"
+		}
+		if hunger <= 50
+		{
+			"\0\s[0]I could really go for a cooked tallbird egg right now.\e"
+			{
+				"\0\s[0]Tallbird eggs are rather nutritious. "
+				--
+				"A bit beaky if you've tried to hatch them, though."
+				"Not bad with bacon."
+				"They make for a good food source in the case of an emergency."
+				"Cooked tallbird eggs are more filling than raw tallbird eggs."
+				"They don't spoil if they're not cooked. If they are, it takes them about six days. Which is usually more than I can say for the eggs I used to get back home..."
+				"I'm not surprised as to why a pig ate one I left on the ground at one point."
+				"Spiders will eat them if they're left out."
+				"Hounds are capable of eating them. Unsurprising, given their penchant for gnawing on my anatomical models of myself."
+				--
+				"\e"
+			}
+		}
+		{
+			"\0\s[0]Tallbird eggs can hatch. Better to keep an eye on the temperature for them. "
+			--
+			"If it's too hot, then they'll start sweating. I honestly have no idea how that's possible."
+			"If it's too cold, the egg will lose some of its colour and start shivering. I'm assuming it's caused by the shivering from whatever's inside the egg."
+			"They have to be on the ground to hatch."
+			"I have tried hatching one of these buggers before. It was a bad idea."
+			--
+			"\e"
+		}
+		
+		//treeguards
+		"\0\s[0]Even the smallest Treeguards are still pretty big.\e"
+		"\0\s[0]There's regular Treeguards, and there's Lumpy Treeguards. The Lumpy ones somehow seem to look even sadder.\e"
+		if season == "Winter"
+		{
+			"\0\s[0]They seem to shake the snow off of themselves when Winter comes around...\e"
+		}
+		{
+			"\0\s[0]Treeguards are pretty useful. "
+			--
+			if season == "Winter"
+			{
+				"Especially against the Deerclops."
+			}
+			if season == "Autumn"
+			{
+				"Especially against the Bearger."
+			}
+			if season == "Autumn" || season == "Summer"
+			{
+				"\n\n[half]They're pretty useless against red hounds, though. Those things can cause a forest fire..."
+			}
+			"They provide a renewable supply of living logs when they're killed, as well as a little bit of meat."
+			"You need to plant trees relatively close to them to calm them back down, mind you."
+			--
+			"\e"
+		}
+		{
+			"\0\s[0]I had to help deal with a Treeguard the other day. "
+			--
+			"%(othersurvivors) woke it by mistake."
+			"I accidentally woke one up by chopping down a tree while trying to do my daily chores."
+			"Willow thought it would be a good idea to use a fire dart on it."
+			"Wigfrid was pretty pleased, she got to hunt something other than a Koalefant for now."
+			--
+			"\e"
+		}
+		
+		//relating to the Pig King
+		{
+			"\0\s[0]The Pig King? Ah, I know of him. "
+			--
+			if month == 10
+			{
+				"We trade meat and trinkets to him for gold and candies."
+				"I have a pig guard costume somewhere. I think he likes it."
+			}
+			"Sometimes we trade trinkets to him for gold nuggets."
+			"Sometimes we trade some of our meat over to him for gold nuggets, which we can then use for my scientific projects or for... other uses."
+			"...He smells."
+			"He's the pig that sits in the middle of about... four obelisks? And he has a fancy hat. Or, at least, fancy for what the pigs can make."
+			"Wurt doesn't like him very much. Neither does Winona, for that matter."
+			"He's the leader of the pig village."
+			"We trade eggs to him, since he doesn't accept cooked or raw monster meat. I don't think he'll accept the jerky form of it either."
+			"He likes specific trinkets more than others."
+			"My campmates have a base near to the pig king."
+			"The boards that he lays on always seem to be polished. I wonder if they've figured out how to make resin for them?"
+			--
+			"\e"
+		}
+		//relating to pig villages
+		{
+			"\0\s[0]I know of a few different pig villages in the current world. "
+			--
+			"Sometimes they have farms of grass tufts and berry bushes, as well as flowers."
+			"The pigs seem to transform into beasts on a full moon, so I wouldn't suggest constructing a camp at their village for a while."
+			"There's usually about 5 to 9 houses within a village."
+			"Webber can't really go in these areas without getting accosted by angry pigs, since... well, he's part spider. The pigs don't like spiders."
+			"The pigs will follow you around if you feed them some meat. They make for some very nice allies."
+			--
+			"\e"
+		}
+		
+		//relating to regular meat
+		{
+			"\0\s[0]I've seen some decent meat around in the Constant before. "
+			--
+			"You'd've expected either Maxwell or the current ruler to make it impossible to get, considering how... hellish everything else is, but..."
+			"It's highly nutritious."
+			"Highly nutritious, especially when cooked."
+			"I have to cook the stuff before making a Meat Effigy."
+			"Putting one regular meat and some other ingredients usually makes meatballs."
+			"One regular meat, three filler, that makes meatballs."
+			--
+			"\e"
+		}
+		
+		//morsels
+		{
+			"\0\s[0]Sometimes it's hard to get bigger chunks of meat, so we have to use morsels. "
+			"\0\s[0]Sometimes it's hard to get bigger chunks of meat, so we have to use smaller chunks... "
+			--
+			"They're decent enough, just... small..."
+			"Cooking them gives me less anxiety about getting worms, eheh."
+			"They take less time to dry, though I'd assume it's due to having less blood thanks to not having as much surface area."
+			--
+			"\e"
+		}
+		
+		//relating to monster meat
+		{
+			"\0\s[0]Hmm. We've got an awful lot of Monster Meat. "
+			--
+			"I'm wondering if I can use it for something..."
+			"Maybe I should try and put some in a Meat Effigy to see what happens?"
+			"Webber doesn't seem to suffer from any penalties when eating it."
+			"Do I really want to try and experiment with eating it both raw and cooked? Honestly, that stuff gives me some rather unpleasant effects."
+			"Unfortunately, we can't trade it with the Pig King directly. If we feed it to a bird first, however, he'll take the eggs."
+			--
+			"\e"
+		}
+		{
+			"\0\s[0]I know we have a fair bit of Monster Meat. "
+			--
+			"But recently, a few... weird little idols have appeared in the icebox. Their primary composition is of Monster Meat, as well as wood, seeds or grass. I'm not sure how they've appeared there..."
+			"Webber's been taking to making some... little cookies out of them. I'm not... very partial to those."
+			"Warly says that it has some pretty good marbling, which... is rather surprising, considering the things that it comes from."
+			"I should dry a bunch of it up. That way, it lasts for longer... and there's less of a negative effect..."
+			--
+			"\e"
+		}
+		
+		//stuff relating to beefalo
+		//regular
+		{
+			"\0\s[0]Beefalo are pretty smelly creatures. "
+			"\0\s[0]I'm thinking about Beefalo again. "
+			--
+			"Tamed ones are slightly less smelly."
+			"Shaving them is best done sometime in the autumn."
+			"You need to shave them at night, they won't let you shave them while they're awake. Their fur makes for great insulation, though."
+			"It takes about three days for them to regrow their wool."
+			"They seem to travel in herds..."
+			"They frequently... eliminate their waste. It makes for good fertilizer for the plants, though."
+			"What thoughts lay behind those eyes?"
+			--
+			"\e"
+		}
+		//mating
+		{
+			"\0\s[0]Beefalo do have a mating season. "
+			--
+			"It occurs near to every spring."
+			"It tends to occur in spring. Baby Beefalo are adorable, aren't they?"
+			"They get aggressive, it's best to avoid them."
+			"I've found that wearing a beefalo hat makes them more passive towards you."
+			--
+			"\e"
+		}
+		//fighting, meat
+		{
+			"\0\s[0]Beefalo are pretty slow creatures. "
+			--
+			"You can get about six hits in before needing to back off to dodge their horns."
+			{
+				"Since they move in a herd, they attack in a herd. "
+				--
+				"It makes killing one rather challenging."
+				"You'll need to lead one out of the herd before trying to kill it."
+				"You'll need to lure one out of their herd before trying to kill it for the meat."
+			}
+			--
+			"\e"
+		}
+		//taming
+		{
+			"\0\s[0]It's possible to tame a beefalo enough to ride on it. Like a horse. "
+			"\0\s[0]It's possible to domesticate these beasts. "
+			--
+			"Though, you still need to feed it a lot of material. By material, I mean things like twigs and grass."
+			"Domesticated Beefalo are slightly less smelly. I can confirm this hypothesis."
+			"I've developed a salt lick for them, as well as a pen. They seem to enjoy it, though I can't exactly... refuel the salt lick."
+			"It takes approximately 120 licks to get to the center of a salt lick. This doesn't account for Koalefants, Grass Gators or Volt Goats using it, as well as those weird Deer that skitter about in the autumn."
+			--
+			"\e"
+		}
+		
+		//stuff relating to gold
+		{
+			"\0\s[0]I've been thinking a lot about gold recently. "
+			--
+			if tirednesslevels >= 75
+			{
+				"Shiny..."
+			}
+			if hunger <= 50
+			{
+				"I can't eat it, but it sure is shiny."
+			}
+			//"I'm not trying to be a rich boy or whatever, but..."
+			"Weirdly enough, the gold in the Constant is, um. It's sturdy enough to be used as a tool. I don't think it's proper gold."
+			"I swear the gold in the Constant used to float."
+			"Golden tools seem to be more durable than tools made from flint, somehow."
+			"I wonder if we could temper the gold and flint tools to make them last a bit longer."
+			"Sometimes, when my mental state is wildly out of control, it looks almost like silver..."
+			"Wigfrid uses the gold for her spears and helmets."
+			"I use gold and smooth stone to create capacitors. Or doodads. I'm not sure what they're actually called, but they make the alchemy engine run."
+			--
+			"\e"
+		}
+		
+		//meteors.
+		{
+			"\0\s[0]Meteors do an awful lot of damage. "
+			--
+			"I'm glad we haven't set up a base that's close to them again."
+			"At the very least, rocks and flint are renewable..."
+			"I've had gobblers be taken out by meteors before. It's what they deserve."
+			--
+			"\e"
+		}
 		
 		//dialogues relating to tumbleweeds
 		{
-			"\0\s[0]I find some very interesting things in tumbleweeds."
+			"\0\s[0]I find some very interesting things in tumbleweeds. "
 			--
+			if season == "Summer"
+			{
+				"Do not get me started on how many times I've had a base burn down due to a blazing tumbleweed. Ugh."
+			}
 			"I used to be able to find fireflies, but I haven't been finding any of them in tumbleweeds recently..."
 			"They're speedy buggers, though. Hard to catch."
 			"I usually get twigs and grass, but there are sometimes some things of worth in the ball of plant matter."
+			"I've found blueprints in them before. That's led to some very interesting knowledge."
+			"I've found some live animals in there before. Including a rabbit, for whatever reason."
+			"Have you ever had a frog pop out of a tumbleweed? That happened to %(othersurvivors) the other day when they were untangling the plant matter."
+			"I've found some dubiously religious artifacts in them. I do not trust the dubious religious artifacts."
+			{
+				"I've found wires in them before. "
+				"Sometimes I've found that wires are tangled up in them. An easy feat, I'd suppose... "
+				--
+				"They're not very useful, though."
+				"I've no idea if WX-78 has been messing about with them or whatnot."
+			}
+			{
+				"Sometimes spiders get tangled up in them. "
+				"I've found live spiders in them before. "
+				--
+				"I've no idea how they manage to accomplish such a feat. It's probably something to do with their webbing and having eight legs. Or, rather, six...?"
+				"Webber's always trying to comfort any spider that he finds in those."
+			}
+			{
+				"It's possible to get gears from these. "
+				"I've found gears in them before. "
+				--
+				"Quite good when WX-78 is slinking about and wanting upgrades."
+				"Good for iceboxes. Not sure what else..."
+			}
+			--
+			"\e"
 		}
 		
 		//dialogues relating to wilson's projects.
@@ -178,6 +694,42 @@ RandomTalk
 			"I did say to %(othersurvivors) that I'd get to it by today..."
 			"But I also have to do maintenance on a few machines in the camp."
 			"I really should see if I can't bring some of those smaller projects I have here."
+			--
+			"\e"
+		}
+		
+		//dialogues relating to boating
+		"\0\s[0]I need to repair one of the boats...\e"
+		{
+			"Sailing is quite intensive work. "
+			--
+			"You can discover things out in the waters, but sometimes you end up discovering a dead end. Mostly consisting of a large amount of rock formations."
+			"Preventing the boat from ramming into some rock formations is very anxiety-inducing."
+			"Picking up seaweed and debris really does your back in."
+			"Hoisting the sails is difficult, but rewarding in the boat starts to slow down, meaning that you don't crash into something."
+			"Harvesting kelp is quite rewarding. Drying the kelp makes for a good snack."
+			"Cookie Cutters have to be whacked repeatedly with a sword to stop them from eating the boat."
+			"I swear those Cookie Cutters are some species of termite or something."
+			"Sometimes you end up discovering salt formations that look suspiciously human."
+			{
+				"Discovering a wonderfully shaded canopy has been my greatest find in the ocean! "
+				"We discovered a shaded canopy a while back. "
+				--
+				if hunger <= 50
+				{
+					"I'm thinking about figs again..."
+					"Maybe I should see if I can't catch some of those fish that reside there."
+					"I ought to bring some figs to Warly. He makes the best food..."
+				}
+				"The spiders, however, aren't a great find."
+				"Spiders that walk on water, however, are horrifying."
+				"We get figs from some very long vines."
+				"There's some very long vines that grow figs."
+				"I don't know if this is considered a mangrove, frankly."
+				"There's some sort of gator species in there. They've got grass on them."
+				"Those gators that have grass and branches in their fur are a good source of nutrients."
+				"A particular kind of fish is a perfectly valid discovery. Don't look at me like that."
+			}
 			--
 			"\e"
 		}
@@ -256,6 +808,7 @@ RandomTalk
 				}
 			}
 			
+			//floats
 			{
 				"Using a Float might sound silly, but it's rather important for accuracy. "
 				--
@@ -270,36 +823,42 @@ RandomTalk
 					--
 					"Hopefully those fish won't be able to get away as easily."
 					"Hopefully those fish won't be able to get away as easily with my bait and the float."
+					"They won't be able to give me the slip this time."
 				}
 				{
 					"I used a Jet Quill Float this time. "
 					--
 					"I'd prefer to eat fish over crow, frankly."
 					"These are made with crow feathers."
+					"Crafted by yours truly, using crow feathers."
 				}
 				{
 					"I used a Crimson Quill Float this time. "
 					--
 					"It didn't attract any red herrings, from what I could gather."
 					"It's made with the feathers of a redbird."
+					"Crafted by yours truly. It needs redbird feathers."
 				}
 				{
 					"I used an Azure Quill Float this time. "
 					--
 					"It helps me stay frosty."
 					"You need to use a snowbird quill to craft this."
+					"Crafted by yours truly. It needs a snowbird feather."
 				}
 				{
 					"I used a Saffron Quill Float this time. "
 					--
 					"You need a canary feather for this."
 					"They're quite useful, and because of the colour contrast to the dark, deep blue of the ocean, I can see where I cast my hook!"
+					"Crafted by yours truly. I used a canary feather."
 				}
 				{
 					"I used a Down Quill Float this time. "
 					--
 					"It requires a down feather. I'm certain you can get some from the Moose/Goose, but..."
 					"The crafting materials seem to be... somewhat difficult to get."
+					"Crafted by yours truly. Though, perhaps there's something else I ought to have used the downy feathers for."
 				}
 				{
 					"I used a Malbatross Quill Float this time. "
@@ -311,6 +870,8 @@ RandomTalk
 					"I used a Hardened Rubber Bung this time. "
 					--
 					"Don't ask me how this works. It just does."
+					"Found by yours truly via tumbleweed. I have no idea how this works, frankly."
+					"I found it in a tumbleweed and it just seems to work. I'm not questioning it."
 				}
 			}
 			
@@ -409,7 +970,9 @@ RandomTalk
 				"I used a Heavy Weighted Lure. "
 				--
 				"It seems to attract fish that are heavier."
-				"Perhaps it might have won me a record."
+				"Perhaps the fish I caught might have won me a record."
+				"This lure seems to be particularly lucky when it comes to attracting heavier fish."
+				"One of the other survivors seems to swear by this one."
 			}
 			
 			//small fishes
@@ -467,6 +1030,7 @@ RandomTalk
 				"They only inhabit areas with a high amount of seaweed."
 				"I only seem to find these whenever we're near to a large amount of seaweed."
 				"These ones seem to eat vegetables."
+				"These fish are herbivorous."
 				"Herbivorous. I baited this one with a carrot."
 				"There might be some form of use for these ones. Maybe it's best to keep a couple handy when we can."
 				"They're rather slow but travel in short bursts."
@@ -511,6 +1075,7 @@ RandomTalk
 				"It's entirely possible that Warly will kiss you if you bring one in. He really enjoys cooking those."
 				"They're quite common in rougher areas. You can also find them in calmer areas, but they're difficult to catch."
 				"They're omnivorous, eating any sort of food in the water."
+				"They're omnivorous. Easy to bait, but... rather difficult to catch."
 			}
 			{
 				"It was a Corn Cod. "
@@ -522,24 +1087,27 @@ RandomTalk
 				"They're herbivorous. I'm not sure if they're obligate herbivores."
 				"They're not difficult to catch, but not exactly easy, either."
 			}
+			if month == 1
 			{
-				"It was a Dappled Koi. "
-				--
-				"These only show up in the New Year."
-				"They're quite uncommon and only show up for a month."
-				"They're quite uncommon. I've found them near to the coast, around the calmer areas, and in rougher areas."
-				"They're omnivorous. Easy to bait."
-				"I'd consider these to be fairly easy to catch, though one of the kids might differ in opinion."
-			}
-			{
-				"It was a Golden Koi. "
-				--
-				"These only show up in the New Year."
-				"Quite uncommon. Only shows up in the first month of the year."
-				"Not very common. I've found these near to the coast, around the calmer areas and in the rougher areas of the ocean."
-				"I wonder if they migrate every year?"
-				"Omnivorous, quite easy to bait."
-				"These tend to be quite easy to catch, but the kids may differ in opinion from me."
+				{
+					"It was a Dappled Koi. "
+					--
+					"These only show up in the New Year."
+					"They're quite uncommon and only show up for a month."
+					"They're quite uncommon. I've found them near to the coast, around the calmer areas, and in rougher areas."
+					"They're omnivorous. Easy to bait."
+					"I'd consider these to be fairly easy to catch, though one of the kids might differ in opinion."
+				}
+				{
+					"It was a Golden Koi. "
+					--
+					"These only show up in the New Year."
+					"Quite uncommon. Only shows up in the first month of the year."
+					"Not very common. I've found these near to the coast, around the calmer areas and in the rougher areas of the ocean."
+					"I wonder if they migrate every year?"
+					"Omnivorous, quite easy to bait."
+					"These tend to be quite easy to catch, but the kids may differ in opinion from me."
+				}
 			}
 			{
 				"It was a Sweetish Fish. "
@@ -628,10 +1196,19 @@ RandomTalk
 		
 		//dialogues relating to plants / RWYS
 		"\0\s[2]\i[70]\i[62]Need to refill that watering can.\e"
-		"\0\s[2]\i[70]\i[62]...Hmmm. I could use a combination of %(farmingplants) and %(farmingplants), but..."
+		"\0\s[2]\i[70]\i[62]...Hmmm. I could use a combination of %(farmingplants) and %(farmingplants), but...\e"
+		"\0\s[0]According to Wanda, there's a temporal bubble in the Produce Scales that we've constructed. I've no idea how that got there, but it does prevent the giant vegetables and fruits from rotting.\e"
 		{
 			"\0\s[2]\i[70]\i[61]Maybe I ought to swap out the plants in the garden again... "
 			--
+			{
+				"Those %(rwysweeds) are making a mess of the garden, though. "
+				"Recently, some %(rwysweeds) have sprouted up in there, though... "
+				--
+				"It'll be impossible to grow anything if I don't dig them all up first."
+				"The plants will end up stressed if we don't dig them up first."
+				"Quite frankly, it's probably going to take some pesticide to remove the buggers. Now, how to invent that...?"
+			}
 			"I know Warly would appreciate having some %(farmingplants) to cook with, but I need to figure out what other plant I can pair it with."
 			"Wurt%(thingisShorten) fond of durians..."
 			"I need to vary up the nutrients that I'm getting a bit."
@@ -1050,6 +1627,7 @@ Pool_month_Nov : array //month == 11
 	//"\0\s[0]November.\e"
 	"\0\s[0]%(itisShorten) certainly getting chillier.\e"
 	"\0\s[0]%(itisShorten) definitely getting colder. Haven't you felt that nip at your feet yet?\e"
+	"\0\s[0]Do you wear slippers? Now might be a good time to start.\e"
 	"\0\s[0]We should try and blow up Parliament again.\e"
 	"\0\s[0]Do they not do Penny for the Guy anymore? They used to have like. Kids coming out with a wheelbarrow and a Guy Fawkes scarecrow, and they'd ask for spare change.\e"
 }
@@ -1210,6 +1788,7 @@ Pool_season_Autumn : array //season == 'Autumn'
 	"\0\s[0]I'm sure the Bearger will be lurking around here soon.\e"
 	"\0\s[0]From what I've experienced, it always rains on day 5 of a new world.\e"
 	"\0\s[0]Ah, birchnuts are available again. Finally.\e"
+	"\0\s[0]Quite frankly, I see no reason to call this season Fall. I prefer using the word Autumn. It sounds nicer.\e"
 	{
 		"\0\s[0]The days are getting shorter.\n\n[half]"
 		--
@@ -1227,6 +1806,7 @@ Pool_season_Autumn : array //season == 'Autumn'
 			"Of course, most of us have tents and tend to go to bed in there, but a couple of us have to go on night watch."
 			"I know Willow and Maxwell don't exactly get along well with each other..."
 			"Webber isn't fond of how the nights are starting to get longer."
+			"Wanda isn't very happy about having to spend more time at camp. She's rather impatient to be able to get back to working on things..."
 		}
 		{
 			"It's making it harder to go further from camp to gather resources that we need. "
@@ -1311,7 +1891,7 @@ Pool_season_Winter : array //season == 'Winter'
 		}
 		//"Webber's asked me to make some sort of nightlight for him."
 		{
-			"Hypothermia%(thingisShorten) going to become a real risk."
+			"Hypothermia%(thingisShorten) going to become a real risk. "
 			--
 			"Willow's going to be affected the most. It's why she needs several items of clothing at best to be able to thermoregulate in these temperatures..."
 			"Wurt's going to be affected pretty badly. The air must be pretty freezing for her."

@@ -391,7 +391,8 @@ OnFunctionMenu
 	--; "\![*]\q[Empty Recycle Bin,RecycleBin]\n"
 	--; "\![*]\q[Show System Information,SystemInfo]\n"
 	--; "\![*]\q[Report a bug,BugReport]\n"
-	--; "\![*]\q[Check for updates,UpdateCheck]\n\n"
+	--; "\![*]\q[Check for updates,UpdateCheck]\n"
+	--; "\![*]\q[Changelog,OnChangeLog]\n\n"
 	--; "\![*]\q[Back to main menu,OnMenuRun]\e"
 }
 
