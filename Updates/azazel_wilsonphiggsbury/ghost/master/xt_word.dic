@@ -14,6 +14,7 @@ usersfolder
 	"Pictures folder"
 	"Music folder"
 	"Games folder"
+	"secret folder"
 }
 
 filetype
@@ -72,6 +73,28 @@ idles
 	"\0\s[0]\i[1]\i[6]"
 	"\0\s[0]\i[1]\i[7]"
 	"\0\s[2]\i[70]\i[62]"
+}
+
+yulefoods
+{
+	"Merry Berrysauce"
+	"Bibingka"
+	"Cabbage Rolls"
+	"Festive Fish Dish"
+	"Good Gravy"
+	"Latkes"
+	"Lutefisk"
+	"Mulled Punch"
+	"Panettone"
+	"Pavlova"
+	"Pickled Herring"
+	"Polish Cookies"
+	"Pumpkin Pie"
+	"Sweet Potato Casserole"
+	"Roasted Turkey"
+	"Stuffing"
+	"Tamales"
+	"Tourtiere"
 }
 
 chillynippy
@@ -277,6 +300,24 @@ othersurvivors
 	"Woodie"
 	"Walter"
 	"Wurt"
+	"Warly"
+	"Wormwood"
+	"Wanda"
+}
+
+survivorsminuswalter
+{
+	"Maxwell"
+	"Willow"
+	"Wendy"
+	"Webber"
+	"Wickerbottom"
+	"Wormwood"
+	"Wolfgang"
+	"WX-78"
+	"Warly"
+	"Wurt"
+	"Wanda"
 }
 
 farmingplants

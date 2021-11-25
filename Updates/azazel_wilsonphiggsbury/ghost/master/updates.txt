@@ -16,9 +16,9 @@ file,ghost/master/system/yaya_optional.dicf97af1ee6f108ee881d66d7f3de3f7d3size
 file,ghost/master/system/yaya_shiori3.dicc6f1901b5901b16cdb4487b5ec9363b3size=50858date=2021-07-25T05:52:40
 file,ghost/master/system_config.txt4608f12416c2dd80cf4bc7abb6986138size=891date=2020-06-28T20:25:34
 file,ghost/master/x_template.ico3a0e1916b490a23c325c9188fd6bceb0size=100752date=2020-06-29T01:52:46
-file,ghost/master/xt_aitalk.dic812c7a2289bbb1cd94d842ae69957ddesize=92373date=2021-11-18T22:29:07
+file,ghost/master/xt_aitalk.dic46da763f9dd72b242ff3d0a8ca3ad6b1size=140193date=2021-11-25T01:38:01
 file,ghost/master/xt_anchor.dic8fa683d601158f1ce235c19184f8c422size=6712date=2021-10-05T17:09:12
-file,ghost/master/xt_bootend.dic64e43a99ee45697a1490ee7b033d7771size=30552date=2021-11-18T22:31:17
+file,ghost/master/xt_bootend.dicb943182325d961c815b0868571cb11a7size=31567date=2021-11-22T00:05:37
 file,ghost/master/xt_commu.dic5b1eef23f1e1cc73b263f779da301859size=6167date=2021-10-09T21:23:05
 file,ghost/master/xt_emerg.dic9a7f178b21248403e03f9ca86ed8ac16size=1079date=2021-10-02T03:13:38
 file,ghost/master/xt_etc.dic89c44a6883d7028f4a216e03dc4949cbsize=32583date=2021-11-18T22:49:48
@@ -26,7 +26,7 @@ file,ghost/master/xt_menu.dic26157a963d3aab662e26fe4fcc6e2b66size=22833date=2
 file,ghost/master/xt_mouse.dic69e56c1bae5c4aa5d4b1bd58fa11cd13size=3324date=2021-10-09T22:00:50
 file,ghost/master/xt_nameteach.dic7ce4154dc98bc5af51b7f966123965c4size=9129date=2021-11-02T01:25:43
 file,ghost/master/xt_string.dic3539a6078a1c8bc8259f5f8ccdfcc28dsize=6842date=2021-11-14T01:20:22
-file,ghost/master/xt_word.dic5b815c9b0624bc64e0c2835e41cf4482size=9067date=2021-11-18T00:11:22
+file,ghost/master/xt_word.dic94072f7cc8f5dfc87215a7b99829b006size=9589date=2021-11-23T23:43:16
 file,ghost/master/yaya.dll879062d878ea25f4f1c5e418689d370dsize=1171456date=2021-07-16T02:14:30
 file,ghost/master/yaya.txt3d348cd23c809b94fab8d10435c69a62size=452date=2021-11-10T01:07:10
 file,ghost/master/yaya_config.txtd24c3af5aaee35ada18240031790c28fsize=3876date=2021-07-05T03:33:02

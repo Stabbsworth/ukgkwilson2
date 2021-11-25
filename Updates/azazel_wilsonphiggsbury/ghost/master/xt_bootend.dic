@@ -448,84 +448,131 @@ OnClose
 		}
 		if timeslot == "lunch"
 		{
-			if annoyancelevels >= 50
+			if totalpunches >= 5
 			{
-				"\0\s[0]Great. Well, I'm off to go and get some lunch and hope I don't get bothered by some weird entity that keeps summoning me to %(hisher) computer again today."
-				"\0\s[0]You've successfully saved yourself from my hangriness."
-				"\0\s[0]You would not believe how irate I get when I'm hungry. Trust me on this one."
+				"\0\s[0]...Lunchtime."
 			}
-			if hunger <= 50
+			else
 			{
-				"\0\s[0]I can finally get some lunch."
+				if annoyancelevels >= 50
+				{
+					"\0\s[0]Great. Well, I'm off to go and get some lunch and hope I don't get bothered by some weird entity that keeps summoning me to %(hisher) computer again today."
+					"\0\s[0]You've successfully saved yourself from my hangriness."
+					"\0\s[0]You would not believe how irate I get when I'm hungry. Trust me on this one."
+				}
+				if hunger <= 50
+				{
+					"\0\s[0]I can finally get some lunch."
+				}
+				"\0\s[0]Good day."
 			}
-			"\0\s[0]Good day."
 		}
 		if timeslot == "afternoon"
 		{
-			if annoyancelevels >= 50
+			if totalpunches >= 5
 			{
+				"\0\s[0]...Need to get back to chores..."
+			}
+			else
+			{
+				if annoyancelevels >= 50
+				{
+					if hunger <= 50
+					{
+						"\0\s[0]Great. I can finally get something to eat. What do you want me to do while I'm here, starve? Yeesh."
+					}
+					"\0\s[0]Oh good. You would not believe how cranky I get when I haven't eaten dinner."
+					"\0\s[0]You may have saved yourself from a cranky scientist, %(username), but I will be back. When you call me, anyways."
+					"\0\s[0]Oh, good. I don't have to be bothered while I eat dinner."
+				}
 				if hunger <= 50
 				{
-					"\0\s[0]Great. I can finally get something to eat. What do you want me to do while I'm here, starve? Yeesh."
+					"\0\s[0]Stars. I'm hungry."
+					"\0\s[0]...Maybe I can wait until dinner."
+					"\0\s[0]Mmmhh. Warly's not going to be happy if I take something from the icebox. Could probably just ask..."
 				}
-				"\0\s[0]Oh good. You would not believe how cranky I get when I haven't eaten dinner."
-				"\0\s[0]You may have saved yourself from a cranky scientist, %(username), but I will be back. When you call me, anyways."
-				"\0\s[0]Oh, good. I don't have to be bothered while I eat dinner."
+				"\0\s[0]Have a good afternoon."
+				"\0\s[0]Have a good afternoon, %(username)."
 			}
-			if hunger <= 50
-			{
-				"\0\s[0]Stars. I'm hungry."
-				"\0\s[0]...Maybe I can wait until dinner."
-				"\0\s[0]Mmmhh. Warly's not going to be happy if I take something from the icebox. Could probably just ask..."
-			}
-			"\0\s[0]Have a good afternoon."
-			"\0\s[0]Have a good afternoon, %(username)."
 		}
 		if timeslot == "evening"
 		{
-			if annoyancelevels >= 50
+			if totalpunches >= 5
 			{
-				"\0\s[0]Hopefully nobody bothers me with incessant questions."
-				"\0\s[0]...Greeeeaaaaat. I'm going to have to be answering a bunch of incessant questions. At least the kids ask me about how scientific this is..."
+				"\0\s[0]..."
 			}
-			if hunger <= 50
+			else
 			{
-				"\0\s[0]Oh, good, it's about time for dinner."
+				if annoyancelevels >= 50
+				{
+					"\0\s[0]Hopefully nobody bothers me with incessant questions."
+					"\0\s[0]...Greeeeaaaaat. I'm going to have to be answering a bunch of incessant questions. At least the kids ask me about how scientific this is..."
+				}
+				if hunger <= 50
+				{
+					"\0\s[0]Oh, good, it's about time for dinner."
+				}
+				"\0\s[0]Have a good evening."
+				"\0\s[0]Have a good evening, %(username)."
 			}
-			"\0\s[0]Have a good evening."
-			"\0\s[0]Have a good evening, %(username)."
 		}
 		if timeslot == "latenight"
 		{
-			if annoyancelevels >= 50
+			if totalpunches >= 5
 			{
-				"\0\s[0]It's getting late, and I'll probably need to stoke the fire and do general camp maintenance."
-				"\0\s[0]Do you know what you've caused, %(username)? A whole load of questions that I now have to go and answer because some idiots can't keep their nose in their own business."
+				"\0\s[0]..."
 			}
-			if hunger <= 50
+			else
 			{
-				"\0\s[0]Mm... I'm going to need to get the crockpot open but I don't want to disturb the kids..."
-				"\0\s[0]I don't think Wickerbottom will appreciate me eating so late."
+				if annoyancelevels >= 50
+				{
+					"\0\s[0]It's getting late, and I'll probably need to stoke the fire and do general camp maintenance."
+					"\0\s[0]Do you know what you've caused, %(username)? A whole load of questions that I now have to go and answer because some idiots can't keep their nose in their own business."
+				}
+				if hunger <= 50
+				{
+					"\0\s[0]Mm... I'm going to need to get the crockpot open but I don't want to disturb the kids..."
+					"\0\s[0]I don't think Wickerbottom will appreciate me eating so late."
+				}
+				"\0\s[0]Mm. Goodnight."
+				"\0\s[0]Goodnight, %(username)."
+				"\0\s[0]Oh, are you turning in for the night? Well, um. Sleep well, %(username)."
 			}
-			"\0\s[0]Mm. Goodnight."
-			"\0\s[0]Goodnight, %(username)."
 		}
 		if timeslot == "midnight"
 		{
-			if annoyancelevels >= 50
+			if totalpunches >= 5
 			{
-				"\0\s[0]I'll be lucky if I can get any damned sleep around here."
-				"\0\s[0]I'm so tired."
-				"\0\s[0]You're very tiring to be around."
-				"\0\s[0]You're very tiring to be around. I guess I'll be sleeping well tonight."
+				"\0\s[0]..."
 			}
-			if hunger <= 50
+			else
 			{
-				"\0\s[0]...Maybe I can sneak something from the icebox..."
-				"\0\s[0]A midnight snack sounds nice right now..."
+				if annoyancelevels >= 50
+				{
+					"\0\s[0]I'll be lucky if I can get any damned sleep around here."
+					"\0\s[0]I'm so tired."
+					//"\0\s[0]You're very tiring to be around."
+					//"\0\s[0]You're very tiring to be around. I guess I'll be sleeping well tonight."
+				}
+				if tirednesslevels >= 75
+				{
+					{
+						"\0\s[0]Oh, are you turning in for the night?\w8\w8\n\n[half]"
+						--
+						"I need to get the kids to bed. I was on babysitting duty for the camp tonight..."
+						"I probably should turn in too. It's pretty late."
+						"I probably should go to bed as well. It's pretty late."
+					}
+				}
+				if hunger <= 50
+				{
+					"\0\s[0]...Maybe I can sneak something from the icebox..."
+					"\0\s[0]A midnight snack sounds nice right now..."
+				}
+				"\0\s[0]It's quite late. Goodnight."
+				"\0\s[0]I should go to bed as well. Goodnight, %(username)."
+				"\0\s[0]Oh, are you turning in for the night? Well, um. Sleep well, %(username)."
 			}
-			"\0\s[0]It's quite late. Goodnight."
-			"\0\s[0]I should go to bed as well. Goodnight, %(username)."
 		}
 	}
 	else //If the ghost has been open less than 5 minutes.

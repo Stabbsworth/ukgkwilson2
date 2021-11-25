@@ -129,6 +129,317 @@ RandomTalk
 		"\0\s[0]We need to set up more of a proper camp in the caves...\e"
 		"\0\s[2]\i[71]\i[61]Should really make more drying racks, but that requires taking Willow out on an excursion to a forest to burn a load of trees...\e"
 		
+		//user folders
+		{
+			"\0\s[0]I found some "
+			--
+			if hunger <= 50
+			{
+				"crumbs"
+				"bits of bread"
+				"empty cans"
+				"empty bottles"
+				"rotting food"
+				"rotten eggs"
+			}
+			if annoyancelevels >= 70
+			{
+				"rude graffiti"
+				"graffiti"
+			}
+			if tirednesslevels >= 70
+			{
+				"blurry thing"
+				"thing that I can't describe"
+				"thing that I forgot the word of"
+			}
+			if season == "Autumn"
+			{
+				if month == 10
+				{
+					"pumpkins"
+					"candy wrappers"
+					"trinkets"
+				}
+				if hunger <= 50
+				{
+					"dropped birchnuts"
+				}
+				"leaves"
+				"fallen leaves"
+				"red leaves"
+				"orange leaves"
+				"yellow leaves"
+				"brown leaves"
+				"frogs and cranberries"
+			}
+			if season == "Winter"
+			{
+				"snow"
+				"snowmen"
+				"snowballs"
+				"snowdecahedrons"
+				"icicles"
+			}
+			if season == "Summer"
+			{
+				"ashes"
+				"dried out plants"
+				"wilted plants"
+				"dead plants"
+			}
+			if season == "Spring"
+			{
+				"flowers"
+				"pollen"
+				"tree saplings"
+				"budding flowers"
+			}
+			"dust"
+			"spiders"
+			"cobwebs"
+			"seeds"
+			--
+			" in your %(usersfolder), %(username). "
+			" in that %(usersfolder) of yours, %(username). "
+			--
+			if hunger <= 50
+			{
+				"I didn't take any nibbles of anything in there."
+			}
+			if annoyancelevels >= 70
+			{
+				"I'm not your scullery maid, so I'm not cleaning it up for you."
+				"You're perfectly capable of cleaning this up yourself, you know."
+				"You're perfectly capable of cleaning it up yourself. After all, it's your mess. I'm just a guest, really."
+				"Really, if you're expecting me, a guest, to clean up after you, you're sorely mistaken."
+			}
+			if tirednesslevels >= 70
+			{
+				"It's messier than the chests in my part of the camp."
+				"Messier than the chests in my part of the camp. And messier than my tent."
+				"Your folders are messier than my parts of camp. Trust me, I do not have an organization system in place. It stresses the hell out of me but I can't exactly help it."
+			}
+			if season == "Spring"
+			{
+				"It's time for a little spring cleaning, wouldn't you say?"
+				"You do realize that it's spring, right? Therefore, it's the perfect time to do spring cleaning."
+				"It's time for spring cleaning, methinks."
+				"It's time for spring cleaning, methinks. \w8What? Don't look at me like that. I know my chests are messy."
+			}
+			if season == "Summer"
+			{
+				"A bit late for spring cleaning, but it'd be nice if you managed to clean that up."
+				"It's a bit late for spring cleaning, unfortunately, but still."
+			}
+			if season == "Autumn"
+			{
+				if annoyancelevels >= 70
+				{
+					"At least I didn't get any leaves in my hair this time..."
+					"At least I didn't get any twigs in my hair this time..."
+				}
+				"I think you'd feel a bit better if you cleaned up a bit."
+			}
+			if season == "Winter"
+			{
+				if tirednesslevels >= 70
+				{
+					"I'd much rather be huddled up in bed than remind you to clean your folders every once in a while, frankly."
+				}
+				if annoyancelevels >= 70
+				{
+					"What? No, I'm not cleaning your folders up after you. My hands are absolutely freezing!"
+				}
+				"It's a bit early for spring cleaning."
+				"My hands are freezing, so I'm a bit useless in that regard when it comes to clearing up some stuff in your folders."
+			}
+			"Do you ever clean up in there?"
+			"\n\n[half]I was thinking about cleaning that up for you."
+			"I'm not sure if I should clean it up or just leave it there."
+			"I've left it there for the moment. I don't think you'd appreciate me messing with things."
+			--
+			"\e"
+		}
+		
+		//critters
+		//kittykit
+		"\0\s[0]I'm guessing that a cat tail may be somewhat familiar to a juvenile catcoon. I already know they're quite fond of fish...\e"
+		if season == "Winter"
+		{
+			"\0\s[0]The kittykit will be fine, it's got fur...\e"
+		}
+		{
+			"\0\s[0]Recently, %(survivorsminuswalter) adopted a Kittykit. "
+			--
+			"They make for good lab assistants."
+			"We found it in a little cave on the surface. An odd occurrence, but... appreciated, nonetheless."
+			"Quite cute, provided you can forgive the amount of claws digging into your legs whenever you have it on your lap."
+			"WX-78 says that it uses cuteness as a weapon, and that it's respectable. I think they've gotten attached to the thing."
+			"Wigfrid is amazed at how well it hunts."
+			"The little scamp smells like old tuna salad. I'm not giving it a bath. Honestly, I'd be surprised if most of us didn't smell."
+			"It keeps getting into my chest. God forbid if it finds out that it has a false bottom."
+			"It's quite a clever little thing."
+			"We lured it out with some fishsticks."
+			{
+				"These seem to be baby catcoons. "
+				--
+				"Did the mother die?"
+				"I'm not sure what led it to cohabitating with multiple other animals."
+			}
+			--
+			"\e"
+		}
+		//vargling
+		"\0\s[0]Hmm. Hound teeth might be familiar to that little varg pup. Monster lasagna makes sense for trying to adopt one, since hounds do drop the purple meat...\e"
+		if season == "Winter"
+		{
+			"\0\s[0]I wonder if giving that little vargling a blue gem would turn it into an ice hound...\e"
+		}
+		if season == "Summer"
+		{
+			"\0\s[0]I wonder if giving that little vargling a red gem would turn it into a fire hound...\e"
+		}
+		{
+			"\0\s[0]Recently, %(survivorsminuswalter) adopted a Vargling. "
+			--
+			"They're quite cute, especially since they're the spawn of Vargs."
+			"Smells like wet beef, honestly."
+			"Wolfgang wants to call the little scamp Pupgang."
+			"Canis lupus, supposedly."
+			"It certainly slobbers everywhere."
+			"Wortox can't pet the little guy, unfortunately. Thing is, that imp refuses to wear gloves."
+			"It gets along with Woby perfectly fine."
+			"Quite a loyal little pup."
+			"I'm sure we might be able to teach it a few tricks before it grows up."
+			"We lured it out with some monster lasagna."
+			{
+				"It's essentially a baby varg. There's plenty of time to get it to imprint... "
+				--
+				"Did the mother die?"
+				"I'm not sure what led it to cohabitating with multiple other animals."
+				"Just what led to it getting abandoned at that cave?"
+			}
+			"\e"
+		}
+		//ewelet
+		"\0\s[0]Maybe the wool reminds it of its momma?\e"
+		if season == "Summer"
+		{
+			"\0\s[0]I ought to check on the health of that ewelet that %(survivorsminuswalter) adopted...\e"
+			"\0\s[0]I should check that the ewelet isn't overheating... I know %(survivorsminuswalter) is taking good care of it, but maybe it needs to be shaved...\e"
+		}
+		if season == "Winter"
+		{
+			"\0\s[0]That ewelet will be fine with the temperature change, it's got wool covering its body.\e"
+		}
+		{
+			"Recently, %(survivorsminuswalter) adopted a little Ewelet. "
+			--
+			"Seems to be a child of the Ewecus, though it's much less... mucusy than its momma."
+			"Like a little walking dust bunny, according to Walter."
+			"Willow calls this little guy's eyes creepy. I'm not sure how they'd be considered creepy."
+			"It keeps nibbling Max's coattails."
+			"Wigfrid says that she'd turn into a farmer for the little guy, but I doubt it."
+			"Webber's father apparently taught him how to take care of goats."
+			"I'd wager Warly would like to call them Lambchop."
+			"What a wrinkly little fellow..."
+			"We lured it out with some guacamole."
+			--
+			"\e"
+		}
+		//broodling
+		"\0\s[0]I'm not sure what sort of magic revived that lavae... Or, maybe it was hibernating, in some sort of cocoon...\e"
+		if season == "Summer"
+		{
+			"\0\s[0]I'm hoping we don't have any accidents involving fire with that broodling.\e"
+		}
+		{
+			"Recently, %(survivorsminuswalter) adopted a Broodling. "
+			--
+			"Quite a noble little sort. I don't think these ones will imprint on just anyone."
+			"It's wyrmed its way into all of our hearts."
+			"Willow loves the little thing. Not surprising, considering its mother loved to set us all on fire whenever we fought her."
+			"Wickerbottom thinks it's a juvenile Diptera."
+			"Woodie doesn't want it to start up any forest fires. A bit of an impossibility."
+			"According to Maxwell, having this one as a pet is just like old times. I wonder..."
+			"Webber's happy at her being a monster just like them, but... Webber isn't much of a monster. Too soft, too forgiving. Eheh."
+			"Warly wants to call her Flambe."
+			"Wanda's apparently not much of a pet person. She has her moments with the little fellow, though."
+			"We lured it out with some spicy chili. Unsurprisingly, Willow took a shine to it almost immediately."
+			--
+			"\e"
+		}
+		//glomglom
+		"\0\s[0]Of course, it's plausible that the goop might have reminded the little fellow of the momma...?\e"
+		if season == "Winter"
+		{
+			"\0\s[0]Hmm. The aerodynamical spawn of Glommer seems to have fur, though I'm mildly worried about its wings getting hurt from the winter's snow and winds.\e"
+		}
+		{
+			"Recently, %(survivorsminuswalter) adopted a Glomglom. "
+			--
+			"It's a fuzzy little thing."
+			"Quite an aerodynamical creature."
+			"We lured it out with some taffy."
+			"Not as bouncy as Glommer, but still pretty bouncy."
+			--
+			"\e"
+		}
+		//giblet
+		"\0\s[0]A feather hat is made from a few different kinds of feathers, but maybe it sees it as some sort of parent figure...\e"
+		{
+			"Recently, %(survivorsminuswalter) adopted a little Giblet. "
+			--
+			"For being the offspring of a Gobbler, it's not running around like a drunken maniac."
+			"Quite a feathery friend."
+			"Not even Warly wants to eat them."
+			{
+				"We used some trail mix to lure it out. "
+				--
+				"Walter's favourite."
+				"Walter would probably be quite happy about another pet sharing his favourite food, eheh."
+			}
+			--
+			"\e"
+		}
+		//mothling
+		"\0\s[0]Maybe this is the mature form of those moon butterflies... er, moths...\e"
+		{
+			"Recently, %(survivorsminuswalter) adopted a delicate little mothling. "
+			--
+			"She's quite good at moth-ematics."
+			"She's apparently quite enthusiastic about fire, according to Willow."
+			"Maxwell's probably going to be mad about the moth if he finds holes in his suit."
+			"They seem to act as a perfectly decent light source when they're properly fed."
+			"We lured it out with some flower salad. Pearl's favourite."
+			--
+			"\e"
+		}
+		//friendly peeper
+		"\0\s[0]I know Warly wanted to use those milky whites to make something, they make for a decent substitution for dairy-based products...\e"
+		"\0\s[0]I do hope that little eyeball guy's eye isn't getting too dry...\e"
+		if season == "Winter"
+		{
+			"\0\s[0]Those winds are pretty biting. I ought to see if that friendly little peeping Tom isn't getting dryeye...\e"
+		}
+		{
+			"Recently, %(survivorsminuswalter) adopted, or, uh... summoned a friendly little ocular companion. "
+			--
+			"I've no idea how they managed that, frankly."
+			"It's always good to have something to keep an extra set of eyes on things. Er... Eye."
+			"It's always good to have something to keep an extra eye on things."
+			"Wendy wants to gaze into the abyss with it."
+			"WX-78 has taken a shine to it, at the very least."
+			"Wickerbottom is wondering if the nerves that it has are functional or simply decorative."
+			"Woodie wants it to have some protective eye gear."
+			"Apparently they're very good at hide and seek."
+			"Wurt's concerned that the little guy might get a bit too dry."
+			"We lured it out with some bacon and eggs. Unfortunately, that was going to be my lunch."
+			--
+			"\e"
+		}
+		
 		//berry bushes
 		{
 			if season == "Autumn"
@@ -153,6 +464,7 @@ RandomTalk
 				"That'll leave us out of a potential food source, though, and the berries won't spoil if they're on the bush and being provided nutrients..."
 				"They won't produce any more berries until Spring, though, and we need to use the ones that we already have."
 				"Need to harvest these at dusk so that the Gobblers don't eat the remaining berries on the bushes..."
+				"We can't afford any more Gobblers stealing the berries, so maybe it's better to harvest these at dusk? They'll run into a different bush but won't eat the berries on it..."
 			}
 			--
 			"\e"
@@ -1282,6 +1594,10 @@ RandomTalk
 		//---Tiredness---
 		parallel Pool ("Pool_status_sleepy","%(tirednesslevels >= 75)")
 		
+		//---Holidays---
+		parallel Pool ("Pool_holidays_yule","%(month == 12 && season == 'Winter')")
+		parallel Pool ("Pool_holidays_samhain","%(month == 10 && season == 'Autumn')")
+		
 		//---Noticing and commenting on other ghosts---
 		//Remember that you have to check for the sakura name of another ghost, not the ghost name.
 		if "Girl" _in_ ghostexlist
@@ -1321,13 +1637,811 @@ FoodSearchFail
 
 //-----------Pools-----------
 
+Pool_holidays_samhain : array
+{
+	//mad science lab
+	{
+		"\0\s[0]I've managed to build a decent lab for particular experiments. "
+		--
+		"Sanity is a small price to pay for science, after all!"
+		"Willow likes the fire on the damn thing. It's for science, not for fire."
+		"Woodie says that he prefers simpler things, but this will benefit the entire camp."
+		"There is in fact method to this madness, and the method is science."
+		"Quite bubbly."
+		"Oh, if only it glowed... that'd be terrific."
+		"This is for the best kind of science."
+		--
+		"\e"
+	}
+	
+	//experiments
+	{
+		"\0\s[0]I've been doing some experiments recently with that new thing that I built in the camp. "
+		--
+		//generic
+		"They're perfectly good brews! Just need a bit of refining."
+		"Thankfully, these won't explode. I hope."
+		//specific
+		{
+			"One of them is full of grit. "
+			--
+			"It might just be liquid courage."
+			//"It'll put a proper fire in your belly."
+		}
+		{
+			"One of them is good for the heart. "
+			--
+			"Though, I was hoping for something a little bigger."
+			"I need to figure out how to make it more potent without it turning lethal. Or exploding."
+		}
+		{
+			"One of them seems to make things less stressful. "
+			"One of them puts the mind at ease. "
+			--
+			"Though, I do wish it was a little bigger."
+			"I need to figure out how to make it more potent without it turning lethal. Or exploding."
+		}
+		{
+			"One of them seems to be sulfuric. "
+			--
+			"Crystalized inferno!"
+			"It makes the fire spark and sputter with different colours."
+			"I'd wager Willow would love this."
+		}
+		{
+			"One of them is infused with the properties of the moon. "
+			--
+			"Transforms things into other things."
+			"Potentially an alchemical reaction."
+			"Makes mutations happen much faster."
+			"Makes what might be evolution happen much faster."
+		}
+		{
+			"One of them just grows a totally normal tree. "
+			--
+			"I was thinking about rooting this out, but decided against it. It could come in handy!"
+			"Needs some good dirt. It'll be a big, spooky tree in no time."
+		}
+		--
+		"\e"
+	}
+	
+	//candy bag
+	"\0\s[0]Hmmm. A bag-sized pocket dimension for delicious treats sounds very nice.\e"
+	{
+		"\0\s[0]I've recently figured out how to make a bag for sugary treats and trinkets that I find around the island. "
+		--
+		"It stores quite a bit of loot."
+		"I'm sure the kids would love these."
+		"It's almost like it's bigger on the inside. I wonder..."
+		--
+		"\e"
+	}
+	//decorations
+	{
+		"\0\s[0]I've recently found a few odd little bits and bobs scattered around the place. "
+		--
+		//generic
+		"They seem to be intended to be used for decorating something..."
+		"Wendy wants us to put some of them on a Totally Normal Tree. I'm not inclined to disagree, but why...?"
+		
+		//specific
+		{
+			"I've recently found a "
+			--
+			//generic
+			"decoration just laying about. I'm sure we'll be able to put some use to it."
+			
+			//specific
+			{
+				"completely batty decoration. "
+				"decoration that looks to be based on one of the batilisks. "
+				"batty little decoration. "
+				--
+				"It almost looks real."
+				"The wings feel quite leathery."
+			}
+			{
+				"decoration that looks like a crow. "
+				"crow decoration. "
+				--
+				"Everyone's raven about tree decorations."
+				"Everyone's raven about it."
+				"According to Wendy, crows in trees mean that a soul is trapped between worlds."
+				"Maxwell hear's 'nevermore' when he holds this. I'm not sure how that happens."
+				"Should arguably be in a tree, really."
+			}
+			{
+				"decoration that resembles a Dangling Depth Dweller. "
+				"decoration that looks like a Dangling Depth Dweller. "
+				"Dangling Depth Dweller decoration. "
+				"decoration that looks like one of those cave spiders. The ones that dangle from the ceiling. "
+				--
+				"It'd definitely look good hanging somewhere."
+				"Willow wants to scare people with this. I suppose it would be the spirit of the holiday..."
+				"Very creepy."
+				"Walter pointed out that the spiders around here only have six legs, while arachnids back home have eight. I can't stop thinking about that now."
+			}
+			{
+				"decoration that looks like a ghost. "
+				"ghostly decoration. "
+				"ghost decoration. "
+				--
+				"It's certainly a spectornament."
+				"This should really be hung up in a tree."
+				"Wendy says that it reminds her of Abigail, but she'd like to hang it up somewhere."
+				"Wanda thinks it's a gloomy way to celebrate the holiday."
+				"This seems to make Wortox feel hungry. A bit inappropriate, I'd suppose, but he is a soul-sucking demon of some sort, after all..."
+			}
+			{
+				"spider decoration. "
+				"spider ornament. "
+				"spider-like decoration. "
+				"decoration that looks like Webber's kin. "
+				--
+				"It's an eight-armed adornment. There isn't much for me to say about this."
+				"Maxwell likes the real ones better, somehow."
+				"Wait, aren't the spiders around here supposed to have six legs...?"
+				"Webber's disappointed that it isn't real."
+				"Wendy considers this to be a decoration for a devilish day. I'm wondering if she's planning a prank."
+				"Walter apparently thought it was a real spider for a second."
+			}
+			{
+				"tentacle decoration. "
+				--
+				"It's almost i-tentacle to the real ones."
+				"Willow wishes this was flammable, but it's quite nice to decorate trees."
+				"This makes Warly miss calamari. I'm sure we can make some out of the glowy squids that pop up from time to time..."
+			}
+		}
+		--
+		"\e"
+	}
+	
+	//candies
+	{
+		"\0\s[0]Sometimes we trade trinkets and meat to the Pig King. Along with the gold, when it's close to this holiday, he gives out candy. Recently we've gotten "
+		--
+		//generic
+		"an assortment of candies. I've had to stash them in my bag for now."
+		"a large amount of unlabelled candies. I'll stash them at some point, eheh. Provided I don't end up eating them."
+		"an assortment of otherworldy candies. I'm wondering where the big guy is getting them from."
+		"an assortment of lollipops. They're quite good."
+		"an assortment of lollipops."
+		"an assortment of candies."
+		"an assortment of candies. I'm guessing a few of us are going to be whining tonight."
+		
+		//specific
+		{
+			"some candy apples, "
+			--
+			"I'm pretty sure the cavities are worth it."
+			"Willow thinks these are better than regular apples."
+			"Woodie thinks that even the stick is delicious."
+			"I don't think Webber likes these very much, he's offered to trade with Wendy for her choco-pigs."
+			"Wormwood is a bit afraid that people are going to eat the stick by accident."
+			"Wormwood is a bit afraid that people are going to eat the stick by accident. I'm not sure how to explain to him that it's fine for Woodie to eat the stick, frankly."
+			"Even Wurt seems to think these are better than regular apples. Eheh."
+		}
+		{
+			"some candy corn, "
+			--
+			"I'm honestly mildly alarmed that some corruption of science may have grown these."
+			"WX-78 seems to love these, for some reason."
+			"high fructose corn syrup."
+			"not even proper corn."
+			"Winona questioned on whether or not it was actually food at the time."
+			"Wanda somehow likes these."
+			"Wurt likes these, but she likes anything involving vegetables."
+			"Warly says that there's better candies available, and I'm inclined to agree."
+		}
+		{
+			"some catcoon candy, "
+			--
+			"I'm going to be experiencing some toothache tomorrow, I'd wager."
+			"I think I've infected Willow with my puns. She says they're a meow-thful."
+			"I don't think Wolfgang is too keen on these."
+			"Wolfgang doesn't seem to be too keen on these ones."
+			"Even Maxwell says they're almost endearing."
+			"Even Maxwell says they're almost endearing. I wonder if he's more of a cat person..."
+			"apparently it's the closest thing that Warly's found to an after-dinner mint."
+		}
+		{
+			"some packets of chocopigs, "
+			--
+			"which are much better tasting than the real thing."
+			"Willow loves these to bits."
+			"even Wendy seems to like these, though, as per usual with her, she has a taste for the macabre."
+			"according to Wendy, you have to bite the heads off first."
+			"Warly really likes these, though it's probably because he's fond of chocolate."
+			"Wickerbottom's quite fond of these."
+			"Wurt seems to like eating these. I'm guessing it's something about vengeance on the pigs."
+			"Wigfrid says it's not as good as meat, but it'll do."
+		}
+		{
+			"some ghostly lollipops, "
+			"some ghost pops, "
+			"some lollipops that look like ghosts, "
+			--
+			"and only a sucker wouldn't love these."
+			"Wigfrid seems pretty determined to uncover the secrets of the center of them."
+			"Maxwell seems to enjoy them, though I've no idea if it's because of a self-stimulating behaviour."
+			"Wortox is very enthused about it being a candied soul, which makes sense, given that his diet tends to consist of souls, mostly."
+		}
+		{
+			"some tentacle-based lollipops, "
+			"some tentacle lollis, "
+			--
+			"and only a sucker wouldn't love these."
+			"Winona says that these have a curious flavour."
+			"Wanda's pretty happy that it never seems to go bad."
+			"Walter wants to know if it's made with real tentacles."
+			"apparently this would be Wortox's first time trying one."
+			"Warly doesn't seem to like these. He's given the vast majority of them to the kids."
+			"apparently this tastes like the swamp to Wurt."
+		}
+		{
+			"some gummy spiders, "
+			"some spider gummies, "
+			--
+			"which wriggle on the way down."
+			"these ones wriggle on the way down."
+			"Willow hates these."
+			"they make Wolfgang feel strong."
+			"Wickerbottom is fond of these."
+			"Maxwell is fond of these."
+			"both Maxwell and Wickerbottom seem to be fond of these, while Willow hates them."
+			"Webber's pretty uncomfortable with this. Of course, WX-78 is trying to get them to watch them consume spider gummies."
+			"Webber's pretty uncomfortable with this. I'm not sure if it's a snipe from the Pig King."
+			"Webber's pretty uncomfortable with this. It's... rather sweet to see Wendy comforting them about it."
+			"too many legs for both Winona and Woodie."
+			"too many legs for Winona."
+			"quite chewy."
+			"which are quite chewy."
+		}
+		{
+			"some jelly worms, "
+			--
+			"which tend to stick to your teeth."
+			"Willow complained about these looking gross."
+			"Wolfgang thinks they look gross but taste okay."
+			"Webber loves these."
+			"Webber loves these. I'll be sure to take some to him later."
+			"they're quite gelatinous."
+		}
+		{
+			"some... er, not-so-candy corn... "
+			"some... literal corn... "
+			--
+			"It's just corn."
+			"Apparently it reminds Wolfgang of candy back home...?"
+			"Maxwell wants to know who's making all of this candy."
+			"Maxwell wants to know who's making all of this candy. I don't blame him."
+			"Just some corn flavoured corn."
+			"This is literally corn on the cob."
+			"Warly thinks it could use some butter and salt."
+			"Walter... enjoys this, somehow. I'm not sure how he does."
+		}
+		{
+			"some boxes of raisins, "
+			"some raisins, "
+			--
+			"I was right in the fact that everyone would be raisin a fuss over them, eheh."
+			"WX-78 wants to imprison the Pig King for giving them raisins."
+			"neither Woodie or Walter seem to mind them that much."
+			"Warly wants to make some particular dishes with them. Certainly a good prospect, provided Willow doesn't burn them first."
+			"Wurt likes these, but then again, she'll eat anything that's a vegetable. Or a fruit."
+		}
+		{
+			"some... 'raisins' of dubious edibility... "
+			"some... 'raisins'... "
+			--
+			"I don't think I'll be eating these."
+			"Wortox thinks it's a prank."
+			"Somehow, Wurt has eaten these, and they taste good to her."
+			"Wickerbottom would prefer that none of us try to eat these."
+			"Warly reckons these aren't even fit to eat."
+		}
+		{
+			"some candy lice, "
+			"some candied lice, "
+			"some sort of maggot-based candy, "
+			--
+			"I'm sure I saw them move."
+			"apparently, according to Wickerbottom, they're quite pleasant."
+			"Webber likes these, but I'm not sure if it's more towards the spider half that likes them."
+			"apparently made of gelatin, according to WX-78."
+			"a gelatin lie, supposedly."
+		}
+		{
+			"some jawbreakers, "
+			"some sort of otherworldy jawbreakers, "
+			"some jawbreakers that seem to have originated elsewhere, "
+			"a few jawbreakers, "
+			"a few dozen jawbreakers, "
+			"a few otherworldy jawbreakers, "
+			"a few jawbreakers that look like they've come from elsewhere, "
+			--
+			"I'm not eating these, considering I already have teeth issues."
+			"tangy, according to Willow."
+			"Wolfgang has commended this on being strong like him."
+			"surprisingly, it's too sweet for Warly."
+			"according to Walter, it's more sour."
+			"Webber likes these."
+			"I believe Maxwell might like these. Or, at least, he says they're not terrible. Which means he's okay with them, he's just too much of a prideful git to admit it."
+		}
+		{
+			"some sort of pepper, "
+			"a few otherworldly peppers, "
+			"some sort of peppers, "
+			--
+			"I'm not fond of spice, so I've given mine over to Willow."
+			"too hot for Wolfgang, apparently."
+			"these seem to be too hot for Wendy, eheh."
+			"apparently these are a ten on the Scoville scale."
+			"Lucy doesn't seem to like it when Woodie eats spicy foods."
+			"Maxwell, of course, finds this to be too much of a commoner thing for him. I wish he'd lighten up a bit. We're in a hell dimension."
+			"I have no idea how the others can withstand these things."
+		}
+		--
+		"\e"
+	}
+	//trinkets
+	{
+		"\0\s[0]Recently, I've been finding some trinkets around the Constant. "
+		--
+		{
+			"A broken stake, "
+			--
+			"which is useless for me because I do not believe in the supernatural."
+			"which looks like firewood to Willow."
+			"which is too brittle to even inflict any damage."
+		}
+		{
+			"A cubic zirkonia ball, "
+			--
+			"and I know someone who'd have a ball with it."
+			"which got Wickerbottom's hopes up for a nice crystal ball."
+			"and it's funny seeing Maxwell get all uppity about it being amateur magic for children, supposedly."
+			"and Wanda thinks it'll show you only one possible future."
+		}
+		{
+			"An empty elixir, "
+			--
+			"abominably hard to find a decent flask around here."
+			"abominably hard to find something that can hold dangerous liquids."
+			"Wickerbottom thinks the stuff that might have been inside may have been sugar water."
+			"Willow's dared Wes to drink the last bit of it."
+			"I'll have to wash it out to be able to properly use it without whatever residue might have been left potentially ruining things."
+		}
+		{
+			"Some false fangs, "
+			--
+			"which I know Maxwell uses for his costume."
+			"I might need these after all that candy."
+			"not even sharp, according to Willow."
+			"and Wendy's fond of the possibility of both her and Webber matching."
+			"Woodie finds these to be more intimidating than beaver teeth."
+			"Wigfrid thinks these are evidence of the undead, possibly vampires."
+			"Wigfrid thinks these may be evidence of the undead."
+			"Wigfrid thinks these may be evidence of vampires."
+			"Wortox thinks his are much more imp-ressive. Eheh."
+			"Walter wants to see real vampire teeth."
+		}
+		{
+			"A monkey's paw, "
+			--
+			"I've thought about making a wish using this for scientific purposes."
+			"Willow thinks it's nasty."
+			"Wolfgang thinks it's spooky."
+			"Wendy thinks a curse granted via this trinket might end her suffering."
+			"and WX-78, predictably, would probably wish for more wishes."
+			"Maxwell says he's done tampering with magical oddities."
+			"Winona also wishes for more wishes, which I didn't expect of her."
+			"Warly says that he knows better than to mess with this sort of thing."
+			"Wortox thinks his claws are better."
+			"and I know that Wormwood is wondering where the rest of the monkey is. I'm not sure how to explain to him that the rest of the monkey is either living without a paw or is dead."
+			"and I know that Wormwood is inquiring about where the rest of the monkey is."
+			"Wurt thinks it's safe."
+			"Walter seems to think that nothing bad has ever happened from wishing on one of these."
+			"Wanda seems to think that there's no need to be afraid of curses if you can outsmart them. I'm inclined to agree."
+		}
+		{
+			"A spider ring, "
+			--
+			"which I desperately hope doesn't attract spiders."
+			"Willow is not happy about finding these."
+			"Wolfgang refuses to wear it. Willow also refuses to wear it."
+			"Wendy seems to like it."
+			"WX-78 does not like these."
+			"Maxwell considers this the opposite of dapper. I'm surprised he's at odds with Wickerbottom over this."
+			"Webber considers this to be a friend for their finger, whatever that means."
+			"according to Winona, this is made of plastic."
+			"it won't fit over Wortox's claw."
+			"Walter is disappointed that it's not a real spider."
+			"Wanda seems to keep forgetting that it's not a real spider."
+		}
+		{
+			"Some binoculars, "
+			"A pair of binoculars, "
+			--
+			"I think these may have come from another world, possibly one with grifts."
+			"possibly from another world."
+			"possibly from another world with grifts."
+			"potentially originating from a different world."
+			"these seem to make things look smaller."
+			"Maxwell, strangely enough, has no idea how these got here."
+			"Warly doesn't seem to trust these."
+		}
+		{
+			"A single glove, "
+			"A lone glove, "
+			--
+			"and I'm trying to figure out where the other one is."
+			"and I don't know where the other one is."
+			"appears to be left-handed."
+		}
+		{
+			"Some snail scales, "
+			--
+			"holding them makes me feel like bartering."
+			"though, the needle moves quite sluggishly... I'm not sure how useful they'll be."
+		}
+		{
+			"A canister containing some sort of goop, "
+			"A goop canister, "
+			--
+			"which seems to be a bit warm to the touch."
+			"Wendy says it looks like ectoplasm."
+			"seems to be otherworldly in nature."
+			"I think it originates from a different world."
+			"I'm not sure if the residual goop inside is poisonous, and I don't think I'll be testing it."
+		}
+		{
+			"A toy cobra, "
+			"A toy resembling a snake, "
+			"A snake toy, "
+			"A toy resembling a cobra, "
+			--
+			"it's probably full of someone's childhood memories."
+			"maybe one of the little pipspooks dropped it?"
+			"the head looks more like a mouse than a cobra."
+		}
+		{
+			"A crocodile toy, "
+			"A toy resembling a crocodile, "
+			--
+			"not very good at jumping."
+			"not very good at jumping. Don't ask me why I know that, I didn't test it."
+			"I'm sure Webber will make some use of it."
+			"I'd wager it has someone's childhood memories."
+			"maybe one of the pipspooks dropped it?"
+		}
+		{
+			"A broken terrarium, "
+			"A terrarium with some form of plant specimen, "
+			"A cracked terrarium, "
+			--
+			"it's not junk."
+			"I could possibly repair this..."
+			"apparently it's a rosebud."
+			"pests might have affected it..."
+		}
+		{
+			"Some sort of radio, "
+			"An odd radio, "
+			--
+			"potentially otherworldly."
+			"maybe it originates from a different world...?"
+			"certainly picks up frequencies from a different world."
+			"the frequencies are from another world."
+			"it picks up frequencies from another world."
+			"which keeps making strange sounds."
+			"Walter's found no use for it, since he can't get any of his favourite stations."
+			"Winona refuses to mess with it."
+			"Warly's refused to mess with it."
+		}
+		{
+			"A broken... hairdryer? "
+			--
+			"It might be a tool for testing aerodynamics."
+			"Maxwell thinks it's one of mine, but I can confirm that it isn't."
+			"Wickerbottom doesn't really know what it is."
+		}
+		--
+		"\e"
+	}
+}
+
+//winter's feast pool
+Pool_holidays_yule : array
+{
+	"\0\s[0]Ah, it's Winter's Feast soonish.\e"
+	"\0\s[0]Winter's Feast tends to start around this time of year.\e"
+	
+	//feasting
+	{
+		"\0\s[0]Recently we've gotten a proper masonry oven set up. "
+		--
+		{
+			"It seems to give us access to some form of food recipes. "
+			--
+			"%(yulefoods) sounds good right about now..."
+			"%(yulefoods) with %(yulefoods)..."
+			"Oh, %(yulefoods) with %(yulefoods), maybe with a side of %(yulefoods)..."
+			"The foods we can make do require some odd ingredients, though... I'm sure it's nothing to be worried about."
+		}
+		"I'm sure Warly can make some good use out of it."
+		--
+		"\e"
+	}
+	{
+		"\0\s[0]We've got the tables set up and ready to go. "
+		--
+		"All we'd need would be some %(yulefoods)."
+		"All we'd need would be some %(yulefoods) and we're all set to begin feasting..."
+		"I really need to get back to preparing food with Warly and the others..."
+		"The table is wonderfully festive. It'll be even more festive if we manage to get %(yulefoods) ready-made, eheh."
+		--
+		"\e"
+	}
+	
+	//gingerpigs
+	{
+		"\0\s[0]Recently, I've been finding some little gingerbread pigs... "
+		--
+		"They wear red hats. I'm not sure if those are gumdrops or not."
+		{
+			"They drop crumbs when they run around. "
+			--
+			"Quite a crummy way to hide themselves."
+			"Barely even filling."
+			"Their houses also drop crumbs when they're destroyed, too."
+			"Leads us right to their home."
+			"It's odd. They seem to be pracically falling apart, but they're able to run around at speeds that the rabbits would be jealous of."
+		}
+		{
+			"They've lead me to some gingerbread houses before. "
+			--
+			"I suppose you could say they're room and board all rolled into one."
+			"Maxwell thinks these are gaudy, as he does with just about everything involving Winter's Feast."
+			"Some of them seem to use candy canes in their design."
+			"Some of them seem to use peppermint in their design."
+			"Some of them seem to use gumdrops in their design."
+			"I've seen a gingerbread pig come out of them when we destroy them before. Mildly horrifying, but we can't tell if these are sentient. I suppose they must be, given that they can apparently build houses. Might I add that they're built practically overnight, with none of us having any prior recollection of them being there?"
+		}
+		{
+			"Those little buggers have lead me to a gingerbread Varg before. "
+			--
+			"I was almost amazed, if I wasn't so horrified that this would be another one of those embarrassing deaths."
+			"I immediately got spat on with some sort of glaze. Need I mention that the glaze was irritating to get out of?"
+			"I've died to those damn Vargs before. The glaze gets everywhere, it's horribly sticky."
+			"Even Warly says that it looks sweet but acts sour."
+			"That damn thing will give me nightmares of Winter's Feast."
+			"Its eyes seem to be made of peppermint...?"
+		}
+		{
+			"When they're killed, they seem to drop some sort of white orb... "
+			--
+			"It's an odd thing. Seems to be the very spirit of the season."
+			{
+				"I tried giving it to "
+				--
+				"Willow, and she said that it reminded her of sitting by the fire on cold winter nights."
+				"Wolfgang, and he said that it made him think of friends."
+				"Wendy. She mentioned that it makes her think of holidays with her sister, Abigail."
+				"WX-78, who... promptly refused it because it 'reeked of festivity'."
+				"Wickerbottom. She said that it reminded her of reading holiday stories by the fire."
+				"Woodie, and he said something about a blue spruce that he and Lucy cut down years ago."
+				"Maxwell, who promptly refused it. Apparently he prefers his fuel to be more nightmarish."
+				"Wigfrid, who called it the essence of Jol. I've no idea what Jol is."
+				"Webber. They said that it filled them with peace and joy. I'm glad for the little guy."
+				"Winona, and she mentioned that this season always made her think of Charlie."
+				"Warly, who said that he'd like to use it to imbue his food with festive spirit."
+				"Wormwood. The only thing he said was something about friends."
+				"Wurt. I think she ended up eating it."
+				"Wanda. She doesn't really trust it, so she gave it back."
+				"Walter. Says it looks like magic."
+			}
+		}
+		"Wickerbottom isn't able to classify them, since they won't stay still for longer than a minute."
+		--
+		"\e"
+	}
+	
+	//presents
+	{
+		"\0\s[0]I need to get around to wrapping the presents I have for the others. "
+		--
+		"Willow is absolutely not allowed anywhere near red gems unless it's for the life amulets. Do you want to guess how we found out letting her have access to these was a terrible idea?"
+		"Willow has apparently figured out that ribbons burn quite well. I'm not concerned about that, I'm more towards concerned that she'll figure out a way to fireproof the wrapping paper and the gift inside, and present it to someone while it's on fire."
+		{
+			"Wendy sometimes says that the only gift she desires is a swift end. "
+			--
+			"A little bit concerning, especially when it's coming from what might be a ten year old."
+			"Totally not concerning at all, no. \w8\w8I was being a bit sarcastic there."
+		}
+		{
+			"Wolfgang needs help with tying the little bow on top of a present. "
+			--
+			"Though, because it's so cold, it's a bit hard to get my hands to work as well as they did when I was in my twenties."
+			"Wendy also requires help with this, from what I can gather. At least neither of them have to feel lonely and embarrassed about it."
+			"I believe Wendy also needs help with this. From what I can gather, it might have been that Abigail used to be able to do this, back before she..."
+		}
+		"Wickerbottom apparently finds wrapping the presents to be pretty soothing. I'm glad."
+		"Wortox finds the concept of presents to be quite fun. Though, I do have some concerns..."
+		"The gift wrap is easy to get. It's figuring out what everyone else would like, that's the problem. And I can't just go and ask now, otherwise it'll be too obvious."
+		--
+		"\e"
+	}
+	//tree decorating
+	{
+		"\0\s[0]We've got to get around to decorating that tree. "
+		--
+		"Wigfrid wants to use an ornament that she got from the Deerclops this year."
+		{
+			"I think Warly would like us to put up an ornament that we got from Pearl. "
+			--
+			"Perhaps he's feeling sentimental."
+			"Maybe it reminds him of someone?"
+		}
+		"I think I've managed to infect Warly with my puns. Just the other day, he made a pun about sprucing the tree up. We're using a pine tree. Spruce trees are also a type of tree."
+		"I'm sure decorating the tree will improve the mood around camp a little. Now, I just need to find some baubles or something..."
+		"We've got a few planters dotted about the camp for Winter's Feast trees, mostly so that each person can decorate a tree to their own whims."
+		"We can put a pinecone, a birchnut or a twiggy tree cone in the planters. Though, if it's a birchnut tree or a twiggy tree, Warly's pun doesn't make much sense..."
+		{
+			"Every scientist appreciates a good bauble. "
+			--
+			"Especially when they're being put to use on a good Winter's Feast tree."
+			"I'd like to make some baubles of my own, but it'd be extra work. Still, it's a nice little daydream."
+		}
+		"Webber needs a boost to be able to decorate the tree. I'm assuming the other kids, aside from Walter, might need one as well."
+		"Wolfgang would be better suited for giving Webber a boost so that they can decorate their tree. I've no idea why they've asked me to do it."
+		"Wolfgang seems to be rather amazed about the baubles being tiny in his hands. Then again, everything would be tiny in his hands. \w8\w8\w8They're pretty large hands."
+		"Maxwell finds this to be rather gaudy, but then again, he finds everything that isn't a five-star hotel with a 'dapper' suit to be below his standards."
+		"Maxwell finds the baubles to be gaudy, but I think they look nice. And so do most other people within the camp, for that matter."
+		"Even Wanda likes the baubles. Eheh."
+		{
+			"We've found some fancier baubles. "
+			"I've managed to procure some fancier baubles. "
+			"%(othersurvivors) has managed to find some fancier baubles. "
+			--
+			"One of them looks like a star. Maybe it's intended to be placed on the top of the tree...?"
+			"One of them looks like a star. Maybe it's intended to look like the North Star...?"
+			"They're quite pretty."
+			"Definitely worthy of going on a tree."
+			"I'm sure they'll make the tree look even better."
+		}
+		{
+			"Some of the giants have dropped adornments for the tree. "
+			//"The seasonal giants have adornments for the tree, too. "
+			"%(othersurvivors) managed to get a fair amount of us to team up against a giant, and they also drop baubles, apparently. "
+			--
+			"They're especially impressive."
+			"These are some of Wendy's favorites."
+			"Maxwell isn't too happy that we've risked our lives to get a bauble, of all things, but they do make the tree look better."
+			"Wickerbottom's quite impressed with these ones. She really does love decorating the tree."
+			{
+				"I think Wigfrid is of the opinion that it isn't a celebration until there's been a good battle. "
+				--
+				"While I'm inclined to agree, I do wish she'd be a bit more careful."
+				"I'm happy that the Deerclops is gone, at least."
+				"The aftermath of a battle with the Deerclops is probably what she's after. There's usually some sort of stew involved."
+			}
+			{
+				"The one that got dropped by "
+				"The one that dropped from "
+				--
+				"the Dragonfly looks like a wreath, except it has some sort of Dragonfly features on it. And a golden bow, of course."
+				"the Dragonfly looks a lot like a wreath. It has a golden bow on it."
+				"the Bearger is about as soft as the real thing's hide."
+				"the Bearger certainly looks a lot like it."
+				"the Deerclops has both the antlers and eyeball on it. It'll make a fine ornament for the top of the tree."
+				"the Deerclops definitely looks like it. The damn thing has an icy stare."
+				"the... MooseGoosethingy definitely looks as goofy as that one usually does. Just much less intimidating."
+				"the Bee Queen definitely looks insect-like. Even has the wings on it."
+				"the Bee Queen definitely looks insect-like. Even has rigid segments."
+				"the Bee Queen definitely looks insect-like. Even has the stinger."
+				"the Toadstool reminds me of bells."
+				"the Toadstool has a green bow on it. Looks festive enough, but it doesn't go with the purple of the bell-shaped portion."
+				"the Toadstool has a green bow on it. I wonder if Wurt would like it...?"
+				"the Antlion has a rather fuzzy mane."
+				"the Antlion certainly looks like it. Even right down to the pincers!"
+				"the Antlion even has the pincers."
+				"the Ancient Fuelweaver seems to have some mistletoe leaves on the horns."
+				"the Ancient Fuelweaver has three berry-like orbs in it, as well as some leaves that give the impression of mistletoe. Or holly, I'd suppose."
+				"Klaus has the striped horns."
+				"Klaus has the lock on it."
+				"Krampus certainly looks like Krampus."
+				"Krampus apparently has the bells replacing where the eyes would be. The slits even look like Krampus' pupils."
+				"the Red Gem Deer predictably has a red gem on the forehead."
+				"the Blue Gem Deer predictably has a blue gem on the forehead."
+				"the Malbatross has some feathering on it. Quite nice."
+				"the Misery Toadstool has a yellow bow on it. I wouldn't say it's golden."
+				"the Misery Toadstool is a weird... greenish-yellow."
+				"the Ancient Guardian even has the horn."
+			}
+			"I'm assuming that Wigfrid would want to decorate her tree with this to commemorate a good battle."
+		}
+		//sentimental
+		{
+			"I know just what ornament to use, too, "
+			"We recently bought something from Pearl, and it's "
+			--
+			"an ornament that looks just like Pearl's house."
+			"an ornament that's some sort of bottle with a pearl in it. It even has a ribbon, red and white plaid. I'm sure Woodie would love this."
+		}
+		//champion
+		{
+			"There's some interesting adornments that we found back when one of us slept under the tree. "
+			"There's some adornments that we found back when one of us slept under the tree that Wigfrid seems particularly keen on using. "
+			--
+			"One reminds me of the Grand Forge Boarrior. "
+			"There's a twin set of adornments, each snout having a horn on it. Reminds me of the Rhinocebros. "
+			"One of them looks just like the Infernal Swineclops. Horns and all. "
+			"There's a twin set of adornments, each snout having a horn on it. "
+			--
+			"I'm sure Wigfrid would love these."
+			"Wendy calls these a rememberance of past carnage."
+			"Wickerbottom thinks this is a harrowing sort of handicraft."
+			"Webber says that they're not so scary when they're ornaments."
+			"Oddly enough, these ones are some of Walter's favourites."
+			"They seem to have been forged in flame."
+		}
+		//appeasing
+		{
+			"There's some interesting adornments that we found back when one of us slept under the tree... "
+			"There's some adornments that we found back when one of us slept under the tree that I'm interested in using... "
+			--
+			"These ones look like goats. "
+			--
+			"Willow says that these are cute enough for her to not want to burn them."
+			"...These ones make me hungry, for some odd reason."
+			"Wickerbottom says that the needlework is very intricate. I wouldn't be able to tell, I'm no seamstress."
+			"Warly feels like cooking when he holds these."
+		}
+		
+		//lights
+		{
+			"We're going to be using lights this time around. "
+			"I'm quite ecstatic about decorating the tree with some lights. "
+			--
+			"A good Winter's Feast tree isn't complete without some form of electricity, after all!"
+			"Though, WX-78 would beg to differ, considering, according to them, we're decorating with robot guts."
+			"Maxwell considers this frivolous. Just about everyone else considers it to be part of the holiday."
+			"I'm wondering if we should use all red, all blue, all green or all yellow..."
+			"There's some other sorts of lights too, they'd also make for a fine addition to the tree."
+			"Warly will love it, I'm sure."
+			"Wormwood seems entranced by these, but I think it's just because he's a plant."
+			"I've personally no idea what powers these, frankly. Maybe some sort of capacitor...?"
+		}
+		--
+		"\e"
+	}
+	
+	//treats
+	{
+		"\0\s[0]Some of the creatures within the Constant have started dropping treats. "
+		--
+		"I've been meaning to collect a bunch of cookies. I'm going to eat forty of them. For science."
+		"Gingerbread cookies are very nice. Especially with the eggnog..."
+		"Maxwell's rather fond of the eggnog, for some reason. I'm not going to question it too much, it's not really my business."
+		"I'm not sure if I should be allowing the kids to have that eggnog, but then again, I did take my first sip of moonshine when I was... what, sixteen?"
+		"I have done some dubiously unethical experiments regarding fruitcake. I wish I had not done some dubiously unethical experiments regarding fruitcake."
+		"Woodie's quite partial to Chocolate Log Cakes, I've found."
+		"Wigfrid seems to be unable to drink the Apple Cider or eat the Plum Pudding. Then again, I'd assume this is because she's been living off of meat so long..."
+		--
+		"\e"
+	}
+}
+
 //Example of a pool. You can name pools whatever you like. I always start them with Pool_ so that it's clear what they are. They MUST have : array after the function name, or they won't work. I also recommend putting a comment with what if check activates this pool, so it's easy to remember later.
 Pool_Example : array //username != ""
 {
 	"\0\s[0]Your name is still %(username), right?\e"
 }
 
-Pool_status_sleepy
+Pool_status_sleepy : array
 {
 	"\0\s[0]\i[2]Hm? I have bags under my eyes? \w8Well, yes, I do have to stay up for multiple nights in a row to get things in the camp to work.\e"
 	"\0\s[0]\i[2]...What? \w8What's with that look for? \w8I wasn't yawning under my breath. You- You're imagining things.\e"
