@@ -3,9 +3,12 @@ OnTranslate
 	_talk = reference0
 	
 	//---Anchors---
-	_talk = REPLACE(_talk, "Example Anchor", "\_a[exampleanchor]Example Anchor\_a")
-	_talk = REPLACE(_talk, "Example word swap", "You don't have to make anchors into links, you can put images and stuff too")
-	_talk = REPLACE(_talk, "Example Anchor with OnFunction", "\_a[OnSomeAnchor]Since this links to OnSomeAnchor, you could create a function called OnSomeAnchor that would be called directly by clicking this\_a")
+	//_talk = REPLACE(_talk, "Example Anchor", "\_a[exampleanchor]Example Anchor\_a")
+	_talk = REPLACE(_talk, "anMaxwell", "\_a[Maxwell]Maxwell\_a")
+	_talk = REPLACE(_talk, "anWebber", "\_a[Webber]Webber\_a")
+	_talk = REPLACE(_talk, "anWillow", "\_a[Willow]Willow\_a")
+	//_talk = REPLACE(_talk, "Example word swap", "You don't have to make anchors into links, you can put images and stuff too")
+	//_talk = REPLACE(_talk, "Example Anchor with OnFunction", "\_a[OnSomeAnchor]Since this links to OnSomeAnchor, you could create a function called OnSomeAnchor that would be called directly by clicking this\_a")
 	
 	
 	//---Important other stuff, written by Ponapalt---
@@ -32,6 +35,557 @@ OnAnchorSelect
 			when "exampleanchor"
 			{
 				"\0\s[0]You clicked the example!\e"
+			}
+			when "Maxwell"
+			{
+				if Flag("KnowMax") == 1
+				{
+					if season == "Winter"
+					{
+						"\0\s[0]I'm reasonably certain I've told you about Maxwell. He's the guy that trapped me and multiple other people, including himself, in the Constant. He'll usually be complaining about his joints in this weather, though.\e"
+					}
+					"\0\s[0]I'm already certain I've told you about Maxwell, but I suppose memories aren't exactly infallible. Maxwell is the person that trapped the majority of us survivors here. Funnily enough, he's now one of us survivors. It wasn't only me that got stuck in the Constant.\e"
+				}
+				else
+				{
+					MiscFlags ,= "KnowMax"
+					"\0\s[0]Maxwell is the one that trapped me, or, rather, all of us, in the Constant. It wasn't just me that he trapped in the Constant, as I came to find out after building another portal that was intended to get us back home. \w8\w8It got torn down and became a connection between every single version of the Constant that was available at the time.\e"
+				}
+			}
+			when "Willow"
+			{
+				if Flag("KnowWillow") == 1
+				{
+					{
+						"\0\s[0]I'm certain I've already told you about Willow. "
+						--
+						if hunger <= 50
+						{
+							"She gets very whiny when she's hungry. "
+							"I'll never understand why she likes spicy food so much. "
+						}
+						if tirednesslevel >= 70
+						{
+							"She's nice. When she wants to be. "
+							"She's nice. "
+						}
+						"She's quite a hotheaded person. "
+						"She's quite hotheaded. "
+						"She's very fiery. "
+						"I wouldn't call her aggressive, but she does tend to be a bit much at times. "
+						"I wouldn't call her aggressive, but she is quite a fiery person. "
+						"I wouldn't call her aggressive, but she is quite hotheaded. "
+						"She has quite the temper. "
+						"She does tend to be a bit much at times. "
+						--
+						if hunger <= 50
+						{
+							"Though, the fire certainly is useful for cooking things, and she's able to use her lighter to cook things... "
+							"Willow's able to use her lighter to cook things quickly and efficiently. "
+							"Willow's able to use her lighter to cook things, I'd assume this is something to do with her being virtually fireproof. "
+						}
+						"She has an obsession with fire. "
+						"She has an odd little obsession with fire. "
+						"She's practically obsessed with fire, enough so to carry around her lighter with her at all times. "
+						"She carries around a lighter with her nearly all the time. The only times I haven't seen her with it would be when it's broken. "
+						"She really likes fire. A lot. "
+						"She really likes fire. A lot. It's why someone needs to go with her whenever she decides she's collecting charcoal. "
+						--
+						if tirednesslevel >= 70
+						{
+							"I trust her. Lots."
+							"Sometimes we cuddle up in the tents together."
+						}
+						if hunger <= 50
+						{
+							"She likes Spicy Chili."
+							"She likes Spicy Chili. Unfortunately, I don't do well with spice."
+						}
+						if season == "Winter"
+						{
+							if hunger <= 50
+							{
+								"Do you know if chili is good for the common cold, %(username)?"
+							}
+							if tirednesslevel >= 70
+							{
+								"Mmm. I like it when we're cuddling. Warm n' fuzzy inside."
+							}
+							"And she apparently likes sticking her cold feet on my legs when we're cuddling."
+							"And she likes using me as a thermal stone. \w8\w8I don't particularly mind it, I suppose."
+							"And she likes cuddling me because I'm able to store a bit more heat than she does."
+							"And she likes cuddling me in the Winter. Of course, she'll probably be complaining about me not being there as her thermal stone when I get back."
+							"She really seems to like cuddling me."
+							"The fire lasts longer when she's the one to tend to it."
+							"She seems to enjoy using me as a thermal stone."
+							"Apparently it's quite funny to her to see my reaction to her cold feet touching me."
+							"She's likely going to be complaining about me not being there to keep her warm when I get back."
+							"She's likely going to be complaining about me not being there to warm her up when I get back."
+							"She complains about the cold more than Maxwell does. And that's saying something, that man will complain about anything that isn't a five-star restaurant with room service."
+							"She complains about the cold more than Maxwell does."
+							"She complains about the cold more than Maxwell does. And that's saying something."
+							"She's less resistant to the cold than I am, so I'm usually the one to cuddle with her. I swear, she's almost like a cat."
+						}
+						if season == "Summer"
+						{
+							if hunger <= 50
+							{
+								"I'm not too sure if she likes ice cream, since it's cold and all."
+								"I know she likes chili, but ice cream is usually better for summer."
+							}
+							if tirednesslevel >= 70
+							{
+								"I can't cuddle with her in this heat."
+							}
+							"And she's a little more resistant to overheating than I am."
+							"She's a bit more resistant to overheating than I am."
+							"She's more resistant to overheating than I am. And more resistant to overheating than any other survivor, for that matter."
+							"Endothermic fire pits also last longer when she's the one fuelling them."
+							"Endothermic fire pits last longer when she's the one to tend to them."
+							"The endothermic fire pits last longer when she's the one tending to them."
+							"I'm glad she's a bit more resistant to overheating than the rest of us, frankly."
+							"I've seen her going absolutely buckwild over a wildfire before."
+							"I've seen her going absolutely buckwild over a wildfire before. Did I mention she has an obsession with fire?"
+							"She doesn't like the cold, but I have to remind her that even if she thinks of herself as someone that's only good at burning things, her peak temperature range is around 35 degrees at the core."
+						}
+						if season == "Spring"
+						{
+							if tirednesslevel >= 70
+							{
+								"It's a pain trying to get her to bathe."
+							}
+							"She hates the rain even more than I do. And that's saying something, considering my hair gets all poofy when it dries."
+							"She hates the rain even more than I do."
+							"She doesn't like getting wet."
+							"I'm certain she hates getting wet more than I do."
+							"Apparently bathing, to her, is just sitting in the campfire and letting the dirt get burnt away."
+						}
+						if season == "Autumn"
+						{
+							"I'm reasonably certain that I've seen her staring at some of the leaves before."
+							"We always need more drying racks, and Willow is quite trustworthy to go and get some charcoal for them."
+							"I need to go and let her burn that grove of trees that I use for collecting wood from..."
+							"She loves getting the fire pit's fire to be as high as possible."
+							{
+								"I've seen her sitting in the firepit before. "
+								"Sometimes she sits in the firepit. "
+								"Sometimes she'll sit in the firepit. "
+								"Sometimes she'll sit in the firepit and look smug. "
+								--
+								"I'm a bit surprised that she doesn't burn."
+								"She doesn't even seem to burn."
+								"No wonder why she tends to smell like charcoal..."
+								"No wonder why she tends to smell like pine wood when it's burning."
+							}
+						}
+						"And she carries around a teddy bear."
+						--
+						"\e"
+					}
+				}
+				else
+				{
+					MiscFlags ,= "KnowWillow"
+					"\0\s[0]Ah, Willow. She's one of the first survivors I met other through the portal. She has an obsession with fire, carries a teddy bear around, and has a lucky lighter. Her hair is styled into pigtails. A bit of a fiery spirit, that one.\e"
+				}
+			}
+			when "Webber"
+			{
+				if Flag("KnowWebber") == 1
+				{
+					{
+						"\0\s[0]Oh, Webber? "
+						"\0\s[0]I'm certain I've told you about Webber before. "
+						"\0\s[0]I've told you about Webber before, haven't I? "
+						--
+						"Webber's a sweet kid. "
+						"They're quite a polite little fellow, and they've managed to get Wendy to smile once in a while. "
+						"They're quite a polite little fellow. "
+						"They're quite a sweet kid. "
+						"They're a sweet little fellow. "
+						"They always seem to see the positive side of things. "
+						--
+						"Though, they are both spider and human. Or, rather, a human and a spider fused together. "
+						"They're both spider and human. "
+						--
+						"\n\n[half]"
+						--
+						if season == "Winter"
+						{
+							if month == 12
+							{
+								{
+									"They're able to grow a beard out of silk. "
+									--
+									"I've yet to be able to teach them how to shave it. It might be that they don't have the dexterity."
+									"I have no idea how they're able to grow a beard despite the kid half of them being around... nine?"
+									"How on Earth is a nine-year-old able to even grow a beard? Did the fusion with the spider change that, somehow...?"
+								}
+								{
+									"They're very fond of sugary things. "
+									"They're fond of sweets. Very much so. "
+									--
+									"It's not every day that I have to drag them away from a pile of sweets, but they'll end up making themselves sick otherwise."
+									"I'm not sure if spiders can actually digest the sugar."
+								}
+								{
+									"They're very good at making presents look nice. "
+									--
+									"We think it comes from their spider half."
+									"I think it comes from their spider half."
+									"We're not sure how they have the dexterity, but it works."
+								}
+							}
+						}
+						if season == "Autumn"
+						{
+							"They've expressed a desire to play in some of the leaves."
+						}
+						if season == "Spring"
+						{
+							"They have a talent for getting absolutely soaked and then shaking off a large amount of water on me like a feral animal."
+							"I know the rain is fun to play in, but I really would prefer to not have to worry about them getting a cold."
+							"It's very irritating when they decide to shake the water off of themselves, thus leaving me soaked in the process."
+							"They love splashing in the puddles, but I tend to end up as the one that has to dry them off."
+						}
+						if season == "Summer"
+						{
+							if hunger <= 50
+							{
+								"They're very fond of ice cream. I could go for some right now, actually."
+							}
+							"They're quite fond of ice cream. Speaking of which, it's a good treat for this season, isn't it?"
+						}
+						if tirednesslevel >= 70
+						{
+							"One spider allowed in camp. That spider is Webber."
+							"Both me and Willow have told them that if they have any nightmares, then they're free to come into either of our tents, but they have nightmares practically every night."
+						}
+						if hunger <= 50
+						{
+							"Hmm. I wonder if they'd like monster lasagna..."
+						}
+						"Recently, they've made some improvements in their care of their spider friends."
+						{
+							"They're quite the creative sort. "
+							--
+							"They've recently made some sort of cookie in order to switch the bodies of their spider friends. "
+							"They've made some sort of cookie that switches the properties of their spider friends. "
+							--
+							"Did they get cooking lessons from Warly?"
+							"I am perhaps mildly concerned in regards to this, but I don't want to discourage them."
+							"I think they were called switcherdoodles?"
+						}
+						"The ability to talk to spiders is quite useful when we need meat. Or allies, for that matter."
+						{
+							"They're able to tame the spiders. "
+							"They're able to befriend spiders and talk to them. "
+							"Much to my eternal discontentment, they're able to talk to spiders and befriend them. "
+							--
+							"It takes some meat, but any kind will do. They're not fussy. "
+							"It takes some meat, but any kind will do. "
+							"It takes some meat to befriend them. "
+							"Spiders aren't very fussy in regards to what meat you give them. "
+							"The spiders aren't too fussy in regards to the meat given to them. "
+							--
+							{
+								"Though, this does result in a worrying habit of Webber bringing some of their friends back to the camp.\e"
+								"Apparently Webber tends to start wars between two different spider nests. "
+								"Apparently Webber likes starting wars between two different spider nests. "
+								"Webber will sometimes start wars between two or three different spider nests. "
+								--
+								"I have some concerns."
+								"It gets us an awfully large amount of silk. And glands. Not so much meat, but that's a given, since spiders will cannibalize each other."
+								"It doesn't get us a return on monster meat very often. Though, that's probably due to the spiders not caring whether their food comes from other spiders or something else."
+								//big long list of shit jesus fucking christ
+								//this made me want to smoke. i had to make it more efficient twice.
+								//hopefully this gives the ghost some longevity to any people that download him lmfao.
+								//there's also an element of rngesus.
+								//I HAVE REDONE THIS CODE ABOUT THREE FUCKING TIMES, EACH TIME MAKING IT A BIT MORE FUCKING EFFICIENT
+								//KILL ME.
+								//fourth time, mostly just a small improvement.
+								{
+									"This gets us "
+									--
+									"plenty of "
+									"a lot of "
+									"a large amount of "
+									"a very large amount of "
+									"at least a chest's worth of "
+									--
+									"silk "
+									"spider silk "
+									"silk from them "
+									"silk from the spiders "
+									--
+									"which helps "
+									"and this helps "
+									"which assists "
+									"and this assists "
+									--
+									"with "
+									"us with "
+									--
+									{
+										"making "
+										"crafting "
+										"creating "
+										--
+										"a "
+										"a spare "
+										"an extra "
+										--
+										{
+											"cat cap, "
+											"ushanka if combined with a catcoon tail, "
+											--
+											"which helps with keeping warm."
+											"which might be of some interest to Willow, given her troubles in keeping warm."
+											"which might be of some use to Willow."
+										}
+										{
+											"sewing kit, "
+											"needle and thread, "
+											--
+											"for sewing up "
+											"for mending "
+											--
+											"rips and tears."
+											"rips and tears in clothing."
+											"clothing items."
+											"clothing."
+										}
+										{
+											"dapper vest, "
+											"fancy vest, "
+											"very dapper vest, "
+											"very fancy vest, "
+											"houndstooth vest, "
+											--
+											"for maintaining "
+											"for bringing "
+											--
+											"some semblance "
+											"some form "
+											--
+											"of sanity."
+											"of dapperness."
+											"of calm."
+											"of humanity."
+											"of normalcy."
+										}
+										{
+											"beekeeper hat, "
+											--
+											"for preventing bee stings."
+											"for keeping the bees from stinging me."
+											"for keeping the bees from stinging people."
+											"I know Walter would probably appreciate one."
+										}
+										{
+											"winter hat, "
+											"wintry hat, "
+											--
+											"for keeping heads warm."
+											"for keeping people's body heat in."
+										}
+										{
+											"puffy vest, "
+											"vest, "
+											"breezy vest, "
+											--
+											"for keeping warm during the winter."
+											"for keeping people's body heat in."
+										}
+										{
+											"boomerang, "
+											--
+											"for ranged combat."
+											"for whacking something or someone from afar."
+											"for ranged combat, provided you can catch it."
+										}
+										//umbrella
+										if season == "Spring"
+										{
+											"umbrella, "
+											--
+											"for staying dry."
+											"for keeping out of the rain."
+											"for not getting absolutely soaked."
+											"for not getting soaked to the bone."
+											"for not getting wet."
+											"I know Willow will appreciate not having to get wet."
+											"for my poor hair to stay dry."
+										}
+										{
+											"bug net, "
+											"net, "
+											--
+											"for catching "
+											--
+											{
+												"butterflies, "
+												--
+												"so that we can plant flowers next to the bee boxes."
+												"so that we can plant flowers."
+												"so that we can plant flowers and get the base looking a bit nicer."
+												"so that we can plant some flowers."
+												"so that we can plant some flowers next to the bee boxes."
+												"so that we can plant some flowers and get the base looking a bit nicer."
+											}
+											{
+												"bees, "
+												--
+												"so that we can get honey."
+												"so that we can get some honey."
+												"so that we can get honey out of them."
+												"so that we can get some honey out of them."
+												"I know Warly will appreciate being able to have some honey glazing on some of the meat that he cooks."
+												"I know Warly will appreciate being able to use it in his cooking."
+											}
+										}
+										{
+											"top hat, "
+											"fancy hat, "
+											"fancy top hat, "
+											"fancy hat with a brim, "
+											"fancy top hat with a brim, "
+											"top hat with a brim, "
+											--
+											"for maintaining "
+											"for gaining "
+											--
+											"some semblance of "
+											"some form of "
+											--
+											"sanity."
+											"normalcy."
+											"dapperness."
+										}
+										{
+											"fishing rod, "
+											"rod for fish, "
+											--
+											"predictably, it's for fishing."
+											"predictably, it's for obtaining fish."
+											"so that we can have some fresh fish."
+											"so that we can have some fresh fish for dinner."
+											"I know Warly will appreciate some fresh fish for dinner."
+										}
+										{
+											"bird trap, "
+											"trap for the birds, "
+											--
+											"predictably, for catching birds."
+											"for catching birds."
+											"for catching birds so that we can finally fill up that bird cage."
+											"for obtaining a pet bird."
+											"for trapping a bird."
+											"predictably, it's used for trapping a bird."
+											{
+												"for catching birds so that we can finally fill up that bird cage, "
+												"for trapping a bird, "
+												"predictably used for trapping a bird, "
+												"predictably used for catching a bird, "
+												"for catching a bird, "
+												--
+												"so that we don't need to rely on "
+												"so that we don't have to rely on "
+												"and so that we don't need to rely on "
+												"and so that we don't have to rely on "
+												--
+												"someone stealing tallbird eggs."
+												"the theft of tallbird eggs."
+												"someone being available to steal tallbird eggs."
+												"someone committing theft regarding tallbird eggs."
+												"someone taking the tallbird eggs away from their mothers."
+												"someone taking a free tallbird egg."
+											}
+										}
+									}
+									//tents
+									{
+										"maintaining "
+										"repairing "
+										--
+										if season == "Summer"
+										{
+											"the siesta lean-tos."
+											"the siesta lean-to."
+										}
+										if season == "Winter"
+										{
+											"the vests."
+											"the puffy vests."
+											"the breezy vests."
+										}
+										"sleeping quarters."
+										"the tents."
+									}
+								}
+								{
+									//glands.
+									//this made me want to smoke.
+									"This gets us "
+									"We end up with "
+									--
+									"plenty of "
+									"a lot of "
+									"a large amount of "
+									"a very large amount of "
+									"at least a chest's worth of "
+									--
+									"spider glands, "
+									"glands from them, "
+									"glands from the spiders, "
+									"spider venom glands, "
+									--
+									"which helps with "
+									"and this helps with "
+									"which assists with "
+									"and this assists with "
+									--
+									"keeping people alive."
+									"keeping the others alive."
+									"keeping us all alive."
+									"creating salves."
+									"making salves."
+									"making antiseptic salves."
+									"creating antiseptic salves."
+									"making healing salves."
+									"creating healing salves."
+									"reviving someone if they die."
+									"reviving someone should they die."
+									"reviving the others."
+									"reviving us all, provided someone's around to give the heart over."
+									"creating a heart for reviving a dead person."
+									"making a heart for reviving a dead person."
+									"creating a heart that revives a person."
+									"making a heart that revives a person."
+									"creating a heart in order to revive someone from an embarrassing death."
+									"making a heart in order to revive somesome from an embarrassing death."
+									"creating a heart in order to revive someone."
+									"making a heart in order to revive someone."
+									"Wendy being able to make an elixir for Abigail."
+									"Wendy being able to make an elixir to restore Abigail's health."
+									"Wendy being able to make an elixir for Abigail that restores her health."
+									"Wendy being able to make an elixir for her sister."
+									"Wendy being able to make an elixir to restore her sister's health."
+									"Wendy being able to make an elixir for her sister to restore her health."
+								}
+								
+							}
+						}
+						"I do appreciate their attempts to help me with the arachnophobia. Nowadays I'm more towards... avoidant of spiders, I'd say."
+						--
+						"\e"
+					}
+				}
+				else
+				{
+					MiscFlags ,= "KnowWebber"
+					"\0\s[0]Webber is one of the more interesting oddities that I've found in the Constant. A boy and a spider, fused together into something that became them. Sometimes the boy talks through their mouth, sometimes the spider talks through their mouth. They have a talent for befriending other spiders, though I'd wager that's due to the spider side of them being happy to see family again.\e"
+				}
 			}
 		}
 	}

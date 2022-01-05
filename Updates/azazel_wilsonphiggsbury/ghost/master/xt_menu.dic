@@ -51,6 +51,10 @@ Select.UpdateLater //If the user decides to update later
 		{
 			"\0\s[0]Fine, I'll remind you about this once a day. Mark my words.\e"
 		}
+		if hunger <= 50
+		{
+			"\0\s[0]Do I get free food for reminding you about this once a day?\e"
+		}
 		"\0\s[0]Alright,\w4 I'll remind you once a day.\e"
 		"\0\s[0]Turning this on means that I have to remind you once a day to update something or other.\e"
 		"\0\s[0]If you get annoyed with daily update notifications, then you can just turn it off in the menu.\e"
@@ -73,13 +77,22 @@ Select.UpdateOff //If the user no longer wants to be notified about updates
 		{
 			"\0\s[0]What, was this too annoying for you?\e"
 			"\0\s[0]Fine, I'll switch this setting off. It was annoying the hell out of me anyways.\e"
+			"\0\s[0]As usual, the function is probably in the functions menu. Turn it on whenever, just don't bother me while doing so.\e"
 		}
 		if tirednesslevels >= 75
 		{
 			"\0\s[0]Oh, good, I don't have to talk as much!\e"
+			"\0\s[0]The one thing I can celebrate: not having to make an uncomfortable amount of eye contact when telling you that there's an update available!\e"
+			"\0\s[0]The one thing I can celebrate: not having to talk as much.\e"
+			"\0\s[0]You can turn them back on whenever. I'm just glad I don't have to do this thing daily anymore.\e"
 		}
 		"\0\s[0]Auto Update checks turned off.\w8 You can turn them back on whenever, they're just in the config menu.\e"
 		"\0\s[0]Auto Update checks have been turned off.\e"
+		"\0\s[0]I've turned those automatic update checks off for you. No need to thank me.\e"
+		"\0\s[0]I've turned those automatic update checks off for you.\e"
+		"\0\s[0]I've turned those automatic update checks off.\e"
+		"\0\s[0]The automatic update checking has been turned off for you. No need to thank me.\e"
+		"\0\s[0]The automatic update checking has been turned off. Re-enable it whenever, you probably know where to find it.\e"
 	}
 }
 
@@ -114,6 +127,11 @@ OnMenuRun //Main menu
 
 OnLastTalk //Repeats the last thing the ghost said
 {
+	if tirednesslevels >= 70
+	{
+		"\0\s[0]...I forgot what I just said...\e"
+		"\0\s[0]Hm? Oh. I... uh. I forgot what I said.\e"
+	}
 	if annoyancelevels >= 50
 	{
 		"\0\s[0]I don't like repeating myself, %(username). Now, listen closely. I said: \n\n[half]%(lastTalk).\e"
@@ -160,17 +178,51 @@ Select.thisremindsmeofa
 		if tirednesslevels >= 75
 		{
 			"\0\s[0]...I'm not going to be able to focus on this properly.\e"
+			"\0\s[0]...I'm tired. Maybe later.\e"
+			"\0\s[0]Not in the mood for this. After a nap, maybe.\e"
 		}
 		if annoyancelevels >= 75
 		{
-			"\0\s[0]...I'm a bit too peeved to focus on this one. Give me a while and I'll calm down.\e"
+			"\0\s[0]I'm not in the mood for this, %(username)."
+			"\0\s[0]Quit bothering me with this, I'm not in the mood."
+			"\0\s[0]This is wasting my time."
 		}
 		if hunger <= 50
 		{
 			"\0\s[0]I'm too hungry to focus on this."
 		}
-		"\0\s[0]Oh, a Rubik's Cube? I'll have to see if I can't solve this..."
-		"\0\s[0]Ah, a sliding block puzzle. I used to like these a bit more as a kid. Maybe one of the kids would get some use out of it..."
+		//rubiks cube
+		{
+			"\0\s[0]Oh! A Rubik's Cube...? "
+			"\0\s[0]Oh! A colour cube... "
+			--
+			"I'll have to see if I can't solve this."
+			"Apparently it's possible to solve one of these in as little as twenty-five moves."
+			"Apparently the developer's mother could do one or two sides of one of these."
+			"Walter might enjoy this a bit more than I would."
+		}
+		
+		//sliding block puzzle
+		{
+			"\0\s[0]Ah, one of the slidey-block puzzles. "
+			"\0\s[0]Is this a sliding block puzzle? "
+			--
+			"Interesting gift. I used to enjoy these a bit more often as a kid."
+			"Interesting. I might see if Wurt wants this."
+		}
+		
+		//puzzle pieces
+		{
+			"\0\s[0]Ah, one of those jigsaw puzzles. "
+			"\0\s[0]Is this a jigsaw puzzle? "
+			--
+			"I can't really accept this, unfortunately. The pieces are far, far too easy to lose. Maybe you should give it to somebody else you've got in your... thing."
+			"Wickerbottom would probably enjoy this, if it weren't for the fact that the pieces would be rather easy to lose..."
+			"The pieces would be far too easy to lose. I can't accept it, maybe you should try giving it to somebody else."
+		}
+		
+		"\0\s[0]I've never seen this one before."
+		"\0\s[0]This is certainly unique. I haven't seen anything like this before."
 	}
 	--
 	"\n\n[half]%(BackToActions)\e"
@@ -195,10 +247,11 @@ Select.rambletalker
 		}
 		if annoyancelevels >= 50
 		{
-			"\0\s[0]I'm going to have to stop you right there, unfortunately. I've got too much on my mind to be listening fully and I don't want to... hurt you by not giving your rambling my full attention.\e"
+			"\0\s[0]...This doesn't concern me at all."
 		}
 		"\0\s[0]...You've got me interested and itching to find out more about that subject, now."
 		"\0\s[0]Do you not have anything else to say on this subject? I find it rather... interesting."
+		"\0\s[0]...Intriguing."
 	}
 	--
 	"\n\n[half]%(BackToActions)\e"
@@ -228,21 +281,21 @@ Select.complimentarycompliment
 		{
 			"\0\s[0]I am not that pettable, but I'll take the compliment anyways."
 			"\0\s[0]My hair isn't that clean, %(username). \i[1]\i[2]\i[7]I'm fairly certain you could easily find a few leaves and twigs in there."
+			"\0\s[0]My hair is the fuzziest hair you've ever seen? \i[5]Well, yes, but it's not for touching."
 		}
-		if annoyancelevels >= 50
+		if annoyancelevels >= 70
 		{
 			"\0\s[0]...Thanks, I guess?"
-			"\0\s[0]I'm not sure why you're going to the extent of complimenting me when I'm... irate, for lack of a better word. I don't get it."
+			//"\0\s[0]I'm not sure why you're going to the extent of complimenting me when I'm... irate, for lack of a better word. I don't get it."
 			"\0\s[0]Are you trying to cheer me up or something?"
-			"\0\s[0]Hm. Thank you. I'll... try and tone down my utter annoyance at things. It's been a tough day."
+			//"\0\s[0]Hm. Thank you. I'll... try and tone down my utter annoyance at things. It's been a tough day."
 		}
-		if tirednesslevels >= 50
+		if tirednesslevels >= 70
 		{
 			"\0\s[0]\i[2]I don't look that cute when I'm sleeping, %(username)."
 			//"\0\s[0]\i[1]\i[2]\i[9]I... I'm not sure what you mean by wanting to give me a goodnight kiss."
 			"\0\s[0]The scruffy look is because I don't have the time to take care of all of the beard hair. I miss patches. I'm not exactly perfect, %(username)."
 		}
-		"\0\s[0]My hair is the fuzziest hair you've ever seen? \i[5]Well, yes, but it's not for touching."
 		"\0\s[0]Well, yes, I am very smart, after all. I had to figure out a lot of things by myself."
 		"\0\s[0]I am not a hunk, but thank you anyways?"
 		"\0\s[0]Mm, yes, well. I have had to patch this waistcoat up myself several times. And clean stains out of it."

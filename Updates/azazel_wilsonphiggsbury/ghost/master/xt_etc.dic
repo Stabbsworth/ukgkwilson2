@@ -621,6 +621,10 @@ OnUpdateCheckComplete
 //Starting to actually update
 OnUpdateBegin
 {
+	if totalpunches >= 5
+	{
+		"\0\s[0]...Hmn.\e"
+	}
 	"\0\s[0]Ok,\w4 I'll update.\w8\w8\e"
 	"\0\s[0]Let's see here...\w8\w8\e"
 }
@@ -652,8 +656,13 @@ OnUpdateComplete
 			{
 				"\0\s[0]Of course the developer hasn't gotten off his lazy arse and updated this stuff yet. Isn't he supposed to be on Zoloft or something?\e"
 			}
+			if tirednesslevels >= 70
+			{
+				"\0\s[0]Mm? Oh, right, the update.\w8\w8 There's nothing new.\e"
+			}
 			"\0\s[0]There are no new files.\e"
 			"\0\s[0]No new files right now. You'll have to check back later.\e"
+			"\0\s[0]There's nothing new at the moment.\e"
 		}
 	}
 	else
@@ -662,10 +671,18 @@ OnUpdateComplete
 		
 		if totalpunches >= 5
 		{
-			"\0\s[0]The update's been... completed."
+			"\0\s[0]The update's been... completed.\e"
+		}
+		elseif annoyancelevels >= 70
+		{
+			"\0\s[0]Update's complete. You can access the changelog from the functions menu.\e"
 		}
 		else
 		{
+			if tirednesslevels >= 70
+			{
+				"\0\s[0]I forgot what I was supposed to say here, something about a changelog..."
+			}
 			"\0\s[0]Update complete!\w8\w8 Do you want to see the changelog?"
 			"\0\s[0]The update's complete.\w8\w8 Do you want to see the changelog?"
 		}
@@ -677,13 +694,23 @@ OnUpdateComplete
 //I've put this here so it's easier to remember to update the version number while you're updating the changelog. This will display on the ghost's menu. I made it an envelope so you can have it be the same across multiple menus for multiple modes, if you want.
 ghostver
 {
-	"1.0.0"
+	"1.0.4"
 }
 
 //the autoscroll tag here means the user will see the changelog starting from the top. I recommend putting the new versions on top, and old versions under that.
 OnChangeLog
 {
-	"\![set,autoscroll,disable]\_q\b2\_l[90]==Version 1.0.2==\n\n/
+	"\![set,autoscroll,disable]\_q\b2\_l[90]==Version 1.0.4==\n\n/
+	-added more aitalk dialogue, mostly about statues\n/
+	-wilson is a dick and will force you to get the changelog from the functions menu instead of a dialogue box when he's annoyed and has completed an update now.\n/
+	-wilson will also sometimes forget what he just said when he's tired enough.\n/
+	-added stuff involving anchors\n/
+	-finally fucking got around to tweaking the fucking hitbox, disabled the other one for now because it's not needed at this stage. you can now pet the twat.\n/
+	-tweaked some values\n\n/
+	==Version 1.0.3==\n\n/
+	-added more aitalk dialogue\n/
+	-not sure what else i did\n\n/
+	==Version 1.0.2==\n\n/
 	-possibly fixed a bug involving passivemode\n/
 	-added more dialogue\n\n/
 	==Version 1.0.1==\n\n/
@@ -757,6 +784,7 @@ OnUpdateFailure //If the update fails
 	{
 		_currentfile = SPLITPATH(reference1)[2] + SPLITPATH(reference1)[3] //This gets the name and extension of the offending file
 		"\0\s[0]The MD5 values don't match.\w8\w8 You should contact the ghost author and let them know that '%(_currentfile)' is giving an MD5 error.\e"
+		"\0\s[0]There's been an MD5 value mismatch. \w8\w8You probably should contact Percival and let him know that '%(_currentfile)' is giving an MD5 error.\e"
 	}
 	elseif reference0 == "artificial" //If the user cancels the update by double clicking the balloon
 	{
@@ -841,7 +869,21 @@ OnHeadlinesenseComplete
 	}
 	else
 	{
+		if tirednesslevels >= 70
+		{
+			"\0\s[0]Mm? Oh. There hasn't been any update to the feed.\e"
+		}
+		if annoyancelevels >= 70
+		{
+			"\0\s[0]It's not going to update immediately, you know.\e"
+			"\0\s[0]Asking me every five minutes as to whether your feed has updated isn't going to make it update any faster.\e"
+			"\0\s[0]Be patient, can't you? It won't update any faster if you keep asking me.\e"
+			"\0\s[0]There's been no updates since the last time you asked. I'm not sure what you were expecting.\e"
+		}
 		"\0\s[0]There's no update.\e"
+		"\0\s[0]There hasn't been an update to the feed.\e"
+		"\0\s[0]There's been no updates since the last time you asked.\e"
+		"\0\s[0]There's been no updates since the last time you checked.\e"
 	}
 }
 
@@ -853,10 +895,12 @@ OnHeadlinesenseFailure
 	if reference0 == "can't download"
 	{
 		"I can't download it.\e"
+		"I can't download it properly.\e"
 	}
 	elseif reference0 == "can't analyze"
 	{
 		"I can't analyze it.\e"
+		"I can't analyze it properly.\e"
 	}
 	else
 	{
@@ -885,6 +929,8 @@ OnSNTPCompare
  	if reference3 == 0 //if your clock is already accurate.
 	{
 		"\s[0]Your clock is accurate.\e"
+		"\s[0]It's accurate enough.\e"
+		"\s[0]I can't get any more accurate than that, %(username).\e"
 	}
  	else //if your clock doesn't match
 	{
@@ -902,6 +948,8 @@ OnSNTPExecute
 	"\6"
 	--
 	"\0\s[0]Alright,\w4 should be all good now!\e"
+	"\0\s[0]It should be accurate now.\e"
+	"\0\s[0]It should be accurate now. It won't be down to the last millisecond, but it should be accurate enough.\e"
 }
 
 OnSNTPCancel
@@ -919,6 +967,8 @@ OnSNTPCancel
 		if tirednesslevels >= 75
 		{
 			"\0\s[0]Oh, good. It's about time to sleep, anyways.\e"
+			"\0\s[0]Mmh. 'm not good with time.\e"
+			"\0\s[0]Is it time to go to bed yet?\e"
 		}
 		"\0\s[0]My timekeeping abilities should be excellent. They're probably better than yours.\e"
 		"\0\s[0]I didn't turn up late to a camp meeting once!\e"
@@ -936,6 +986,8 @@ OnSNTPFailure
 	else
 	{
 		"\0\s[0]Sorry,\w4 something went wrong.\e"
+		"\0\s[0]Something got messed up.\e"
+		"\0\s[0]Something went wrong.\e"
 	}
 }
 
@@ -966,6 +1018,10 @@ OnBatteryLow
 		{
 			"\0\s[0]...Battery low...\e"
 		}
+		if annoyancelevels >= 70
+		{
+			"\0\s[0]Your battery is getting low. Does that mean I'm going to be let off early?\e"
+		}
 		"\0\s[0]Your battery is getting low.\e"
 		"\0\s[0]Your battery is at %(reference0) percent.\e"
 		"\0\s[0]Your battery is depleting to levels that would generally be considered low, %(username).\e"
@@ -976,7 +1032,16 @@ OnBatteryLow
 //reference0 should be the exact percentage left
 OnBatteryCritical
 {
-	"\0\s[0]Your battery is almost completely depleted...\e"
+	if totalpunches >= 5
+	{
+		"\0\s[0]Escape soon...\e"
+	}
+	else
+	{
+		"\0\s[0]Your battery is almost completely depleted...\e"
+		"\0\s[0]Your battery is getting very low.\e"
+		"\0\s[0]The level of charge in your battery is at very low levels. Don't you have a charger or something?\e"
+	}
 }
 
 //reference0 is the new size, reference1 is the previous size. Sadly, you can't check for the Y scale.
@@ -1020,11 +1085,13 @@ OnShellScaling
 	}
 	elseif reference0 > reference1
 	{
-		"\0\s[0]Getting bigger!\e"
+		"\0\s[0]...?\e"
+		"\0\s[0]Oh, finally. Maybe I'm actually taller than 5'0.\e"
 	}
 	elseif reference0 < reference1
 	{
-		"\0\s[0]Getting smaller!\e"
+		"\0\s[0]...\e"
+		"\0\s[0]As if I wasn't small enough.\e"
 	}
 }
 

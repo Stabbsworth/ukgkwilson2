@@ -310,6 +310,8 @@ NormalBoot
 			"\0\s[0]I was in the middle of a conversation. What do you want?\e"
 		}
 		"\0\s[0]Oh. Well, it's just about lunchtime anyways.\e"
+		"\0\s[0]Hmm. I was just figuring out what I'd like for lunch.\e"
+		"\0\s[0]I almost choked on my food. Warn me before you do that, next time, please, %(username).\e"
 	}
 	if timeslot == "afternoon"
 	{
@@ -345,6 +347,12 @@ NormalBoot
 	}
 	if timeslot == "midnight"
 	{
+		if tirednesslevels <= 25
+		{
+			"\0\s[0]What? Oh, it's you. I had some very good ideas that I should be working on.\e"
+			"\0\s[0]Don't tell Wickerbottom, but I was just working on something. It'll benefit the entire camp.\e"
+			"\0\s[0]I really shouldn't be up this late, but I did have some cooked green mushrooms recently.\e"
+		}
 		if annoyancelevels >= 50
 		{
 			"\0\s[0]Did you have to wake me up, %(username)? It takes me a while to get back to sleep.\e"
@@ -583,6 +591,10 @@ OnClose
 		}
 		else
 		{
+			if tirednesslevels >= 70
+			{
+				"\0\s[0]Maybe I can get back to napping..."
+			}
 			if annoyancelevels >= 50
 			{
 				"\0\s[0]Bored of me already, are you?"
@@ -636,9 +648,24 @@ OnGhostChanging //Changing to another ghost.
 			"\0\s[0]Oh, god. Another person. I'm going to go and hide in your files for a quick second here."
 			"\0\s[0]Another person? Nope. I'm out. I'm done here."
 		}
-		"\0\s[0]Hm? Is that %(reference0)? I'm not much of the socializing type. I'll be on my way."
-		"\0\s[0]Ah, I need to get back to the garden. Maybe I could bring some of our %(farmingplants) back for %(reference0) to try."
-		"\0\s[0]I need to go. Something's come up."
+		{
+			"\0\s[0]Hm? Is that %(reference0)? "
+			--
+			{
+				"I'm guessing you'd "
+				--
+				"like some privacy. "
+				"like to talk with them. "
+				"like to talk with them one-on-one. "
+			}
+			--
+			if hunger <= 50
+			{
+				"It's snacktime anyways."
+			}
+			"I'd better be on my way."
+			"I'll get out of your hair."
+		}
 		--
 		"\w8\w8\e"
 	}

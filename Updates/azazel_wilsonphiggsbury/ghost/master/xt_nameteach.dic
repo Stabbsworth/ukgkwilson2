@@ -2,7 +2,18 @@
 
 OnChangeName
 {
+	if annoyancelevels >= 70
+	{
+		"\0\s[0]Oh, get on with it already. Spit it out, what do I call you?"
+	}
 	"\0\s[0]Ok,\w4 what should I call you?"
+	"\0\s[0]I made name changes free, unlike the government."
+	"\0\s[0]The government are too cowardly to make name changes free."
+	"\0\s[0]I can take deed polls. Unlike Paypal."
+	"\0\s[0]I can take deed polls. Unlike Paypal- wait, what's a Paypal..."
+	"\0\s[0]The good news is that changing your name in this... computerized system is perfectly fine. It's also free."
+	"\0\s[0]I can take an informal deed poll."
+	"\0\s[0]Trying out a new name?"
 	--
 	"\n\n\![*]\q[Cancel,OnConfigMenu,OnNameTeach]\![set,balloontimeout,-1]\![open,inputbox,OnNameTeach,-1]\e"
 }
@@ -17,14 +28,21 @@ OnNameTeach
 	_name = REPLACE(_name," ","") //removes spaces
 	_name = REPLACE(_name,".","") //removes periods
 	_name = REPLACE(_name,"-","") //removes dashes
+	//fuck's sake. i had to redo a bunch of code twice.
+	//biiiiiitch, NP++ has a thing for doing find + replace in the selection! fuck yes. thank you devs of NP++. i am now homosexual for you.
 	
 	if _firstboot; "\_l[-10000,-10000]\q[ ,VeryFirstBoot]\_l[0,0]" //Prevents balloon from timing out if this is during first boot. Also prevents the user from closing out the input box
 	--
-	if _tempname == username && !_firstboot //If the user gives the exact same name as before. The firstboot check has to be there in case they put in 'user'
+	if _name == username && !_firstboot //If the user gives the exact same name as before. The firstboot check has to be there in case they put in 'user'
 	{
+		if annoyancelevels >= 70
+		{
+			"\0\s[0]You're aware that I can't exactly change your name if it's the same, right?"
+		}
 		"\0\s[0]Oh,\w4 did you change your mind?"
+		"\0\s[0]Changed your mind?"
 	}
-	elseif _tempname == "Wilson" || _tempname == "wilson" //Checking with _tempname because 'X.' has a period, which would be removed. I don't want to stop someone putting in just X
+	elseif _name == "wilson"
 	{
 		"\0\s[0]That's my name. It'll get confusing if I call you that."
 		--
@@ -32,12 +50,161 @@ OnNameTeach
 		--
 		"\![open,inputbox,OnNameTeach,-1]\e"
 	}
-	elseif _tempname == "Will" || _tempname == "Damien" || _tempname == "Lia" || _tempname == "Atlas" || _tempname == "Melina" || _tempname == "Berries" || _tempname == "Finn"
+	elseif _name == "higgsbury"
 	{
-		"\0\s[0]You'll want to choose something else. The name you've chosen for me to call you is honestly obscene."
+		"\0\s[0]That's what Maxwell calls me. Ugh."
 		--
 		"\![open,inputbox,OnNameTeach,-1]\e"
-	}	
+	}
+	elseif _name == "maxwell" || _name == "maxy" || _name == "carter" || _name == "max"
+	{
+		"\0\s[0]You share a name with a particular schmuck. I'll allow it for the moment, but this may get confusing."
+	}
+	elseif _name == "charlie"
+	{
+		"\0\s[0]That name feels oddly familiar."
+	}
+	elseif _name == "zichqec" || _name == "zi"
+	{
+		"\0\s[0]Oh! Hello, Zi. Percival wanted me to thank you for helping him get me set up for updates with github."
+	}
+	elseif _name == "percival"
+	{
+		"\0\s[0]Ironically, this is my middle name, and one of the developer's names. I think he had an identity crisis at some point."
+	}
+	elseif _name == "percy"
+	{
+		"\0\s[0]The developer was called Percy once."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "azazel" || _name == "az" || _name == "azzy"
+	{
+		"\0\s[0]One of the developer's names, I'd wager. Still, I'm sure it would be nice for him to meet someone with a similar name."
+	}
+	elseif _name == "stabbs" || _name == "stabbsworth"  //...
+	{
+		"\0\s[0]No."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "cecil" || _name == "cedar" || _name == "cedrus" || _name == "igenious"
+	{
+		"\0\s[0]There's far too many memories tied to the name you've chosen. Try regaining Percival's trust. If you know who the developer even is, then you'll know."
+		//i'm not sure why you'd expect me to trust you again so easily.
+		//i loved you.
+		//i tried to help you through alcoholism. you said you wanted to help me and you bailed out on me.
+		//did you love me the same way
+		//it will take a while to earn my trust again.
+		//i miss you.
+		//if you find these, please come and talk to me again. i'm too scared to do it myself.
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "will" || _name == "damien" || _name == "lia" || _name == "atlas" || _name == "melina" || _name == "berries" || _name == "finn" || _name == "finners"
+	{
+		"\0\s[0]Perhaps you should choose another name."
+		//i didn't want to say anything bad about my old friend group, even if they've all hurt me in impossibly large ways.
+		//i hope you all know that you hurt me. badly. my trust will not be earned easily if you want to talk to me again.
+		//it will be a long process.
+		//i have some hope that you might want to talk to me again, though i do request that you personally make sure that you're comfortable with it first.
+		//i miss you all.
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "fuck" || _name == "bitch"
+	{
+		"\0\s[0]Really, you're swearing in my name input box? At least keep your language polite, please."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "poop" || _name == "shit" || _name == "poo" || _name == "poopoo" || _name == "scat" || _name == "droppings" || _name == "diarrhea"
+	{
+		"\0\s[0]Now that's some toilet humor. In all seriousness, I'm not accepting this as a name."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "pee" || _name == "urine" || _name == "peepee" || _name == "piss"
+	{
+		"\0\s[0]Urine trouble. \w8Sounds like 'you're in trouble'. \w8In all seriousness, no, I am not accepting this as a name."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "constipation"
+	{
+		"\0\s[0]Shitting is painful."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "penis" || _name == "peeniss" || _name == "peniss" || _name == "peenis" || _name == "penids" || _name == "peenids" || _name == "peanuss" || _name == "peanis" || _name == "peaniss" || _name == "peanus" || _name == "pen15" || _name == "p3n15" || _name == "p3nis" || _name == "p3ni5" || _name == "p3n1s"
+	{
+		"\0\s[0]Really? Are you serious right now? You want to be named after an organ that's dedicated to penetrative sex? No, I'm not allowing that."
+		//the ukagaka community is full of kids, and it'd be funnier to have a reaction to this bc ik there's teenagers that laugh at this shit lmao
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "testes" || _name == "testicles" || _name == "bolsak" || _name == "ballsack" || _name == "balsac" || _name == "ballsac" || _name == "balsack" || _name == "ballsak" || _name == "balsak" || _name == "ballsacc" || _name == "testicular" || _name == "bollsak" || _name == "bollsack" || _name == "bollsac" || _name == "bolsac"
+	{
+		"\0\s[0]Really, now? You want to be named after something that generates sperm? I'm not allowing that."
+		//god. why
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "cum" || _name == "coom" || _name == "slick"
+	{
+		"\0\s[0]Haha. Very funny. Notice my barren field of laughter."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "vagina" || _name == "vag" || _name == "vaggie" || _name == "coochie" || _name == "pussy" || _name == "puss" || _name == "vaginger" || _name == "vagena" || _name == "cooch" || _name == "vajina" || _name == "vajayjay" || _name == "vageena" || _name == "vegina" || _name == "pusspuss" || _name == "pussie" || _name == "pussi" || _name == "pussie" || _name == "pussey"
+	{
+		//you lot will be the death of me
+		"\0\s[0]Really? You want to be named after an organ that's dedicated to taking penetrative sex? No, I'm not allowing that."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "boob" || _name == "boobies" || _name == "boobie" || _name == "booby" || _name == "boobi" || _name == "tits" || _name == "tit" || _name == "titty" || _name == "titties" || _name == "tittie" || _name == "titti" || _name == "breasts" || _name == "breast" || _name == "tit" || _name == "booba"
+	{
+		//god fucking damn
+		"\0\s[0]You're really trying to name yourself after the mammaries that fed you when you were a little babe? My god. Choose something else for a name."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "slut" || _name == "slutty" || _name == "whore" || _name == "slutwhore" || _name == "whoreslut" || _name == "prostitute" || _name == "slutt" || _name == "slutti"
+	{
+		"\0\s[0]Sex work is undeniably a service. Not one that I'm particularly interested in, given that my current lover is science, but someone will find value in having someone in bed. Either way, that's not really my business. Still, you should choose a different name."
+		//either support sex workers or die by my blade.
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "nigga" || _name == "nigger" || _name == "nickgurr" || _name == "niga" || _name == "chink"
+	{
+		"\0\s[0]No."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "retard" || _name == "retarded" || _name == "retarde" || _name == "retarrd" || _name == "fucktard"
+	{
+		"\0\s[0]Don't be a schmuck."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "kike"
+	{
+		"\0\s[0]You really are a schmuck. Yeesh. Pick something else."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "god" || _name == "goddess"
+	{
+		"\0\s[0]I only worship science."
+		--
+		"\![open,inputbox,OnNameTeach,-1]\e"
+	}
+	elseif _name == "willow" || _name == "wolfgang" || _name == "wendy" || _name == "wickerbottom" || _name == "wurt" || _name == "walter" || _name == "warly" || _name == "wormwood" || _name == "wortox" || _name == "winona" || _name == "woodie" || _name == "wx78"
+	{
+		"\0\s[0]How odd. You share a name with somebody I know."
+	}
 	elseif _name == "" //If the user doesn't put in anything
 	{
 		username = "User"
@@ -157,6 +324,8 @@ OnUserBornMonth
 	else //if the month isn't a valid month, like 32 or something.
 	{
 		"\0\s[0]%(_tempmonth) isn't a valid month,\w4 try again."
+		"\0\s[0]That's not a valid month."
+		"\0\s[0]%(_tempmonth) is an invalid month. Try again."
 		--
 		"\n\n\![*]\q[Cancel,OnConfigMenu,OnUserBornMonth]\![open,inputbox,OnUserBornMonth,-1]\![set,balloontimeout,-1]\*\e"
 	}

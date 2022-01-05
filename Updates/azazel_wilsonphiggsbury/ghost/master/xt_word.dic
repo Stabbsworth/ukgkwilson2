@@ -320,6 +320,13 @@ survivorsminuswalter
 	"Wanda"
 }
 
+stonecraftingmats
+{
+	"stone"
+	"marble"
+	"moonglass"
+}
+
 farmingplants
 {
 	"carrots"

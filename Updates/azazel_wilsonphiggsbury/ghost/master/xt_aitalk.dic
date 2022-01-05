@@ -43,7 +43,14 @@ RandomTalk
 	}
 	else
 	{
-		
+		if Flag("KnowWebber") == 1
+		{
+			if season == "Summer"
+			{
+				"\0\s[0]I should see about assisting Webber with their beard. They have a bit of trouble with it.\e"
+				"\0\s[0]I should see about assisting Webber with their beard. It's not exactly a good idea to keep a beard in the summer.\e"
+			}
+		}
 		if season == "Winter"
 		{
 			//deerclops-related
@@ -61,7 +68,47 @@ RandomTalk
 				--
 				"\e"
 			}
+			"\0\s[0]My clothing isn't exactly suited for this season, I don't think... It was intended to be summer wear.\e"
 		}
+		
+		//annoyance
+		if annoyancelevels >= 70
+		{
+			"\0\s[0]I'm going to be surprised if I don't get more gray hairs by the end of this year.\e"
+		}
+		
+		//sleepy...
+		if tirednesslevels >= 70
+		{
+			if season == "Winter"
+			{
+				"\0\s[0]These days I just want to curl up by the fire. Or in a tent.\e"
+				"\0\s[0]...Could use blankets right now...\e"
+				"\0\s[0]Combining blankets and thermal stones...\e"
+			}
+			if season == "Spring"
+			{
+				"\0\s[0]Tents're safe from the rain...\e"
+				"\0\s[0]...Used to love hearing the rain on the roof...\e"
+				"\0\s[0]Would kill for a nice bath...\e"
+			}
+			if season == "Summer"
+			{
+				if timeslot == "lunch"
+				{
+					"\0\s[0]...Midday nap sounds nice...\e"
+				}
+			}
+		}
+		
+		//beefalo care
+		"\0\s[0]I need to feed my beefalo when I can get around to it...\e"
+		"\0\s[0]Beefalo are quite fond of grass. I wonder if they'll eat sticks?\e"
+		
+		//spider nests
+		"\0\s[0]A few spider nests have set up shop near to the camp. It's a little irritating, I need to see if I can't convince Webber to take care of them.\e"
+		"\0\s[0]I need to figure out a way to keep the spider nests within a certain boundary, but I'm not sure if the Queens are territorial...\e"
+		"\0\s[0]...I can't seem to find anything of use other than silk, meat and glands from them. I wish we'd be able to find something else.\e"
 		
 		/*"\0\s[0]All your random dialogue goes here!\e"
 		"\0\s[0]Here's a chain!\e:chain=achain"
@@ -128,6 +175,32 @@ RandomTalk
 		"\0\s[0]Maybe I ought to set up an ice flingomatic instead of holing up in the caves in the summer. But the gears...\e"
 		"\0\s[0]We need to set up more of a proper camp in the caves...\e"
 		"\0\s[2]\i[71]\i[61]Should really make more drying racks, but that requires taking Willow out on an excursion to a forest to burn a load of trees...\e"
+		
+		//dialogues relating to hangnails, because i fucking hate them
+		{
+			"\0\s[0]Hangnails are scientifically stupid. "
+			--
+			if annoyancelevels >= 70
+			{
+				"I've had one that's been bothering me for the majority of today."
+			}
+			"They pose no evolutionary advantage."
+			"They're just an utter nuisance."
+			--
+			"\e"
+		}
+		{
+			"\0\s[0]Wait, I haven't told you about how much I loathe hangnails. "
+			--
+			"Do you understand just how much I hate hangnails, %(username)? They're the most. Biologically useless features of the human body that is able to be obtained."
+			"Do you understand just how much I hate hangnails, %(username)? They bother me. So much."
+			--
+			"\e"
+		}
+		
+		//dialogues relating to procrastination
+		"\0\s[0]On the plus side, I have a perfectly good excuse to procrastinate.\e"
+		"\0\s[0]Wickerbottom can't really get onto me about being unproductive. This place gives me a perfectly good excuse to procrastinate.\e"
 		
 		//user folders
 		{
@@ -229,6 +302,14 @@ RandomTalk
 			}
 			if season == "Summer"
 			{
+				if tirednesslevels >= 70
+				{
+					"I'm not cleaning that up. It's too warm."
+				}
+				if annoyancelevels >= 70
+				{
+					"I'm not cleaning that up for you. It's too hot."
+				}
 				"A bit late for spring cleaning, but it'd be nice if you managed to clean that up."
 				"It's a bit late for spring cleaning, unfortunately, but still."
 			}
@@ -258,6 +339,478 @@ RandomTalk
 			"\n\n[half]I was thinking about cleaning that up for you."
 			"I'm not sure if I should clean it up or just leave it there."
 			"I've left it there for the moment. I don't think you'd appreciate me messing with things."
+			{
+				"You really should clean up your folders. "
+				"Have you thought about cleaning up some of your folders? "
+				"You really should clean up some of your folders. "
+				--
+				"I know it's hypocritical, coming from me, especially when my chests are very messy, but think of the files you could find!"
+			}
+			--
+			"\e"
+		}
+		
+		//statues
+		{
+			"\0\s[0]I've recently been sculpting a few things... "
+			--
+			//carved hornucopia
+			{
+				"I made a carved hornucopia out of %(stonecraftingmats). "
+				--
+				if hunger <= 50
+				{
+					"I suppose you could say it was made by a starving artist, haha."
+					"Talking about this is making me hungry."
+					"I'm getting hungry just thinking about it."
+					"I'm getting hungry just talking about it."
+					{
+						"Admittedly, I was hungry while making it... "
+						"Admittedly, I was close to starving while making it... "
+						--
+						"Like I am right now. "
+						"Like I currently am. "
+						--
+						"Are you sure you don't have any food?"
+						"...I don't take nibbles of your files, for the record."
+						"I don't take nibbles of your files, for the record. That'd be theft. Or vandalism."
+						"If we had Warly here, then I'd probably be able to bug him to cook something for the both of us."
+					}
+				}
+				"It makes me hungry just looking at it."
+				"Several other survivors have tried to bite into it, not realizing that it's a statue."
+				"Willow complained about chipping a tooth, but... well, it's a statue."
+				"Both Wolfgang and Willow have tried to bite into it. I'm going to have to keep a list of people that have been fooled by my statue."
+				"Wolfgang's tried to bite into it. It's a statue, not actual food..."
+				"Wendy calls it a cold mockery. Well, of course, statues are cold, especially given what they're made of."
+				"WX-78 has given it a purpose: for torturing hungry 'fleshlings'. Why they think that's the purpose of it is beyond me."
+				{
+					"Apparently it's a commonly-held belief that art imitates life. According to Wickerbottom, at least. "
+					"Apparently it's a common belief that art imitates life. So Wickerbottom says. "
+					--
+					"I do not put food in beefalo horns."
+					"Putting food in beefalo horns seems more like Wigfrid's thing."
+					"Does she really believe that I'm putting food in beefalo horns? Honestly..."
+				}
+				"I'm betting Wortox is laughing his furry little- \w8...Er. \w8I'm just saying that Wortox would probably be laughing at the unintentional prank that I've done on multiple survivors, despite there being no intention of mockery or pranking."
+				"Admittedly, I was hungry while making it..."
+			}
+			//bubble pipe carving
+			{
+				"I made a bubble pipe carving out of %(stonecraftingmats). "
+				--
+				"It was never really my thing, frankly."
+				"That was never really my thing."
+				{
+					"Wolfgang says it might be good for lifting. "
+					--
+					"I'm assuming this is so that he can keep his muscular... frame."
+					"I'm hoping he isn't going to crack it."
+					"I'm hoping nothing breaks."
+					"I'm hoping he isn't going to crack it. I spent a good amount of time on that."
+					{
+						"I ought to test just how much he's able to lift. "
+						--
+						"However, there are several limitations to this."
+						"I'm worried, though, what if we go too far...?"
+						{
+							"I may worry a lot about things, but Wolfgang seems to think that I overthink things. "
+							"Wolfgang things I overthink things. "
+							--
+							"It's impossible to not overthink things when you're doing something dangerous."
+							"This experiment could potentially crush him under the statue, for god's sake."
+							"I'm simply concerned that he could tear one of his tendons or muscles, is all."
+						}
+					}
+					
+				}
+				"Wickerbottom's a bit concerned about it having a bad influence on the kids."
+				"Wickerbottom's concerned about it having a bad influence on the kids."
+				"Both Wickerbottom and Warly are concerned about it having a bad influence on the kids."
+				"Warly's said that he hopes it doesn't set a bad example for the kids."
+				"Woodie says it looks kitschy, but he likes it. So does Lucy, apparently."
+				"Webber's rather enthusiastic about the bubbles coming out of the top."
+				{
+					"Apparently, according to Walter, it looks like one of those joke pipes that you can mail in for. "
+					--
+					"I've never heard of such a thing."
+					"I wonder if this would make for a decent toy for the kids."
+					"I'd reckon Wortox got some mileage out of that one."
+				}
+			}
+			//anchor
+			{
+				"I made a figure of an anchor out of %(stonecraftingmats). "
+				--
+				"It's about as heavy as it looks."
+				"Looks heavy, is definitely heavy."
+				"It's very much as heavy as it looks. Believe me."
+				"Wolfgang wants to lift it, predictably."
+				{
+					"Wolfgang wants to lift it, predictably. "
+					--
+					"I hope he's lifting with his legs."
+					"I'm a little bit worried that he'll tear a muscle or a tendon."
+				}
+				{
+					"Wendy asked me about why I sculpted an anchor. "
+					--
+					"I'm not sure why I did that."
+					"I was bored."
+					"I didn't have any other projects going on, so I thought it would be a nice idea to make some decoration out of the materials we have."
+					"I didn't have any other projects going on."
+				}
+				"WX-78 says that it's as heavy as the real thing, but less useful. Pish."
+				{
+					"According to Wickerbottom, artists tend to reference what they're familiar with. "
+					--
+					"Admittedly, I have gone on a lot of fishing trips."
+					"I do like going out on fishing trips."
+					"Now, if only I could make a statue of Pearl..."
+				}
+				"Warly reckons his mother would like this."
+				{
+					"Walter says that it could technically work as a real anchor. "
+					"Walter says that, by technicality, it can still work as a real anchor. "
+					"Walter says that, by technicality, it could work as a real anchor. "
+					--
+					"Take that, robot!"
+					"It'd be very heavy and impractical to lift, though."
+					"It'd be rather impractical, though."
+					"I don't think it would be possible to lift it with one person, though."
+					"He's right."
+				}
+				"Wanda didn't even bother to look at it when I showed it to her. Bah."
+			}
+			//pawn
+			{
+				"I made a statue, a pawn chess piece, out of %(stonecraftingmats). "
+				--
+				"I can relate."
+				"Wickerbottom's hypothesis about me referencing from my own life was correct, it seems."
+				{
+					"Apparently pawns that journey to the seat of power can be quite dangerous. "
+					--
+					"I dread to think what I might have done if I was on that throne for much longer."
+					"This gives me a bit of an idea, but... it's not ethical."
+				}
+				{
+					"Maxwell claims he has no idea what the statue is. "
+					--
+					"Does he not play chess?"
+					"That idiot doesn't even know that I'm taking a snipe at him."
+					"He doesn't even know that I'm taking a snipe at him for trapping me in the Constant."
+				}
+				"Webber says that pawns are just as important as the rest of the pieces. Which is true, by the way. They have more options to progress, while being limited at the start of their journey."
+			}
+			//rook
+			{
+				"I made a statue, a rook chess piece, out of %(stonecraftingmats). "
+				--
+				"It's a lot heavier than it looks."
+				"It's even heavier than it looks. Trust me on this one."
+				"It's even heavier than it looks."
+				"Willow says it looks like it could do some damage."
+				"Apparently it doesn't look like a castle to Wolfgang. Was he expecting me to build an actual castle?"
+				"Wickerbottom says it represents the protective walls of the king's castle."
+				"Woodie says it looks tacky. He's scientifically wrong on that count."
+				"Maxwell keeps bothering me about where the exhaust pipes are. I'm not adding metal into a statue. That'd make it not a statue."
+				"Too small for Wurt, but it's meant to be decorative."
+			}
+			//knight
+			{
+				"I made a statue, a knight chess piece, out of %(stonecraftingmats). "
+				--
+				"It's a horse, of course. What else would it be?"
+				"It's a horse, of course."
+				{
+					"Woodie apparently misses horses. "
+					--
+					"I do wonder..."
+					"I wonder if he used to take horseriding classes."
+					"Not particularly my place to pry, really."
+				}
+				{
+					"According to Maxwell, it has a dreadful lack of accordions. "
+					--
+					"How the hell am I supposed to make stone in a particular way to display an accordion on the midsection?"
+					"I'm not sure what he's getting at."
+					"I'm not adding some form of metal to this. Bah."
+				}
+			}
+			//bishop
+			{
+				"I made a statue, a bishop chess piece, out of %(stonecraftingmats). "
+				--
+				"I don't know why Willow calls this dumb. I think it's perfectly decent decoration for the base."
+				"WX-78 called it a useless hunk of rock with no proper function. Bah."
+				{
+					"Maxwell said that it needed more mechanical bits. "
+					--
+					"I'm not adding gears to it."
+					"But if I add metallic bits to it, then it won't be a proper statue."
+				}
+				"Woby doesn't like it very much. I think she's a bit prone to nerves."
+			}
+			//queenly figure
+			{
+				"I made a statue. It looks quite queenly, and I made it out of %(stonecraftingmats). "
+				--
+				"I'm not sure why, but it looks vaguely familiar."
+				"It looks familiar, somehow, but I can't put my finger on it."
+				"Apparently it makes Wolfgang uncomfortable."
+				"WX-78 actually admitted to not understanding the aesthetic appeal."
+				"Apparently a queen piece is the most strategically formidable. In chess, of course."
+				"Maxwell thinks this is about his shortcomings."
+				"Webber's sure that she's nicer than she looks. Hm."
+				"The statue seems to give Winona a sense of unease."
+				"I'm not sure why I even made this, frankly."
+			}
+			//kingly figure
+			{
+				"I made a statue. It looks kingly, and I made it out of %(stonecraftingmats). "
+				--
+				"Though, on second thoughts... it doesn't seem quite so kingly to me."
+				"It has Maxwell's fashion sense."
+				"It has Maxwell's fashion sense. I don't think he's gotten that it's a snipe at him."
+				"Maxwell thinks it's well-dressed."
+			}
+			//deerclops
+			{
+				"I made a statue of the Deerclops out of %(stonecraftingmats).\n\n[half]"
+				--
+				"...I get the feeling that the eye follows me."
+				"It feels like the eye follows you."
+				"Wickerbottom calls it an anatomical study of the Deerclops. I get the feeling that she likes it."
+				"Another reminder of just about every single Winter, I'd suppose."
+				"I got the sketch from the corpse of the Deerclops itself. I'm not sure why it had that..."
+			}
+			//bearger
+			{
+				"I made a statue of the Bearger out of %(stonecraftingmats).\n\n[half]"
+				--
+				"Admittedly, it was a lot bigger up close."
+				"It was a lot bigger up close."
+				"WX-78 has claimed it as their decoration. I made that, though."
+				"It's quite expressive according to a few of my campmates."
+				{
+					"I got the sketch from the corpse of the Bearger itself. "
+					--
+					"I think it had a fair amount of drool on it."
+					"The amount of fur tufts on it would have given anyone with allergies a run for their money."
+					"I'm not sure why it had that."
+				}
+			}
+			//moosegoose
+			{
+				"I made a statue of the... uh... moosegoose thing. Out of %(stonecraftingmats).\n\n[half]"
+				--
+				"I hate that I made it look so lifelike."
+				"Apparently it looks about as dumb as the real thing. I'm mildly surprised that I got that across in a statue."
+				"Warly wants to whip up some roast goose with cranberry sauce."
+				if hunger <= 50
+				{
+					"Warly wants to whip up some roast goose with cranberry sauce. Stars, now I'm hungry."
+					"Roast goose with cranberry sauce sounds really good right about now."
+				}
+			}
+			//dfly
+			{
+				"I made a statue of the Dragonfly out of %(stonecraftingmats).\n\n[half]"
+				--
+				"It brings back plenty of memories. \w8\w8\w8Bad ones."
+				"It brings back memories. \w8\w8\w8Bad ones."
+				"Willow has finally come to an understanding about art. This isn't art, though, it's scientific to have a decorated space. With statues."
+				"Apparently my stonework is good. I live for the compliments."
+				"Apparently my stonework is good."
+				{
+					"I got the sketch from the corpse of the Dragonfly itself. "
+					--
+					"I'm not sure how it wasn't burned."
+					"I'm not sure why it had that."
+					"Don't ask me as to how it wasn't burned."
+				}
+			}
+			//ancient guardian
+			{
+				"I made a statue of the Ancient Guardian out of %(stonecraftingmats).\n\n[half]"
+				--
+				"It reminds me of the time I almost got gored."
+				"Heh. It's now the one scared stiff."
+				"I think we all prefer the statue to the original Ancient Guardian."
+				"Apparently Wurt has taken to using it as a back scratcher."
+				"I got the sketch from the corpse of the Ancient Guardian. Not sure how..."
+			}
+			//toadstool
+			{
+				"I made a statue of the Toadstool out of %(stonecraftingmats).\n\n[half]"
+				--
+				"It doesn't make for a very good stool."
+				"It doesn't make for a very good stool, though."
+				"Not exactly a great stool, though."
+				"I can confirm that Wolfgang is more handsome than that smelly thing."
+				"At least it doesn't smell as bad as the original."
+				"Warly's thinking about making mushroom soup."
+				"I found a sketch within the mushrooms on the back of that thing."
+			}
+			//BQueen
+			{
+				"I made a statue of the Bee Queen out of %(stonecraftingmats).\n\n[half]"
+				--
+				"It's very statuesque."
+				"Wickerbottom calls it a queenly tribute to her."
+				"Brings back memories of the time where I almost got skewered by a giant bee."
+				"Walter's not allergic to bees made out of stone, thankfully."
+				"Warly considers it to be a good muse for his new honey glaze."
+				"I found a sketch, it was covered in honey, but there was something legible on it."
+			}
+			//klaus
+			{
+				"I made a statue of Klaus out of %(stonecraftingmats).\n\n[half]"
+				--
+				"Hopefully I can invoke the 'no holiday decorations' Klaus."
+				"Apparently it'd make for a good table centerpiece."
+				"Apparently it'd make for a good table centerpiece for a holiday feast."
+				"Ah, this brings back memories. Bad ones. Bad ones involving deer trying to skewer me."
+				"Ah, this brings back memories. Bad ones. Bad ones involving Krampus trying to kick me in the chest."
+				"I found a sketch where the eyeball should be. Creepy."
+				"I found a sketch on how to make the statue within the gullet of that thing."
+			}
+			//antlion
+			{
+				"I made a statue of the Antlion out of %(stonecraftingmats).\n\n[half]"
+				--
+				"You could call it stagn-ant."
+				"A stagn-antlion."
+				"Maxwell wants to bury this in a sinkhole."
+				"Everyone prefers the statue to the real thing."
+				"That damn antlion scared the hell out of Woby."
+				"It was clutching a sketch in its mandibles."
+			}
+			//fuelweaver
+			{
+				"I made a statue out of the Ancient Fuelweaver. I used %(stonecraftingmats).\n\n[half]"
+				--
+				"It's exactly as stationary as a skeleton ought to be."
+				"Exactly as stationary as a skeleton should be."
+				"Not moving, which is how a skeleton actually works."
+				"Maxwell likes this one, somehow."
+				"Warly wants to use the Fuelweaver's bones in a broth. I have no idea how he's going to do that, frankly, but godspeed to him??"
+				"Brings back memories of getting trapped in a bone cage. With very sharp bones."
+				"I'm surprised that the sketch wasn't ripped to shreds, considering the amount of time it took us to take that damn reanimated skeleton down."
+			}
+			//malbatross
+			{
+				"I made a statue out of the Malbatross, using the scientific power of %(stonecraftingmats).\n\n[half]"
+				--
+				"It's not so bad when it's not trying to kill you deliberately."
+				"Wickerbottom's mentioned that she'll have to add an addendum or appendix to one of her books. I believe it was 'Birds of the World'?"
+				"Fowl-tempered old bird."
+				"Wigfrid says that it honors our victory at sea. Honestly, most of the time I was feeling seasick."
+				"I had to fish the sketch out of the water."
+			}
+			//crabking
+			{
+				"I made a statue out of the Crab King, using the scientific power of %(stonecraftingmats).\n\n[half]"
+				--
+				if hunger <= 50
+				{
+					"Mmm. I'm getting a sudden craving for seafood..."
+				}
+				"He's still not as crabby as Maxwell."
+				"It might have been worth the treasure, frankly."
+				"Wolfgang got seasickness at the time. A little bit troubling..."
+				"I like to think that he's in a better place now."
+				"I don't think I'd be able to give the statue to Pearl. It seems... almost mocking, I'd say."
+			}
+			//moonmoth
+			{
+				"I made a statue out of the cutest little Moon Moth. I used %(stonecraftingmats) to make it.\n\n[half]"
+				--
+				"It looks nice."
+				"It looks nice, I'd say."
+				"It'll be a nice addition to the base."
+				"It'll be a nice addition to the camp."
+				"I'd say it looks nice, but I can't show it to you."
+				"Even Maxwell thinks it's elegant."
+				"It's a good likeness."
+			}
+			//the so-called moon
+			{
+				"I made a statue out of what our moon currently looks like. I used the scientific power of %(stonecraftingmats).\n\n[half]"
+				--
+				{
+					"It has a giant chunk taken out of it. "
+					--
+					{
+						"Somehow, that caused a tidal wave. "
+						--
+						"The water level has risen quite a bit as a result."
+						"I got drenched."
+					}
+					"That chunk fell to the Constant. I'm still not sure what caused it."
+				}
+				"I've been feeling pretty inspired lately."
+				"WX-78 thinks it looks okay. Which is about as much of a compliment I'll get from them."
+				"Woodie thinks I did a good job."
+				"I think I've infected Winona with my puns."
+			}
+			//celestial champion
+			{
+				"I made a statue that looks like the Celestial Champion. I used %(stonecraftingmats) to make it.\n\n[half]"
+				--
+				"I much prefer it as a statue, frankly."
+				"...I'm not sure if it can see us through the statue."
+			}
+			//EoC
+			{
+				"I made a statue of the... weird eye thing that came from a different dimension. I used the scientific power of %(stonecraftingmats).\n\n[half]"
+				"I made a statue of the Eye of Terror. It came from a different dimension, sadly it didn't bring any materials for making statues, so I had to use some good old %(stonecraftingmats).\n\n[half]"
+				--
+				"It gives everyone a stony stare."
+				"I'd suppose this could be a useful anatomical model..."
+				"I'm hoping it doesn't blink."
+				"Keeping eye contact with one eye is very uncomfortable."
+			}
+			//Twins
+			{
+				"I made a statue of the... two mechanical eye things that came from a different dimension. I used the scientific power of %(stonecraftingmats).\n\n[half]"
+				--
+				"It was a terrible night of very uncomfortable amounts of eye contact."
+				"You'll want to blame Wortox for this one."
+			}
+			//varg figure
+			{
+				"I made a statue of the Varg out of $(stonecraftingmats).\n\n[half]"
+				--
+				"It's the leashed of my worries, frankly."
+				"Quite fearsome."
+				"I got the sketch by trading in a few gold nuggets."
+			}
+			//hound figure
+			{
+				"I made a statue of a hound out of %(stonecraftingmats).\n\n[half]"
+				--
+				"Didn't even get eaten!"
+				"The hounds are very voracious."
+				"Nothing but a clay hound dog."
+				"I got the sketch by trading in a few gold nuggets."
+			}
+			//carrat
+			{
+				"I made a statue of a giant carrot with a carrat sitting on it. I used the scientific power of %(stonecraftingmats).\n\n[half]"
+				--
+				"Quite a winning piece, if I do say so myself."
+				"I got the sketch by trading in some gold nuggets."
+				"Wigfrid doesn't like it very much, but she only eats meat."
+			}
+			//Beefalo
+			{
+				"I made a statue of a beefalo. Or, a figure, rather. I used the scientific power of %(stonecraftingmats).\n\n[half]"
+				--
+				"It's a sculpture for a champion of a dressage competition."
+				"I got the sketch by trading in a few gold nuggets."
+			}
 			--
 			"\e"
 		}
@@ -404,7 +957,7 @@ RandomTalk
 			"\e"
 		}
 		//mothling
-		"\0\s[0]Maybe this is the mature form of those moon butterflies... er, moths...\e"
+		"\0\s[0]Maybe that Mothling is the mature form of those moon butterflies... er, moths...\e"
 		{
 			"Recently, %(survivorsminuswalter) adopted a delicate little mothling. "
 			--
@@ -492,6 +1045,9 @@ RandomTalk
 			"Sometimes I mix these up."
 			"I've died to these mushrooms before. Ugh."
 			"I've seen rings of mushrooms before, and they all seem to be one species when that happens."
+			"I wonder if they feed off of the remains of survivors that failed to survive."
+			"Do they feed off of the remains of the creatures that we kill? It might explain why the corpses decay so quickly..."
+			"They seem to need a moist environment, but the environment can't be too cold..."
 			
 			//red
 			{
@@ -870,14 +1426,46 @@ RandomTalk
 		//taming
 		{
 			"\0\s[0]It's possible to tame a beefalo enough to ride on it. Like a horse. "
-			"\0\s[0]It's possible to domesticate these beasts. "
+			"\0\s[0]It's possible to domesticate a beefalo. "
 			--
 			"Though, you still need to feed it a lot of material. By material, I mean things like twigs and grass."
+			"I suppose they could be fed ratatouille, but that seems like a waste of food..."
 			"Domesticated Beefalo are slightly less smelly. I can confirm this hypothesis."
 			"I've developed a salt lick for them, as well as a pen. They seem to enjoy it, though I can't exactly... refuel the salt lick."
 			"It takes approximately 120 licks to get to the center of a salt lick. This doesn't account for Koalefants, Grass Gators or Volt Goats using it, as well as those weird Deer that skitter about in the autumn."
+			{
+				"Putting too much food inside them is ill-advised. "
+				"Overfeeding them is ill-advised. "
+				--
+				"You'll end up with a Beefalo without much of a benefit."
+			}
 			--
 			"\e"
+		}
+		//beefalo traits
+		{
+			"\0\s[0]Depending on what you did with the beefalo while domesticating it, they can end up with a few different traits and mannerisms towards people. "
+			--
+			//ornery
+			{
+				"Sometimes they turn out to be particularly ornery. "
+				--
+				"It doesn't mean they're dangerous, simply misunderstood."
+				"They'll buck you off if you're riding them for too long. A bit annoying, but can be worked on, I'd wager."
+				"These ones can deal quite a bit of damage to creatures."
+				"These ones can deal quite a bit of damage towards other creatures that reside within the Constant."
+				"They tend to look a bit mad."
+			}
+			//rider
+			{
+				"Sometimes we get beefalo that are particularly suited to riding. "
+				--
+				"These ones deal less damage, but are quite good for getting around quickly."
+				"Quite speedy, really."
+				"These ones tend to be useful for moving statues around. Not quite so useful for when you need precision, though."
+				"These ones tend to be useful for moving statues around."
+				"These beefalo deal less damage, so they're not exactly useful for fighting things. Still, they're quite useful if you have trouble with kiting enemies."
+			}
 		}
 		
 		//stuff relating to gold
@@ -977,6 +1565,7 @@ RandomTalk
 			if tirednesslevels >= 75
 			{
 				"...Should sleep first, better thoughts..."
+				"Won't be able to focus on it right now..."
 			}
 			if season == "Winter"
 			{
@@ -984,6 +1573,10 @@ RandomTalk
 			}
 			if season == "Summer"
 			{
+				if tirednesslevels >= 70
+				{
+					"\n\n[half]Should do this after a nap..."
+				}
 				"\n\n[half]...It's hard to think in this damn heat."
 				"\n\n[half]I'll be surprised if I manage to get anything done, considering the heat."
 				"\n\n[half]A fan would be bloody nice."
@@ -1033,6 +1626,10 @@ RandomTalk
 					"Maybe I should see if I can't catch some of those fish that reside there."
 					"I ought to bring some figs to Warly. He makes the best food..."
 				}
+				if season == "Summer" && tirednesslevels >= 70
+				{
+					"Good place to take a nap on the boat in the summer."
+				}
 				"The spiders, however, aren't a great find."
 				"Spiders that walk on water, however, are horrifying."
 				"We get figs from some very long vines."
@@ -1047,17 +1644,21 @@ RandomTalk
 		}
 		
 		//dialogues relating to fish
+		if hunger <= 50
+		{
+			"I keep thinking about cooked fish."
+			"Black catfish with lemon zest and carrots..."
+		}
 		{
 			//"\0\s[0]I caught a perfectly good %(fishyfishy) the other day. "
 			"\0\s[0]I caught something the other day. "
 			--
 			if hunger <= 50
 			{
-				"I keep thinking about cooked fish."
-				"...I'd like to taste it when I get back."
-				"Mm. Cooking that catch does sound good right now..."
-				"Black catfish with lemon zest and carrots..."
+				"I ought to get to cooking it when I get back, if it hasn't already been pilfered. "
+				"I ought to get to cooking it when I get back. "
 			}
+			--
 			//seasonal fishes.
 			if season == "Winter"
 			{
@@ -1071,6 +1672,7 @@ RandomTalk
 					"It's a shame that we can't get a lot of these, considering our circumstances in not being able to do Winter fishing expeditions."
 					"They'll eat anything, which is surprising."
 					"How are they so cold? I've been trying to do biological studies on these, but... It's never gone to plan."
+					"Pearl sometimes requests these."
 				}
 			}
 			if season == "Summer"
@@ -2535,7 +3137,7 @@ Pool_timeslot_earlymorning_upearly : array //runtime[0] < 3 (Probably just got u
 {
 	"\0\s[0]%(itisShorten) early.\e"
 	"\0\s[0]Did you really have to wake me up at this time? A scientist requires a good amount of sleep.\e"
-	"\0\s[0]...Breakfast first, talk later.\s[-1]\e"
+	//"\0\s[0]...Breakfast first, talk later.\s[-1]\e"
 }
 
 Pool_timeslot_morning : array //timeslot == 'morning' (9am - 11am)
@@ -2587,9 +3189,8 @@ Pool_timeslot_midnight : array //timeslot == 'midnight' (1am - 4am)
 Pool_wd_Sun : array //wd == "Sun"
 {
 	"\0\s[0]%(itisShorten) Sunday.\e"
-	"\0\s[0]Today is supposedly the day of rest, but there's always work to be done.\e"
-	"\0\s[0]No time for resting, work to be done.\e"
-	"\0\s[0]...Would be nice to be able to rest once in a while and just. Lounge around.\e"
+	//"\0\s[0]Today is supposedly the day of rest, but there's always work to be done.\e"
+	"\0\s[0]Depending on who you ask, Sunday is either the end or the start of a week.\e"
 }
 
 Pool_wd_Mon : array //wd == "Mon"
@@ -2715,9 +3316,8 @@ Pool_month_Jul : array //month == 7
 
 Pool_month_Aug : array //month == 8
 {
-	"\0\s[0]%(youknowShortener), you might still be able to wish Percival a happy birthday. You can probably go bother him in his email, right? Or does he not check that one anymore?\e"
-	"\0\s[0]You can wish the dev a happy birthday if you want to. Don't expect much of a response, though, he tends to be pretty shy.\e"
-	"\0\s[0]The dev's birthday is this month. The entire month. Yes.\e"
+	"\0\s[0]It's August.\e"
+	"\0\s[0]Huh. The developer was born in this month.\e"
 }
 
 Pool_month_Sep : array //month == 9 (Autumn start/Spring start)
@@ -2744,6 +3344,7 @@ Pool_month_Nov : array //month == 11
 	"\0\s[0]Do you wear slippers? Now might be a good time to start.\e"
 	"\0\s[0]We should try and blow up Parliament again.\e"
 	"\0\s[0]Do they not do Penny for the Guy anymore? They used to have like. Kids coming out with a wheelbarrow and a Guy Fawkes scarecrow, and they'd ask for spare change.\e"
+	"\0\s[0]Do you have any harvest festivals? I know there's Thanksgiving, but...\e"
 }
 
 Pool_month_Dec : array //month == 12 (Winter start/Summer start)
@@ -2765,6 +3366,20 @@ Pool_season_Spring : array //season == 'Spring'
 	"\0\s[0]Ah, the birds will be dropping seeds again.\e"
 	"\0\s[0]%(iamShortener) going to need to rotate the crops out again.\e"
 	{
+		"\0\s[0]My clothing isn't suited to this amount of rainfall. "
+		--
+		"I'm of the impression that it was created primarily as a summer outfit, given the thin fabric."
+		{
+			"I wonder if it'd be possible to... hm, \s[2]\i[61]\i[71]no. I don't think that's as good of an idea as it sounds. "
+			--
+			"I'm not fond of touching tentacle genitalia at the best of times."
+			"I'm not sure how I'd even sew that into the clothing anyways."
+			"I do not want that stuff anywhere near me."
+		}
+		--
+		"\e"
+	}
+	{
 		"\0\s[0]It rains very frequently in Spring. "
 		--
 		"WX-78 needs protection from the rain, else they'll start sparking, since they're made of electrical components."
@@ -2785,6 +3400,9 @@ Pool_season_Spring : array //season == 'Spring'
 			"I'd probably have to get Woodie on-board with the idea."
 			"We could try and repurpose the little lean-tos that we have for summer whenever we're spending time on the surface..."
 		}
+		"On the plus side, Warly's going to be having a lot of fun with the variety of food we're able to grow. The plants tend to grow a lot faster in spring."
+		"With the frequency of birds dropping seeds, we're able to get a bunch more plants going. They're definitely a mystery when it comes to what they'll grow into, but it's something."
+		"The birds are dropping seeds again. We can grow a lot more food compared to growing food within the Winter, since the farms don't have to be watered as often in the Spring."
 		--
 		"\e"
 	}
@@ -2807,15 +3425,19 @@ Pool_season_Spring : array //season == 'Spring'
 			"The only issue is that they're annoying, they're hard to kite and they cause me to drop my items. "
 			"They're annoying little buggers, though. "
 			"I keep having to check the traps and put them back down again after harvesting the meat. "
+			"It's annoying, having to pick up your items after you end up dropping them thanks to a frog tongue. "
 		}
 		--
 		if totalpets >= 100
 		{
 			"I'm not bringing one here so that you can try and pet it."
+			"I'm not leading one here so that you can try and pet it. It's a bit hard to tell when I'm coming here anyways."
 		}
 		if hunger <= 50
 		{
 			"Maybe some jerky would be nicer..."
+			"Frog leg jerky doesn't sound too bad right now."
+			"I could really use some frog leg jerky right now, frankly..."
 		}
 		if annoyancelevels >= 75
 		{
@@ -2850,7 +3472,17 @@ Pool_season_Summer : array //season == 'Summer'
 	"\0\s[0]Gahhh. I can only keep my beard short in this weather.\e"
 	"\0\s[0]I can't keep my beard very long, otherwise I'll end up overheating.\e"
 	"\0\s[0]I'll take rain over this heat, any day, frankly.\e"
+	"\0\s[0]You wouldn't believe what I saw today. Maxwell, in some sort of... flowery shirt.\w8\w8 It seems impossible until you've seen it for yourself.\e"
+	"\0\s[0]Maybe I ought to cut my hair back a bit. It keeps getting awfully hot around my neck...\e"
 	//"\0\s[0]It%(thingisShorten) hard to get cactus flesh when it comes to this time of year. Wickerbottom has to rely on mushrooms most of the time.\e"
+	{
+		"\0\s[0]While this clothing might be adapted for summer, it's not... exactly adapted for the Constant's summer. "
+		--
+		"I wonder if I could sew some ice hound fur into it... but it's a bit of a pain to get the fur, since I'd need to do it in either Spring or Winter, and being wet makes it easier to get hypothermia..."
+		"I've taken to wearing a summer frest."
+		--
+		"\e"
+	}
 	{
 		"\0\s[0]Sandstorms happen when Summer comes around. \n\n[half]"
 		--
@@ -2960,6 +3592,12 @@ Pool_season_Winter : array //season == 'Winter'
 	"\0\s[0]%(iamShortener) perfectly aware that having a beard makes me look like a madman, but it's also important to not freeze to death.\e"
 	"\0\s[0]Oh, god. Willow's probably going to want to sap some of my body heat.\e"
 	"\0\s[0]Willow tends to really like pilfering my body heat when it comes to this time of year. I'm not too surprised, given her apparent sensitivity to the cold.\e"
+	"\0\s[0]I'm glad I have a bit of a mullet coming in. Wouldn't want a stiff neck when doing backbreaking labor just to survive a while longer.\e"
+	"\0\s[0]I'm glad I didn't decide to cut my hair back a bit in the Autumn. I tend to grow a mullet when it's left unattended for quite a while.\e"
+	"\0\s[0]I should heat up the thermal stones and place them in the tents...\e"
+	"\0\s[0]We need to use up those berries, else they'll rot, and that's wasted food...\e"
+	//supposed to use a happier pose for the below.
+	"\0\s[0]I just realized that we could possibly make actual figgy pudding. I wonder if Warly has a recipe...\e"
 	{
 		"\0\s[0]I wonder if Wigfrid would appreciate being asked on a hunt. "
 		--
@@ -2974,12 +3612,24 @@ Pool_season_Winter : array //season == 'Winter'
 			"I know Willow would definitely appreciate some clothing that's a bit more insulated."
 			"Maxwell's complaining about his joints again. I'm hoping that some clothing that's more insulated will shut him up for at least five minutes."
 			"We need spare vests. I didn't get around to making a lot of them in time..."
+			"The trunk is frequently used for vests. Though, we do have to cook it and use it for food once it starts to spoil to a particular extent."
+			"We use the Koalefant trunks for winter vests."
 		}
 		{
 			"I'm just hoping we don't get a Ewecus. "
 			--
 			"It took ages to clean the mucus from that thing's projectiles off of my clothing."
 			"I do not want to have to try and bathe Webber when he's got mucus all over him."
+			"We can't even use the wool to make anything that might be a bit warmer."
+		}
+		{
+			"I'm hoping it's not a Varg this time. "
+			--
+			"Those things summon hounds with alarming frequency."
+			"We can't get close enough to kill it because of all the hounds it can summon."
+			"We can't get close enough to kill it because it'll call for help. Guess what that help is? Go on. \w8\w8\w8\w8\w8\w8It's hounds."
+			"While we can get more tooth traps to potentially kill the Deerclops and any other hounds that come by thanks to the Varg summoning more hounds, it's not very useful for keeping us warm."
+			"It'd be nice if we were able to use the pelts of the hounds for clothing."
 		}
 		--
 		"\e"
@@ -2987,13 +3637,13 @@ Pool_season_Winter : array //season == 'Winter'
 	{
 		"%(itisShorten) rather cold out. "
 		--
-		"I'm guessing Willow's going to be pilfering some of my body heat tonight."
-		"Willow might have pilfered all the blankets again. And the thermal stones."
-		"Willow's probably either in the fire or cozied up with a bunch of blankets and thermal stones."
-		"...I just realized that Willow's probably going to rub her cold hands over me."
-		"Webber doesn't like the darker nights very much."
-		"I can hear Maxwell complaining about his joints from here."
-		"I can hear Maxwell complaining about his joints from here. It's... not much of a wonder why he gets along so well with Wickerbottom."
+		"I'm guessing anWillow's going to be pilfering some of my body heat tonight."
+		"anWillow might have pilfered all the blankets again. And the thermal stones."
+		"anWillow's probably either in the fire or cozied up with a bunch of blankets and thermal stones."
+		"...I just realized that anWillow's probably going to rub her cold hands over me."
+		"anWebber doesn't like the darker nights very much."
+		"I can hear anMaxwell complaining about his joints from here."
+		"I can hear anMaxwell complaining about his joints from here. It's... not much of a wonder why he gets along so well with Wickerbottom."
 		"Wormwood might be hibernating at this point."
 		"Wormwood has asked me to check on the garden for him."
 		{
@@ -3007,12 +3657,12 @@ Pool_season_Winter : array //season == 'Winter'
 		{
 			"Hypothermia%(thingisShorten) going to become a real risk. "
 			--
-			"Willow's going to be affected the most. It's why she needs several items of clothing at best to be able to thermoregulate in these temperatures..."
+			"anWillow's going to be affected the most. It's why she needs several items of clothing at best to be able to thermoregulate in these temperatures..."
 			"Wurt's going to be affected pretty badly. The air must be pretty freezing for her."
 			"Wurt's going to be affected pretty badly. The air must be pretty freezing to her, especially since she's usually wet."
 			"Wormwood needs to go into hibernation around these times. The times when he's out are mostly when we've got enough heat to go around."
-			"Webber's able to grow a beard, so he can last a bit longer out in the snow, but I still worry, since it gets so dark at night."
-			"\s[2]\i[61]\i[71]Willow tends to get sick around this season. \i[59]I worry a lot about her, frankly."
+			"anWebber's able to grow a beard, so he can last a bit longer out in the snow, but I still worry, since it gets so dark at night."
+			"\s[2]\i[61]\i[71]anWillow tends to get sick around this season. \i[59]I worry a lot about her, frankly."
 		}
 		--
 		"\e"
@@ -3046,12 +3696,32 @@ OnMinuteChange
 				"\0\s[0]Happy new year!\e"
 				"\0\s[0]...Looks like %(itisShorten) a new year.\e"
 				"\0\s[0]%(itisShorten) a new year.\e"
+				"\0\s[0]Hm. A new year's come around.\e"
 			}
 			else
 			{
 				if tirednesslevels >= 75
 				{
 					"\0\s[0]I really should have brought a blanket or something here...\e"
+				}
+				"\0\s[0]It's midnight.\e"
+				{
+					"\0\s[0]It's midnight. "
+					--
+					"I could be doing "
+					"I should be doing "
+					"I could theoretically be doing "
+					"I ought to be doing "
+					--
+					"a lot of "
+					"plenty of "
+					"some "
+					--
+					"science right now."
+					"work on my projects."
+					"work on my projects right now."
+					--
+					"\e"
 				}
 				"\0\s[0]It%(thingisShorten) the middle of the night.\e"
 				{
@@ -3068,13 +3738,25 @@ OnMinuteChange
 		}
 		elseif hour == 12
 		{
+			if tirednesslevels >= 75
+			{
+				"\0\s[0]%(itisShorten) a good time for a midday nap, I'd say.\e"
+			}
+			if hunger <= 50
+			{
+				"\0\s[0]%(itisShorten) noon. Now sounds like a good time for lunch.\e"
+			}
 			"\0\s[0]%(itisShorten) noon.\e"
-			"\0\s[0]%(itisShorten) noon. Now sounds like a good time for lunch.\e"
-			"\0\s[0]%(itisShorten) a good time for a midday nap, I'd say.\e"
+			"\0\s[0]It's the middle of the day right now.\e"
 		}
 		else
 		{
+			if hunger <= 50
+			{
+				"\0\s[0]Mmm. It's %(hour12) o' clock. I'm hungry.\e"
+			}
 			"\0\s[0]%(itisShorten) %(hour12) o'clock.\e"
+			"\0\s[0]If my timekeeping is correct, it should be %(hour12) o' clock right now.\e"
 		}
 	}
 	elseif ARRAYSIZE(offscreen) > 0 //If the ghost is off the screen, it will run the off screen dialogue every minute

@@ -13,8 +13,8 @@ surface0
 	//Any images in subfolders HAVE to be defined in a surface before you can use them in animations, though.
 	
 	//Collisions
-	collision0,50,8,95,27,Head
-	collision1,47,4,102,60,Face
+	collision0,67,51,123,69,Head
+	//collision1,47,4,102,60,Face
 	
 	//Blink
 	animation20.interval,random,4
